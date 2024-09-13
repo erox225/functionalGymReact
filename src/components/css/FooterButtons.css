@@ -1,0 +1,46 @@
+/* Estilos del footer */
+.mobile-footer {
+    display: none; /* Oculto por defecto */
+    justify-content: space-around; /* Distribuye los botones con espacio igual entre ellos */
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #6200ea;
+    color: white;
+    padding: 0.5rem;
+    z-index: 1000; /* Aseguramos que el footer esté por encima de otros elementos */
+  }
+  
+  .footer-btn {
+    text-decoration: none;
+    
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    flex: 1; /* Cada botón toma el mismo espacio */
+    margin: 0 0.5rem; /* Margen entre los botones */
+    text-align: center;
+    display: flex; /* Alineamos icono y texto horizontalmente */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer-btn svg {
+    margin-right: 8px; /* Espaciado entre el icono y el texto */
+  }
+  
+  .footer-btn:hover {
+    background-color: #0c54b9;
+  }
+  
+  /* Mostrar el footer solo en pantallas móviles */
+  @media (max-width: 768px) {
+    .mobile-footer {
+      display: flex; /* El footer se muestra solo en pantallas pequeñas */
+    }
+  }
+  

@@ -1,0 +1,52 @@
+/* Estilos del navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Espaciar los elementos entre la izquierda y la derecha */
+    align-items: center;
+    background-color: #6200ea;
+    padding: 1rem;
+    color: white;
+  }
+  
+  /* Estilo para los enlaces de navegación */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  /* Botón de salir alineado a la derecha */
+  .nav-logout {
+    margin-left: auto; /* Empuja el botón de salir hacia la derecha */
+  }
+  
+  .logout-btn {
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .logout-btn:hover {
+    background-color: #e64a19;
+  }
+  
+  /* Estilo para el nombre de la app */
+.app-name h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white;
+  }
+  
