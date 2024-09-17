@@ -1,0 +1,53 @@
+/* Estilos generales para la cuadrícula */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    grid-template-rows: repeat(3, 1fr);    /* 3 filas */
+    gap: 10px; /* Margen entre los elementos */
+    width: 80%; /* Hacer que el grid ocupe el 80% de la pantalla */
+    max-width: 600px; /* Máximo tamaño para pantallas grandes */
+    margin: auto; /* Centrar el grid horizontalmente */
+  }
+  
+  .grid-item {
+    text-decoration: none;
+    background-color: #6200ea;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Altura fija para las celdas */
+    border-radius: 8px;
+    font-size: 1.5rem; /* Tamaño de fuente en pantallas grandes */
+    text-align: center;
+  }
+  
+  .grid-icon {
+    font-size: 2rem; /* Tamaño de los iconos */
+    margin-bottom: 10px; /* Espaciado entre el icono y el texto */
+  }
+
+  .grid-item:hover{
+    background-color: #0c54b9;
+  }
+  
+  /* Estilos responsive para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr); /* En pantallas pequeñas, mantenemos 2 columnas */
+      grid-template-rows: auto; /* El número de filas será automático */
+      width: 100%; /* Ocupa el 100% de la pantalla en móvil */
+    }
+  
+    .grid-item {
+      font-size: 1rem; /* Reducimos el tamaño de fuente en pantallas móviles */
+      padding: 0.5rem; /* Reducimos el padding para que los elementos sean más compactos */
+    }
+  
+    .grid-item {
+      width: 90%; /* Hacer que cada elemento del grid ocupe el 90% del contenedor */
+      margin: 0 auto; /* Centramos los elementos dentro de cada columna */
+    }
+  }
+  
