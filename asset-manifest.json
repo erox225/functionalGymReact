@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.c3b72372.css",
-    "main.js": "/static/js/main.80d59943.js",
-    "index.html": "/index.html",
-    "main.c3b72372.css.map": "/static/css/main.c3b72372.css.map",
-    "main.80d59943.js.map": "/static/js/main.80d59943.js.map"
+    "main.css": "/functionalGymReact/static/css/main.c3b72372.css",
+    "main.js": "/functionalGymReact/static/js/main.559310a3.js",
+    "index.html": "/functionalGymReact/index.html",
+    "main.c3b72372.css.map": "/functionalGymReact/static/css/main.c3b72372.css.map",
+    "main.559310a3.js.map": "/functionalGymReact/static/js/main.559310a3.js.map"
   },
   "entrypoints": [
     "static/css/main.c3b72372.css",
-    "static/js/main.80d59943.js"
+    "static/js/main.559310a3.js"
   ]
 }
