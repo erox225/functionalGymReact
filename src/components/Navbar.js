@@ -1,64 +1,52 @@
-import React from 'react'; 
-import { Link, useLocation, useNavigate } from 'react-router-dom'; 
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; // Importamos el icono de salir
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './css/Navbar.css';
 
 const Navbar = () => {
-  const location = useLocation(); // Para obtener la ruta actual
-  const navigate = useNavigate(); // Para navegar programáticamente
-  const allowedPaths = ['/dashboard', '/clients','/class','/reservations','/accessControl','/calendar'];
+  const [isOpen, setIsOpen] = useState(false);
 
-  const goBack = () => {
-    navigate(-1); // Navega a la página anterior
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
     <nav className="navbar">
-      {/* Nombre de la app a la izquierda */}
+      {/* Nombre de la app */}
       <div className="app-name">
-        <h1>FunctionalGym</h1> {/* Aquí va el nombre de tu aplicación */}
+        <h1>FunctionalGym</h1>
       </div>
 
+      {/* Enlaces de navegación para pantallas grandes */}
       <ul className="nav-links">
-        {/* Mostrar las secciones solo si estamos en la página principal (LandingPage) */}
-        {location.pathname === '/' && (
-          <>
-            <li><a href="#section1">Sección 1</a></li>
-            <li><a href="#section2">Sección 2</a></li>
-            <li><a href="#section3">Sección 3</a></li>
-            <li><a href="#section4">Sección 4</a></li>
-            <li><Link to="/login">Login</Link></li>
-          </>
-        )}
-
-        {/* Mostrar el enlace solo si estamos en la página de login */}
-        {location.pathname === '/login' && (
-          <>
-            <li><Link to="/">Volver a la ventana principal</Link></li>
-          </>
-        )}
-
-        
-
-        {/* Botón de salir siempre a la derecha con icono */}
-        {allowedPaths.includes(location.pathname) && (
-        <div className="nav-logout">
-            <Link to="/" className="logout-btn">
-            <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" /> {/* Icono de salida */}
-            Salir
-            </Link>
-        </div>
-        )}
-
+        <li><Link to="/" className="nav-link">Sección 1</Link></li>
+        <li><Link to="/" className="nav-link">Sección 2</Link></li>
+        <li><Link to="/" className="nav-link">Sección 3</Link></li>
+        <li><Link to="/" className="nav-link">Sección 4</Link></li>
+        <li><Link to="/login" className="nav-link">Login</Link></li>
       </ul>
 
+      {/* Botón hamburguesa visible solo en pantallas móviles */}
+      <div className="hamburger-menu" onClick={toggleMenu}>
+        <FontAwesomeIcon icon={isOpen ? faTimes : faBars} className="hamburger-icon" />
+      </div>
 
-
-      
-     
+      {/* Menú lateral para pantallas móviles con animación */}
+      <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
+        <div className="close-icon" onClick={toggleMenu}>
+          <FontAwesomeIcon icon={faTimes} className="hamburger-icon" />
+        </div>
+        <ul className="mobile-nav-links">
+          <li><Link to="/" className="mobile-nav-link" onClick={toggleMenu}>Sección 1</Link></li>
+          <li><Link to="/" className="mobile-nav-link" onClick={toggleMenu}>Sección 2</Link></li>
+          <li><Link to="/" className="mobile-nav-link" onClick={toggleMenu}>Sección 3</Link></li>
+          <li><Link to="/" className="mobile-nav-link" onClick={toggleMenu}>Sección 4</Link></li>
+          <li><Link to="/login" className="mobile-nav-link" onClick={toggleMenu}>Login</Link></li>
+        </ul>
+      </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

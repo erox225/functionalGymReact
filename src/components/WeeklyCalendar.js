@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
-import { Link } from 'react-router-dom'; // Importa Link para la navegación
-
-// Actividades asociadas a fechas específicas
-const activitiesByDate = {
-  "2024-09-11": [
-    { name: 'Gimnasio', time: '09:00 - 10:00' },
-    { name: 'Reunión de equipo', time: '11:00 - 12:00' },
-  ],
-  "2024-09-12": [
-    { name: 'Yoga', time: '08:00 - 09:00' },
-    { name: 'Clase de inglés', time: '10:00 - 11:00' },
-  ],
-  // Más actividades para otras fechas...
-};
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importar FontAwesome
+import { faEdit, faEye } from '@fortawesome/free-solid-svg-icons'; // Íconos de lápiz y ojo
 
 // Diccionario para mapear los días completos a las abreviaturas
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -85,6 +74,17 @@ const WeeklySchedule = () => {
     setCurrentDate(prevDate);
   };
 
+  const activitiesByDate = {
+    "2024-09-18": [
+      { name: 'Gimnasio', time: '09:00 - 10:00', aforoMax: 30, aforoActual: 15 },
+      { name: 'Reunión de equipo', time: '11:00 - 12:00', aforoMax: 10, aforoActual: 5 },
+    ],
+    "2024-09-19": [
+      { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12 },
+      { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20 },
+    ],
+  };
+
   return (
     <div className="weekly-schedule">
       {/* Mostrar el mes y el rango de la semana con las flechas */}
@@ -118,12 +118,25 @@ const WeeklySchedule = () => {
         <div className="activities-list">
           {activitiesByDate[selectedDay].map((activity, index) => (
             <div key={index} className="activity">
-              <div className="activity-name">{activity.name}</div>
-              <div className="activity-time">{activity.time}</div>
-              {/* Botón "Ver Clase" */}
-              <Link to={`/class/${activity.name}`} className="view-class-button">
-                Ver Clase
-              </Link>
+              <div className="activity-details">
+                <Link to={`/class/${activity.name}`} className="view-class-button">
+                  {activity.name}
+                </Link>
+                <div className="activity-time">{activity.time}</div>
+                <div className="activity-aforo">
+                  Aforo: {activity.aforoMax}/{activity.aforoActual}
+                </div>
+              </div>
+
+              {/* Botones de edición y visualización */}
+              <div className="activity-buttons">
+                <Link to={`/edit/${activity.name}`} className="edit-button">
+                  <FontAwesomeIcon icon={faEdit} />
+                </Link>
+                <Link to={`/view/${activity.name}`} className="view-button">
+                  <FontAwesomeIcon icon={faEye} />
+                </Link>
+              </div>
             </div>
           ))}
         </div>
