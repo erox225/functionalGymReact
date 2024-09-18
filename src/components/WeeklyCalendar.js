@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importar FontAwesome
-import { faEdit, faEye } from '@fortawesome/free-solid-svg-icons'; // Íconos de lápiz y ojo
+import { faEdit, faEye, faArrowRight ,faArrowLeft   } from '@fortawesome/free-solid-svg-icons'; // Íconos de lápiz y ojo
 
 // Diccionario para mapear los días completos a las abreviaturas
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -89,12 +89,12 @@ const WeeklySchedule = () => {
     <div className="weekly-schedule">
       {/* Mostrar el mes y el rango de la semana con las flechas */}
       <div className="calendar-header">
-        <button className="arrow-button" onClick={prevWeek}>←</button>
+        <button className="arrow-button" onClick={prevWeek}><FontAwesomeIcon icon={faArrowLeft} className="header-icon" /></button>
         <div className="week-info">
           <h2>{monthRange}</h2>
           <p>Semana: {weekRange}</p>
         </div>
-        <button className="arrow-button" onClick={nextWeek}>→</button>
+        <button className="arrow-button" onClick={nextWeek}><FontAwesomeIcon icon={faArrowRight} className="header-icon" /></button>
       </div>
 
       {/* Lista horizontal de días con el número arriba de la abreviatura */}

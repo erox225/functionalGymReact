@@ -1,18 +1,16 @@
 import React from 'react';
 import WeeklyCalendar from '../components/WeeklyCalendar'; // Importamos el componente del calendario
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'; // Importamos los iconos
+import './css/Calendar.css';
 
 const Calendar = () => {
   return (
     <div>
-        <h1
-          style={{ 
-            textAlign: 'center', 
-            fontSize: '2.0rem',  // Cambiado a camelCase y entre comillas
-            marginBottom: '0.5rem', 
-            marginTop: '0.5rem' 
-          }}
-      
-      >Calendario</h1>
+        <h1 className="class-header">
+        <FontAwesomeIcon icon={faCalendarAlt} className="header-icon" />
+        Calendario
+      </h1>
       <WeeklyCalendar /> {/* Usamos el componente WeeklyCalendar */}
     </div>
   );

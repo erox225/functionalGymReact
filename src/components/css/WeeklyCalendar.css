@@ -23,16 +23,18 @@
 .arrow-button {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 0.5rem;
   cursor: pointer;
-  color: #6200ea;
-  padding: 0.5rem;
+  
+  padding: 0.3rem;
   transition: color 0.3s;
 }
 
-.arrow-button:hover {
-  color: #3700b3;
+.header-icon{
+  color: #6200ea;
 }
+
+
 
 .week-info {
   flex-grow: 1;
@@ -44,8 +46,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  padding: 1rem;
-  padding-top: 0px;
+
+
+margin: 0.8rem;
+padding: 0.4em;
 }
 
 /* Lista horizontal de días */
@@ -189,7 +193,7 @@
 
   .days-list li {
       margin-right: 10px;
-      min-width: 70px;
+      min-width: 60px;
   }
 
   .activities-list h3 {
@@ -224,3 +228,12 @@
       font-size: 0.85rem;
   }
 }
+
+button:hover{
+  background-color: white;
+}
+
+button{
+  font-size: 0.4em;
+}
+

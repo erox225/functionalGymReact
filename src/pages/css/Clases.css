@@ -1,0 +1,19 @@
+  /* Estilo para el contenedor del h1 */
+  .class-header {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilo para el ícono del h1 */
+  .header-icon {
+    margin-right: 0.5rem;
+    color: black; /* Color principal del ícono */
+    font-size: 2rem; /* Tamaño del ícono */
+  }
