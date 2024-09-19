@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock,faUsers  } from '@fortawesome/free-solid-svg-icons'; // Añadimos nuevos íconos
+import { faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 // Diccionario para mapear los días completos a las abreviaturas
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -15,7 +15,9 @@ const getMonday = (date) => {
 };
 
 const WeeklySchedule = () => {
-  const [selectedDay, setSelectedDay] = useState(null);
+  const todayFormatted = new Date().toISOString().split('T')[0];
+
+  const [selectedDay, setSelectedDay] = useState(todayFormatted);
   const [weekDates, setWeekDates] = useState(Array(7).fill(null));
   const [monthRange, setMonthRange] = useState('');
   const [weekRange, setWeekRange] = useState('');
@@ -116,12 +118,12 @@ const WeeklySchedule = () => {
             <div key={index} className="activity">
               <div className="activity-details">
                 <Link to={`/class/${activity.name}`} className="view-class-button">
-                  {activity.name}  
+                  {activity.name}
                 </Link>
-                
+
                 <div className="activity-aforo">
-                <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
-                Aforo: {activity.aforoMax}/{activity.aforoActual}
+                  <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
+                  Aforo: {activity.aforoMax}/{activity.aforoActual}
                 </div>
                 {/* Añadimos intensidad y duración con íconos */}
                 <div className="activity-intensity">
@@ -135,26 +137,26 @@ const WeeklySchedule = () => {
               </div>
 
               {/* Botones de edición y visualización */}
-              
               <div className="right-activity">
-              <div className="activity-time">
-                {activity.time}
+                <div className="activity-time">
+                  {activity.time}
+                </div>
+                <div className="activity-buttons">
+                  <Link to={`/edit/${activity.name}`} className="edit-button">
+                    <FontAwesomeIcon icon={faEdit} />
+                  </Link>
+                  <Link to={`/view/${activity.name}`} className="view-button">
+                    <FontAwesomeIcon icon={faEye} />
+                  </Link>
+                </div>
               </div>
-              <div className="activity-buttons">
-                <Link to={`/edit/${activity.name}`} className="edit-button">
-                  <FontAwesomeIcon icon={faEdit} />
-                </Link>
-                <Link to={`/view/${activity.name}`} className="view-button">
-                  <FontAwesomeIcon icon={faEye} />
-                </Link>
-              </div>
-              </div>
-
             </div>
           ))}
         </div>
       ) : (
-        <p>No hay actividades para la fecha seleccionada.</p>
+        <div className="no-activity">
+          <p>No hay actividades para la fecha seleccionada.</p>
+        </div>
       )}
     </div>
   );
