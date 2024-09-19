@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importar FontAwesome
-import { faEdit, faEye, faArrowRight ,faArrowLeft   } from '@fortawesome/free-solid-svg-icons'; // Íconos de lápiz y ojo
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock,faUsers  } from '@fortawesome/free-solid-svg-icons'; // Añadimos nuevos íconos
 
 // Diccionario para mapear los días completos a las abreviaturas
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -16,10 +16,10 @@ const getMonday = (date) => {
 
 const WeeklySchedule = () => {
   const [selectedDay, setSelectedDay] = useState(null);
-  const [weekDates, setWeekDates] = useState(Array(7).fill(null)); // Inicializa con un array de 7 valores nulos
-  const [monthRange, setMonthRange] = useState(''); // Para guardar el mes o los meses actuales
-  const [weekRange, setWeekRange] = useState(''); // Para guardar el rango de la semana (Lun a Dom)
-  const [currentDate, setCurrentDate] = useState(() => getMonday(new Date())); // Controla la semana actual, empezando desde el lunes
+  const [weekDates, setWeekDates] = useState(Array(7).fill(null));
+  const [monthRange, setMonthRange] = useState('');
+  const [weekRange, setWeekRange] = useState('');
+  const [currentDate, setCurrentDate] = useState(() => getMonday(new Date()));
 
   useEffect(() => {
     const updateWeekDates = (startDate) => {
@@ -28,13 +28,12 @@ const WeeklySchedule = () => {
       const lastDate = new Date(startDate);
       lastDate.setDate(firstDate.getDate() + 6);
 
-      // Obtenemos las fechas de la semana actual
       for (let i = 0; i < 7; i++) {
         const date = new Date(startDate);
         date.setDate(firstDate.getDate() + i);
         dates.push({
-          dateObj: date, // Objeto Date para comparaciones
-          formattedDate: date.toISOString().split('T')[0], // Fecha en formato 'YYYY-MM-DD'
+          dateObj: date,
+          formattedDate: date.toISOString().split('T')[0],
           day: date.getDate(),
           month: date.toLocaleString('es-ES', { month: 'long' }),
         });
@@ -42,11 +41,9 @@ const WeeklySchedule = () => {
 
       setWeekDates(dates);
 
-      // Actualizamos el rango de la semana (p.ej., "01 - 07 de Septiembre")
       const weekRange = `${firstDate.getDate().toString().padStart(2, '0')} - ${lastDate.getDate().toString().padStart(2, '0')}`;
       setWeekRange(weekRange);
 
-      // Si el mes cambia durante la semana, mostramos ambos meses
       const firstMonth = firstDate.toLocaleString('es-ES', { month: 'long' });
       const lastMonth = lastDate.toLocaleString('es-ES', { month: 'long' });
       const monthRange = firstMonth === lastMonth ? firstMonth : `${firstMonth} - ${lastMonth}`;
@@ -60,28 +57,27 @@ const WeeklySchedule = () => {
     setSelectedDay(weekDates[index]?.formattedDate);
   };
 
-  // Avanza a la semana siguiente
   const nextWeek = () => {
     const nextDate = new Date(currentDate);
     nextDate.setDate(currentDate.getDate() + 7);
     setCurrentDate(nextDate);
   };
 
-  // Retrocede a la semana anterior
   const prevWeek = () => {
     const prevDate = new Date(currentDate);
     prevDate.setDate(currentDate.getDate() - 7);
     setCurrentDate(prevDate);
   };
 
+  // Actividades con intensidad y duración añadidas
   const activitiesByDate = {
     "2024-09-18": [
-      { name: 'Gimnasio', time: '09:00 - 10:00', aforoMax: 30, aforoActual: 15 },
-      { name: 'Reunión de equipo', time: '11:00 - 12:00', aforoMax: 10, aforoActual: 5 },
+      { name: 'Gimnasio', time: '09:00 - 10:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'" },
+      { name: 'Reunión de equipo', time: '11:00 - 12:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'" },
     ],
     "2024-09-19": [
-      { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12 },
-      { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20 },
+      { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
+      { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" },
     ],
   };
 
@@ -120,15 +116,30 @@ const WeeklySchedule = () => {
             <div key={index} className="activity">
               <div className="activity-details">
                 <Link to={`/class/${activity.name}`} className="view-class-button">
-                  {activity.name}
+                  {activity.name}  
                 </Link>
-                <div className="activity-time">{activity.time}</div>
+                
                 <div className="activity-aforo">
-                  Aforo: {activity.aforoMax}/{activity.aforoActual}
+                <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
+                Aforo: {activity.aforoMax}/{activity.aforoActual}
+                </div>
+                {/* Añadimos intensidad y duración con íconos */}
+                <div className="activity-intensity">
+                  <FontAwesomeIcon icon={faBolt} style={{ marginRight: '0.3rem' }} />
+                  Intensidad: {activity.intensidad}
+                </div>
+                <div className="activity-duration">
+                  <FontAwesomeIcon icon={faClock} style={{ marginRight: '0.3rem' }} />
+                  Duración: {activity.duracion}
                 </div>
               </div>
 
               {/* Botones de edición y visualización */}
+              
+              <div className="right-activity">
+              <div className="activity-time">
+                {activity.time}
+              </div>
               <div className="activity-buttons">
                 <Link to={`/edit/${activity.name}`} className="edit-button">
                   <FontAwesomeIcon icon={faEdit} />
@@ -137,6 +148,8 @@ const WeeklySchedule = () => {
                   <FontAwesomeIcon icon={faEye} />
                 </Link>
               </div>
+              </div>
+
             </div>
           ))}
         </div>
