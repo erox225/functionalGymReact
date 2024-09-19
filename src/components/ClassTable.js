@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './css/ClassTable.css'; // Importa el archivo CSS
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye, faSearch, faClock, faBolt, faUsers, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ClassTable = ({ classes }) => {
   // Estado para almacenar el término de búsqueda
@@ -73,9 +73,25 @@ const ClassTable = ({ classes }) => {
         <div key={index} className="class-card">
           <div className="class-card-header">{clase.name}</div>
           <div className="class-card-content">
-            <span><strong>Aforo Máximo:</strong> {clase.aforoMax}</span>
-            <span><strong>Estado:</strong> {clase.estado}</span>
-            <span><strong>Última Modificación:</strong> {clase.ultimaModificacion}</span>
+            <span>
+              <FontAwesomeIcon icon={faBolt} style={{ marginRight: '0.5em' }} />
+              <strong>Intensidad:</strong> 
+              <span style={{ textTransform: 'uppercase', fontWeight: 'bold', display: 'inline-block', marginBottom: '0px', marginLeft: '0.3em' }}> {clase.intensidad}</span>
+            </span>
+            <span>
+              <FontAwesomeIcon icon={faClock} style={{ marginRight: '0.5em' }} />
+              <strong>Duración:</strong> 
+              <span style={{ textTransform: 'uppercase', fontWeight: 'bold', display: 'inline-block', marginBottom: '0px', marginLeft: '0.3em' }}> {clase.duracion}</span>
+            </span>
+            <span>
+              <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.5em' }} />
+              <strong>Aforo Máximo:</strong> {clase.aforoMax}
+            </span>
+            <span>
+              <FontAwesomeIcon icon={clase.estado === 'Disponible' ? faCheckCircle : faTimesCircle} style={{ marginRight: '0.5em' }} />
+              <strong>Estado:</strong> {clase.estado}
+            </span>
+            <span><strong>Descripción:</strong> {clase.descripcion}</span>
           </div>
           <div className="action-buttons">
             <Link to={`/view/${clase.id}`} className="view-button">
