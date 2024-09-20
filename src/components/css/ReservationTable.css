@@ -1,0 +1,212 @@
+/* Estilos generales */
+.reservation-list {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+/* Estilos para la tabla en pantallas grandes */
+.reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif;
+}
+
+.reservation-table th, .reservation-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.reservation-table th {
+    background-color: #6200ea;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.reservation-table td {
+    text-align: center;
+}
+
+.reservation-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Botones de acción */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.view-button, .edit-button {
+    padding: 0.5rem;
+    background-color: #32CD32;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #FFD700;
+}
+
+.view-button:hover {
+    background-color: #28a745;
+}
+
+.edit-button:hover {
+    background-color: #FFC107;
+}
+
+/* Estilos de tarjetas (tickets) para pantallas pequeñas */
+@media (max-width: 768px) {
+
+    .reservation-list {
+        margin: 0;
+        padding: 0.5rem;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+    }
+
+    .reservation-table {
+        display: none;
+    }
+
+    .reservation-card {
+        display: flex;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        background-color: #fbfbfb;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 98%;
+        margin: 15px auto;
+        position: relative; /* Para posicionar el botón flotante */
+    }
+
+    /* Parte izquierda del ticket */
+    .reservation-card-left {
+        width: 70%;
+        padding: 1rem;
+        color: black;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.2); /* Fondo de la izquierda */
+    }
+
+    .class-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+
+    .reservation-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Parte derecha del ticket */
+    .reservation-card-right {
+        width: 30%;
+        padding: 1rem;
+        border-left: 1px dashed #ccc;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .reservation-time {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .qr-button-container {
+        margin-top: 1rem;
+    }
+
+    .qr-button {
+        background-color: #6200ea;
+        color: white;
+        padding: 0.7rem;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        width: 100%;
+    }
+
+    .qr-button:hover {
+        background-color: #3700b3;
+    }
+
+    /* Botón de eliminar flotante en la parte superior derecha */
+    .delete-button-floating {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: #ff6347;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 0.3rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        display: block;
+    width: 28px;
+    }
+
+    .delete-button-floating:hover {
+        background-color: #ff4500;
+    }
+}
+
+/* Ocultar tarjetas en pantallas grandes */
+@media (min-width: 769px) {
+    .reservation-card {
+        display: none;
+    }
+
+    .reservation-table {
+        display: table;
+    }
+}
+
+/* Barra de búsqueda */
+.search-container {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.search-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.search-icon {
+    margin-right: 0.5rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1.2px solid black;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+
