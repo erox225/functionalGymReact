@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock, faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
 // Diccionario para mapear los días completos a las abreviaturas
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -147,6 +147,10 @@ const WeeklySchedule = () => {
                   </Link>
                   <Link to={`/view/${activity.name}`} className="view-button">
                     <FontAwesomeIcon icon={faEye} />
+                  </Link>
+                  <Link to={`/view/${activity.name}`} className="reserve-button">
+                    <FontAwesomeIcon icon={faClipboardList} /> 
+                    <span className='boton-reservar'>Reservar</span>
                   </Link>
                 </div>
               </div>

@@ -28,6 +28,7 @@
   cursor: pointer;
   padding: 0.3rem;
   transition: color 0.3s;
+
 }
 
 .header-icon {
@@ -45,6 +46,8 @@
   flex-direction: column;
   gap: 0.4rem;
   padding: 0.4em;
+  max-width: 460px;
+  margin: auto;
 }
 
 /* Lista horizontal de días */
@@ -74,7 +77,7 @@
 
 .days-list li:hover,
 .days-list li.active {
-  background-color: #3700b3;
+  background-color: #2c0192;
 }
 
 /* Estilo para el número del día */
@@ -176,7 +179,7 @@
   gap: 10px; /* Espacio entre los botones */
 }
 
-.edit-button, .view-button {
+.edit-button, .view-button, .reserve-button {
   background-color: #FFD700; /* Fondo amarillo */
   color: black;
   border: none;
@@ -190,6 +193,21 @@
   transition: background-color 0.3s ease;
 }
 
+.reserve-button{
+  background-color: #8192fe;
+  color: white;
+  border: 2px solid black;
+}
+
+.boton-reservar{
+  font-size: 0.7em;
+  padding-left: 7px;
+}
+
+.reserve-button:hover{
+  background-color: #6478f8;
+
+}
 
 
 
@@ -210,7 +228,6 @@
 /* Estilos responsive para móviles */
 @media (max-width: 768px) {
   .days-list {
-      justify-content: flex-start;
       overflow-x: auto;
   }
 
@@ -225,7 +242,7 @@
 
   .activity {
       padding: 0.75rem;
-      border: 1px solid black;
+      /*border: 1px solid black;*/
   }
 
   .activity-columns {
