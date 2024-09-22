@@ -78,7 +78,8 @@
 
     .reservation-card {
         display: flex;
-        border: 1px solid black;
+
+        border: 1.2px solid grey;
         border-radius: 8px;
         margin-bottom: 2rem;
         background-color: #fbfbfb;
@@ -91,7 +92,7 @@
     /* Parte izquierda del ticket */
     .reservation-card-left {
         width: 70%;
-        padding: 1rem;
+        
         color: black;
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
@@ -102,15 +103,35 @@
 
     .class-name {
         font-weight: bold;
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: .6rem;
         text-transform: uppercase;
+        padding: 0px;
+        padding-top: 0.5rem;
+        padding-left: 1rem;
+        letter-spacing: 0.14em;
+        text-align: center;
+    }
+
+    .class-id {
+        font-weight: bold;
+        font-size: 1rem;
+        border-top-left-radius: 8px;
+        text-transform: uppercase;
+        background-color: rgba(255, 255, 255, 0.6);
+        display: block;
+        border-bottom: 1px dashed #ccc;
+        padding: 0.5em;
+        padding-left: 0.6em;
     }
 
     .reservation-details {
+        font-size: 0.9em;
+        padding: 1rem;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        padding-top: 0px;
     }
 
     /* Parte derecha del ticket */
@@ -207,6 +228,11 @@
     border: 1.2px solid black;
     border-radius: 4px;
     font-size: 1rem;
+}
+
+.text-ver-qr{
+    font-size: 0.7em;
+  display: block;
 }
 
 
