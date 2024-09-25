@@ -1,0 +1,50 @@
+.config-list {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  .config-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    align-content: baseline;
+  }
+  
+  .config-card-header {
+    font-weight: bold;
+    color: #6200ea;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+  
+  .config-card-content {
+    font-size: 1rem;
+    color: #333;
+    padding-top: 0.5rem;
+  }
+  
+  .config-search-container {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .config-search-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 0.9px solid black;
+    border-radius: 4px;
+    
+    
+  }
+
+  .config-list{
+    margin: auto;
+    max-width: 500px;
+  }
+  

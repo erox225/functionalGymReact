@@ -115,7 +115,7 @@ const ReservationTable = ({ reservations }) => {
               </span>
               <span>
                 <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '0.5em' }} />
-                <strong>Entrenador:</strong> 1
+                <strong>Estado:</strong> Sin usar
               </span>
             </div>
           </div>

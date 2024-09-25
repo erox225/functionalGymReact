@@ -95,10 +95,12 @@ const ClassTable = ({ classes }) => {
           </div>
           <div className="action-buttons">
             <Link to={`/view/${clase.id}`} className="view-button">
-              <FontAwesomeIcon icon={faEye} />
+              <FontAwesomeIcon icon={faEye} /> 
+              <span className="view-button-text"> Ver </span> 
             </Link>
             <Link to={`/edit/${clase.id}`} className="edit-button">
               <FontAwesomeIcon icon={faEdit} />
+              <span className="edit-button-text"> Editar </span> 
             </Link>
           </div>
         </div>

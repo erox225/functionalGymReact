@@ -27,7 +27,7 @@ const GridDashboard = () => {
         <FontAwesomeIcon icon={faLock} className="grid-icon" />
         <span>Control de acceso</span>
       </Link>
-      <Link to="/configuraciones" className="grid-item">
+      <Link to="/configurations" className="grid-item">
         <FontAwesomeIcon icon={faCogs} className="grid-icon" />
         <span>Configuraciones</span>
       </Link>

@@ -121,13 +121,12 @@ const ClientTable = ({ clients }) => {
           <div className="action-buttons">
             <Link to={`/view/${client.id}`} className="view-button">
               <FontAwesomeIcon icon={faEye} />
+              <span className="view-button-text"> Ver </span> 
             </Link>
             <Link to={`/edit/${client.id}`} className="edit-button">
               <FontAwesomeIcon icon={faEdit} />
+              <span className="view-button-text"> Editar </span> 
             </Link>
-            <button className="delete-button" onClick={() => console.log(`Eliminar cliente ${client.id}`)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
           </div>
         </div>
       ))}

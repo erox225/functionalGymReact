@@ -9,9 +9,12 @@
 }
 
 .calendar-header h2 {
-  font-size: 1.5rem;
+  font-size: 0.9rem;
   margin: 0;
   color: #6200ea;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .calendar-header p {
@@ -268,7 +271,8 @@
   .view-class-button{
     font-size: 0.9em;
     text-decoration: none;
-  font-size: 1.1em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   font-weight: bold;
   }
 

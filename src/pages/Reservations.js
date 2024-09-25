@@ -57,7 +57,7 @@ const Reservations = () => {
   return (
     <div>
       {/* Título con ícono */}
-      <h1 className="reservation-header">
+      <h1 className="class-header">
         <FontAwesomeIcon icon={faClipboardList} className="header-icon" />
         Reservas
       </h1>

@@ -13,7 +13,7 @@ const Footer = () => {
   };
 
   // Lista de rutas donde el footer estará visible
-  const showFooterInRoutes = ['/dashboard', '/clients','/class','/reservations','/accessControl','/calendar'];
+  const showFooterInRoutes = ['/dashboard', '/clients','/class','/reservations','/accessControl','/calendar','/configurations'];
 
   // Verificamos si la ruta actual está en la lista
   if (!showFooterInRoutes.includes(location.pathname)) {

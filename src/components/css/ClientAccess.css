@@ -1,0 +1,132 @@
+.client-access-list {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  .client-access-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #fbfbfb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 390px;
+    width: 30%;
+    min-width: 310px;
+    border: 2px solid black;
+  }
+  
+  .client-access-card-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-bottom: 2px solid black;
+    padding: 0.5rem;
+    text-align: center;
+    display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  }
+  
+  .client-access-card-content {
+    padding-top: 0.5rem;
+  }
+  
+  .client-access-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .client-access-icon {
+    margin-right: 0.5rem;
+  }
+  
+  .client-access-attribute {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
+  /* Colores para los atributos */
+  .client-access-attribute-name {
+    color: #1f78b4; /* Azul para Nombre Estancia */
+  }
+  
+  .client-access-attribute-date {
+    color: #888; /* Gris para Fecha */
+  }
+  
+  .client-access-attribute-result {
+    color: #17a2b8; /* Cian para Resultado */
+    margin-left: 4px;
+  }
+  
+  .client-access-attribute-reserva {
+    color: #6f42c1; /* Púrpura para Reserva */
+    margin-left: 7px;
+  }
+  
+  .client-access-value {
+    color: #555;
+  }
+  
+  .client-access-fecha {
+    color: #888; /* Gris para la fecha */
+  }
+  
+  .client-access-id {
+    color: #007bff; /* Color para el ID */
+    
+  }
+  
+  .client-access-resultado.aprobado {
+    color: #28a745; /* Color verde para aprobado */
+  }
+  
+  .client-access-resultado.denegado {
+    color: #dc3545; /* Color rojo para denegado */
+  }
+  
+  .client-access-reserva {
+    color: #6f42c1; /* Color púrpura para la reserva */
+  }
+  
+  .client-access-search-container {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .client-access-search-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .client-access-search-icon {
+    margin-right: 0.5rem;
+  }
+  
+  .client-access-search-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1.2px solid black;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+
+  .client-access-list-2{
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  gap: 10px 20px;
+  }
+
+  .client-access-cliente{
+    font-size: 0.8em;
+  }

@@ -1,5 +1,8 @@
 import React from 'react';
 import ClientTable from '../components/ClientTable'; // Asegúrate de ajustar la ruta según la ubicación de ClientTable
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons'; // Ícono para reservas
+
 
 const Clients = () => {
   // Datos de ejemplo para los clientes, ahora con email y suscripción
@@ -12,14 +15,8 @@ const Clients = () => {
 
   return (
     <div>
-      <h1
-        style={{
-          textAlign: 'center',
-          fontSize: '2.0rem',  // Cambiado a camelCase
-          marginBottom: '0.5rem',
-          marginTop: '0.5rem'
-        }}
-      >
+      <h1 className="class-header">
+        <FontAwesomeIcon icon={faClipboardList} className="header-icon" />
         Clientes
       </h1>
       {/* Aquí llamas al componente ClientTable y le pasas los datos de los clientes */}

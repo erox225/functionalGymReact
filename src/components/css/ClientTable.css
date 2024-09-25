@@ -85,7 +85,7 @@
         .client-card {
             margin: auto;
             display: block;
-            border: 1px solid black;
+            border: 1.1px solid black;
             border-radius: 8px;
             margin-bottom: 3rem;
             padding: 1rem;
@@ -109,7 +109,7 @@
             width: 75px;
             height: 75px;
             border-radius: 50%;
-            border: 2px solid;
+            border: 2.3px solid;
             object-fit: cover;
         }
 
@@ -125,11 +125,13 @@
 
         .client-card-header {
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
             border-bottom: 2px solid #6200ea;
             padding: 0.5rem;
             margin-bottom: 1rem;
             text-align: center;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
         }
 
         .client-card-content {
@@ -199,7 +201,7 @@
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    border: 2px solid;
+    border: 2.3px solid;
     object-fit: cover;
 }
 
@@ -241,7 +243,7 @@
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    border: 2px solid;
+    border: 2.3px solid;
     object-fit: cover;
 }
 
@@ -256,7 +258,7 @@
     align-items: center;
     color: white; /* Ícono blanco */
     font-size: 30px;
-    border: 2px solid;
+    border: 2.3px solid;
     position: absolute;
     top: 0;
     left: 50%;
@@ -272,3 +274,24 @@
 .border-red {
     border-color: red;
 }
+
+
+.view-button-text{
+    font-size: 0.7em;
+    margin-left: 5px;
+  }
+
+  .edit-button-text{
+    font-size: 0.7em;
+    margin-left: 5px;
+  }
+
+  .delete-button-text{
+    font-size: 0.7em;
+    margin-left: 5px;
+  }
+  
+
+  .client-access-fecha{
+    font-size: 0.8em;
+  }
