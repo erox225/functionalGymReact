@@ -1,14 +1,12 @@
 import React from 'react';
 import ClientAccess from '../components/ClientAccess'; // Importa el componente ClientAccess
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { faArrowLeft, faClipboardList } from '@fortawesome/free-solid-svg-icons'; // Ícono para reservas
-
+import { useNavigate } from 'react-router-dom';
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons'; // Ícono para control de acceso
+import HeaderIcons from '../components/HeaderIcons'; // Importamos el componente HeaderIcons
 import './css/ControlAcceso.css';
-const ClientAccessPage = () => {
 
+const ClientAccessPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   // Simulación de clientes
   const clients = [
@@ -23,14 +21,16 @@ const ClientAccessPage = () => {
 
   return (
     <div>
-      <h1 className="class-header">
-      <FontAwesomeIcon icon={faClipboardList} className="header-icon" />
-      Control de Acceso</h1>
+      {/* Usamos el componente HeaderIcons y le pasamos los props sin onAddClick */}
+      <HeaderIcons 
+        icon={faClipboardList} 
+        title="Accesos"
+      />
+
+      {/* Renderiza el componente ClientAccess con los datos de los clientes */}
       <ClientAccess clients={clients} />
     </div>
   );
 };
 
 export default ClientAccessPage;
-
-

@@ -1,18 +1,17 @@
 import React from 'react';
-import ConfigCard from '../components/ConfigCard'; // Importa el componente ConfigCardç
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardList } from '@fortawesome/free-solid-svg-icons'; // Ícono para reservas
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import ConfigCard from '../components/ConfigCard'; // Importa el componente ConfigCard
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons'; // Ícono para configuraciones
+import { useNavigate } from 'react-router-dom';
+import HeaderIcons from '../components/HeaderIcons'; // Importamos el componente HeaderIcons
 
 const Settings = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const goBack = () => {
     navigate(-1); // Navega a la página anterior
   };
 
-      // Simulación de datos de configuración
+  // Simulación de datos de configuración
   const configs = [
     { name: 'Versión', value: '1.0.0' },
     { name: 'Idioma', value: 'Español' },
@@ -22,12 +21,14 @@ const Settings = () => {
 
   return (
     <div>
-      {/* Título con ícono */}
-      <h1 className="class-header">
-        <FontAwesomeIcon icon={faClipboardList} className="header-icon" />
-        Configuraciones
-      </h1>
-      < ConfigCard configs= {configs} />
+      {/* Usamos el componente HeaderIcons y le pasamos los props sin onAddClick */}
+      <HeaderIcons 
+        icon={faClipboardList} 
+        title="Configuraciones"
+      />
+
+      {/* Renderiza el componente ConfigCard con los datos de configuración */}
+      <ConfigCard configs={configs} />
     </div>
   );
 };

@@ -9,7 +9,7 @@ const GridDashboard = () => {
     <div className="grid-container">
       <Link to="/calendar" className="grid-item">
         <FontAwesomeIcon icon={faCalendarAlt} className="grid-icon" />
-        <span>Calendario</span>
+        <span>Planificaciones</span>
       </Link>
       <Link to="/class" className="grid-item">
         <FontAwesomeIcon icon={faChalkboardTeacher} className="grid-icon" />

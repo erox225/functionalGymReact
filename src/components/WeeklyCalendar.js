@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock, faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faCircleChevronLeft, faAngleLeft, faAngleRight, faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock, faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
 // Diccionario para mapear los días completos a las abreviaturas
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -87,12 +87,16 @@ const WeeklySchedule = () => {
     <div className="weekly-schedule">
       {/* Mostrar el mes y el rango de la semana con las flechas */}
       <div className="calendar-header">
-        <button className="arrow-button" onClick={prevWeek}><FontAwesomeIcon icon={faArrowLeft} className="header-icon" /></button>
+        <button className="arrow-button" onClick={prevWeek}>
+          <FontAwesomeIcon icon={faAngleLeft} className="header-icon" />
+          </button>
         <div className="week-info">
           <h2>{monthRange}</h2>
           <p>Semana: {weekRange}</p>
         </div>
-        <button className="arrow-button" onClick={nextWeek}><FontAwesomeIcon icon={faArrowRight} className="header-icon" /></button>
+        <button className="arrow-button" onClick={nextWeek}>
+          <FontAwesomeIcon icon={faAngleRight} className="header-icon" />
+          </button>
       </div>
 
       {/* Lista horizontal de días con el número arriba de la abreviatura */}
@@ -167,3 +171,5 @@ const WeeklySchedule = () => {
 };
 
 export default WeeklySchedule;
+
+<FontAwesomeIcon icon="fa-solid faCircleChevronLeft" />
