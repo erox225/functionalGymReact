@@ -19,6 +19,7 @@ const Navbar = () => {
       <div className="app-name">
         <h1>
         <Link to="/" className="nav-link">FunctionalGym</Link>
+        <p className='suscription-type'>Premium</p>
         </h1>
       </div>
 

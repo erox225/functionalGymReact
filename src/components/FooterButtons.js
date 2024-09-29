@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faHome, faEnvelope } from '@fortawesome/free-solid-svg-icons'; // Importamos los iconos
+import { faArrowLeft, faHome, faEnvelope, faCalendarAlt, faChalkboardTeacher, faUserFriends, faClipboardList, faLock } from '@fortawesome/free-solid-svg-icons'; // Importamos los iconos correctamente
 import './css/FooterButtons.css';
 
 const Footer = () => {
@@ -13,7 +13,7 @@ const Footer = () => {
   };
 
   // Lista de rutas donde el footer estará visible
-  const showFooterInRoutes = ['/dashboard', '/clients','/class','/reservations','/accessControl','/calendar','/configurations'];
+  const showFooterInRoutes = ['/dashboard', '/clients', '/class', '/reservations', '/accessControl', '/calendar', '/configurations'];
 
   // Verificamos si la ruta actual está en la lista
   if (!showFooterInRoutes.includes(location.pathname)) {
@@ -22,15 +22,51 @@ const Footer = () => {
 
   return (
     <footer className="mobile-footer">
-      <button onClick={goBack} className="footer-btn">
-        <FontAwesomeIcon icon={faArrowLeft} /> Volver
-      </button>
-      <Link to="/" className="footer-btn">
-        <FontAwesomeIcon icon={faHome} /> Home
+      <div className='box-footer-mobile'>
+        <Link to="/calendar" className="footer-btn">
+        <div className='box-icon-footer-mobile'>
+        <FontAwesomeIcon icon={faCalendarAlt} />
+        </div>
+        <span className='name-btn-footer'>Calendario</span>
+        </Link>
+        
+      </div>
+    <div className='box-footer-mobile'>
+     <Link to="/class" className="footer-btn">
+     <div className='box-icon-footer-mobile'>
+     <FontAwesomeIcon icon={faChalkboardTeacher} />
+     </div>
+        <span className='name-btn-footer'>Clases</span>
       </Link>
-      <Link to="/contact" className="footer-btn">
-        <FontAwesomeIcon icon={faEnvelope} /> Perfil
+    </div>
+
+    <div  className='box-footer-mobile'>
+     <Link to="/accessControl" className="footer-btn">
+     <div className='box-icon-footer-mobile'>
+     <FontAwesomeIcon icon={faHome} />
+     </div>
+        <span className='name-btn-footer'>Home</span>
       </Link>
+    </div>
+
+    <div  className='box-footer-mobile'>
+      <Link to="/clients" className="footer-btn">
+      <div className='box-icon-footer-mobile'>
+      <FontAwesomeIcon icon={faUserFriends} />
+      </div>
+        <span className='name-btn-footer'>Clientes</span>
+      </Link>
+     
+    </div>
+    <div  className='box-footer-mobile'>
+     <Link to="/reservations" className="footer-btn">
+     <div className='box-icon-footer-mobile'>
+     <FontAwesomeIcon icon={faClipboardList} />
+     </div>
+        <span className='name-btn-footer'>Reservas</span>
+      </Link>
+      
+    </div>
     </footer>
   );
 };

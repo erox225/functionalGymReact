@@ -31,7 +31,7 @@
 .nav-link {
   color: #f3f3f3;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: color 0.3s ease;
 
   border-radius: 5px; /* Bordes redondeados */
@@ -166,5 +166,10 @@
 
 .view-button:hover {
   background-color: #28a745; /* Fondo verde más oscuro en hover */
+}
+
+.suscription-type{
+  font-size: 0.65em;
+  color: yellow;
 }
 

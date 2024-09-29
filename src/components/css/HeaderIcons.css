@@ -46,6 +46,7 @@
   .header-agregar {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.5em;
+    font-size: .36em;
+  padding-top: 4px;
   }
   

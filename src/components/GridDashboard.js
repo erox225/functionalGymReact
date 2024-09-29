@@ -9,11 +9,11 @@ const GridDashboard = () => {
     <div className="grid-container">
       <Link to="/calendar" className="grid-item">
         <FontAwesomeIcon icon={faCalendarAlt} className="grid-icon" />
-        <span>Planificaciones</span>
+        <span>Calendario</span>
       </Link>
       <Link to="/class" className="grid-item">
         <FontAwesomeIcon icon={faChalkboardTeacher} className="grid-icon" />
-        <span>Clases</span>
+        <span>Editar Clases</span>
       </Link>
       <Link to="/clients" className="grid-item">
         <FontAwesomeIcon icon={faUserFriends} className="grid-icon" />
@@ -21,7 +21,7 @@ const GridDashboard = () => {
       </Link>
       <Link to="/reservations" className="grid-item">
         <FontAwesomeIcon icon={faClipboardList} className="grid-icon" />
-        <span>Reservas</span>
+        <span>Lista de Reservas</span>
       </Link>
       <Link to="/accessControl" className="grid-item">
         <FontAwesomeIcon icon={faLock} className="grid-icon" />
