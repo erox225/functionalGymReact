@@ -31,9 +31,10 @@
 .nav-link {
   color: #f3f3f3;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.8rem;
   transition: color 0.3s ease;
-
+  display: flex;
+  flex-direction: column;
   border-radius: 5px; /* Bordes redondeados */
 }
 
@@ -171,5 +172,13 @@
 .suscription-type{
   font-size: 0.65em;
   color: yellow;
+}
+
+.nav-icon{
+  padding-right: 0.4em;
+}
+
+.name-icon-navbar{
+  padding-top: 4px;
 }
 
