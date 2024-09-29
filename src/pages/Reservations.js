@@ -1,13 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardList } from '@fortawesome/free-solid-svg-icons'; // Ícono para reservas
+import { faClipboardList, faArrowLeft, faCirclePlus } from '@fortawesome/free-solid-svg-icons'; // Ícono para reservas
 import ReservationTable from '../components/ReservationTable'; // Componente para la tabla de reservas
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import './css/Reservations.css'; // Archivo CSS específico para reservas
 
 // Función para formatear la fecha en el formato "Sáb 20 de Noviembre"
 const formatDate = (dateString) => {
   const date = new Date(dateString); // El formato debe ser 'yyyy-mm-dd' para que JavaScript lo entienda
-  
   if (isNaN(date)) {
     return 'Fecha inválida'; // Manejar casos donde la fecha no se pueda convertir correctamente
   }
@@ -20,6 +20,13 @@ const formatDate = (dateString) => {
 };
 
 const Reservations = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goBack = () => {
+    navigate(-1); // Navega a la página anterior
+  };
+
   // Simulación de datos de reservas (cambiando el formato de fecha a 'yyyy-mm-dd')
   const reservations = [
     { 
@@ -56,11 +63,27 @@ const Reservations = () => {
 
   return (
     <div>
+
+
+<div className = "header-icons">
+      {/* Botón para volver */}
+      <button onClick={goBack} className="header-icon-back">
+      <FontAwesomeIcon icon={faArrowLeft}  />
+      </button>
       {/* Título con ícono */}
       <h1 className="class-header">
         <FontAwesomeIcon icon={faClipboardList} className="header-icon" />
         Reservas
       </h1>
+      {/* Botón para Agregar  */}
+      <button onClick={goBack}  className="header-icon-add">
+      <FontAwesomeIcon icon={faCirclePlus} />
+      <span className='header-agregar'>
+      Agregar
+      </span>
+      </button>
+</div>
+
 
       {/* Renderiza el componente de la tabla con los datos de reservas formateados */}
       <ReservationTable reservations={formattedReservations} />

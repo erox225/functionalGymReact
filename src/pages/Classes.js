@@ -1,10 +1,20 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons'; // Elige un ícono relacionado con clases
+import { faChalkboardTeacher, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Elige un ícono relacionado con clases
 import ClassTable from '../components/ClassTable'; // Importa el componente desde 'components'
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import './css/Clases.css';
 
 const Classes = () => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
+  const goBack = () => {
+    navigate(-1); // Navega a la página anterior
+  };
+
   // Simulación de clases (puedes conectar estos datos con una API real)
   const classes = [
     { 
@@ -43,6 +53,9 @@ const Classes = () => {
     <div>
       {/* Título con ícono */}
       <h1 className="class-header">
+      <button onClick={goBack} className="footer-btn">
+        <FontAwesomeIcon icon={faArrowLeft} /> Volver
+      </button>
         <FontAwesomeIcon icon={faChalkboardTeacher} className="header-icon" />
         Clases
       </h1>

@@ -2,8 +2,15 @@ import React from 'react';
 import ConfigCard from '../components/ConfigCard'; // Importa el componente ConfigCardç
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons'; // Ícono para reservas
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const Settings = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goBack = () => {
+    navigate(-1); // Navega a la página anterior
+  };
 
       // Simulación de datos de configuración
   const configs = [
