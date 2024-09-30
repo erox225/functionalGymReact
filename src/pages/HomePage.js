@@ -5,25 +5,36 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Icono para el
 
 const HomePage = () => {
   return (
-    <>
-      <Section
-        id="section1"
-        leftContent={
-          <>
-            <h1 className='h1-section1'>Transforma tu cuerpo</h1>
-            <h1 className='h1-section1'>Transforma tu 
-              <span className='h1-section1-vida'>
-              vida
-                </span>
-            </h1>
-            <h2 className='h2-section1'>MAS RÁPIDA, MAS FUERTE, TU MEJOR VERSIÓN</h2>
-            <button className="subscribe-button">
-              <FontAwesomeIcon icon={faUserPlus} /> INSCRÍBETE
-            </button>
-          </>
-        }
-        backgroundColor="#191817" // Este color de fondo se puede ignorar o usar como fallback
-      />
+<>
+  <Section
+    id="section1"
+    leftContent={
+      <>
+        <div>
+          <h1 className='h1-section1'>Transforma tu cuerpo</h1>
+          <h1 className='h1-section1'>
+            Transforma tu 
+            <span className='h1-section1-vida'>vida</span>
+          </h1>
+          <h2 className='h2-section1'>MAS RÁPIDA, MAS FUERTE, TU MEJOR VERSIÓN</h2>
+          <button className="subscribe-button">
+            <FontAwesomeIcon icon={faUserPlus} /> INSCRÍBETE
+          </button>
+        </div>
+      </>
+    }
+    rightContent={
+      <>
+        <button className="subscribe-button-mini">
+          <span className="button-icon">
+            <FontAwesomeIcon icon={faUserPlus} />
+          </span>
+          <span className="button-text">INSCRÍBETE</span>
+        </button>
+      </>
+    }
+    backgroundColor="#6200ea" // Este color de fondo se puede ignorar o usar como fallback
+  />
       <Section
         id="section2"
         title="Sección 2"

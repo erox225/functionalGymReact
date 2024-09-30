@@ -188,10 +188,9 @@
   font-size: 0.8rem;
   transition: color 0.3s ease;
   border-radius: 5px; /* Bordes redondeados */
-  border: 2px solid black;
-  padding: 0.5em 1em;
+  padding: 0.7em 1.2em;
   color: white;
-  background-color: #6200ea;
+  background-image: linear-gradient(to right top, #6200ea, #ab00c8, #d000a9, #e2008e, #ea377b);
 }
 
 .nav-link-iniciar-sesion span{

@@ -9,14 +9,6 @@
   z-index: 1; /* El contenido debe estar por encima del fondo */
 }
 
-#section1 {
-  background-image: url('../../../public/images/section_one.jpg');
-  background-size: contain;
-  background-position: right;
-  background-repeat: no-repeat;
-}
-
-
 .section-content {
   display: flex;
   width: 100%;
@@ -72,12 +64,69 @@
   background-color: #e64a19;
 }
 
-/* Mostrar el menú hamburguesa solo en pantallas móviles */
+/* Botón INSCRÍBETE MINI (Oculto por defecto) */
+.subscribe-button-mini {
+  display: none; /* Oculto por defecto */
+}
+
+/* Estilos para pantallas móviles y más pequeñas */
 @media (max-width: 768px) {
+  .subscribe-button-mini {
+    display: block; /* Se muestra en pantallas móviles */
+    margin-top: 1rem;
+    padding: 1em 1rem;
+    background: #ea377b; /* Color principal del botón */
+    color: white;
+
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%; /* Para que ocupe todo el ancho */
+    max-width: 250px; /* Limitar el ancho del botón */
+    margin: 80px auto; /* Centrar el botón */
+    position: absolute; /* Posicionarlo en la parte inferior */
+    bottom: 20px; /* Ajusta este valor según lo necesites para elevar el botón */
+    border-radius: 15px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out; /* Transición suave para efectos */
+    
+    /* Simulación de profundidad con color */
+    background-color:linear-gradient(145deg, #ea377b, #eb528d); /* Relieve inicial */
+    letter-spacing: 2px;
+  }
+
+  /* Efecto 3D al pasar el ratón (Cambia la posición del relieve) */
+  .subscribe-button-mini:hover {
+    background: linear-gradient(145deg, #eb528d #ea377b); /* Cambia la dirección del relieve */
+    transform: translate(2px, 2px); /* Desplaza un poco el botón hacia abajo y derecha */
+    border-color: #5a00d1; /* Cambia el borde a un tono ligeramente más claro en hover */
+  } 
+
+  .left-content {
+    padding-bottom: 85%; /* Ajusta según el diseño de la imagen de fondo */
+  }
+}
+
+/* Estilos adicionales para pantallas más pequeñas */
+@media (max-width: 530px) {
+  .subscribe-button-mini {
+    bottom: 30px; /* Un poco más de padding para pantallas más pequeñas */
+  }
+
+  .left-content {
+    padding-bottom: 55%; /* Ajustar más si es necesario */
+  }
+}
+
+/*Tamano ultragrande*/
+@media (min-width: 1000px) {
   #section1 {
     background-image: url('../../../public/images/section_one.jpg');
     background-size: contain;
-    background-position: bottom;
+    background-position: right;
     background-repeat: no-repeat;
   }
 
@@ -89,18 +138,79 @@
   }
 }
 
-.h1-section1{
-  font-size: 2.1em;
-  letter-spacing: 1px;
+@media (min-width: 768px) and (max-width: 999px) {
+  #section1 {
+    background-image: url('../../../public/images/section_one_16_9.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-width: 999px;
+  }
+
+  .left-content {
+    flex-direction: column;
+    text-align: center;
+    padding-left: 0px;
+    padding-bottom: 15%;
+  }
 }
 
-.h2-section1{
-  font-size: 1em;
+/*Tamano mediano*/
+@media (max-width: 768px) {
+  #section1 {
+    background-image: url('../../../public/images/section_one.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .left-content {
+    flex-direction: column;
+    text-align: center;
+    padding-left: 0px;
+    padding-bottom: 85%;
+  }
+
+  .h1-section1 {
+    font-size: 2.4em;
+    letter-spacing: 6px;
+  }
+
+  .subscribe-button {
+    display: none; /* Ocultar el botón grande en pantallas pequeñas */
+  }
+
 }
 
-.h1-section1-vida{
+/*Tamano pequeño*/
+@media (max-width: 530px) {
+  #section1 {
+    background-image: url('../../../public/images/section_one_9_16.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .left-content {
+    flex-direction: column;
+    text-align: center;
+    padding-left: 0px;
+    padding-bottom: 55%;
+  }
+}
+
+.h1-section1 {
+  font-size: 2.6em;
+  letter-spacing: 4px;
+}
+
+.h2-section1 {
+  font-size: 0.7em;
+  color: #CFCFCF;
+}
+
+.h1-section1-vida {
   color: #ea377b;
   margin-left: 0.2em;
+  letter-spacing: 3px;
 }
-
-
