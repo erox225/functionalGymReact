@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDoorOpen, faDoorClosed, faCalendarAlt, faEdit, faUserFriends, faClipboardList, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faDoorOpen, faDoorClosed, faCalendarAlt, faEdit, faUserFriends, faClipboardList, faLock } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom'; // Corrige esta línea
 import './css/Navbar.css';
 
@@ -15,7 +15,10 @@ const allowedPaths = [
 ]; // Array con las rutas permitidas
 
 const allowedPaths2 = [
-  '/',
+  '/'
+]; // Array con las rutas permitidas
+
+const allowedPaths3 = [
   '/login'
 ]; // Array con las rutas permitidas
 
@@ -98,9 +101,16 @@ const Navbar = () => {
 ) : null}
 
       {allowedPaths2.includes(location.pathname) ? (
-        <Link to="/login" className="nav-link">
+        <Link to="/login" className="nav-link-iniciar-sesion">
+          <span style={{ marginRight: '6px' }}>Iniciar Sesión</span>
           <FontAwesomeIcon icon={faDoorClosed} className="client-access-search-icon" />
-          <span>Iniciar Sesión</span>
+        </Link>
+      ) : null}
+
+{allowedPaths3.includes(location.pathname) ? (
+        <Link to="/" className="nav-link-iniciar-sesion">
+          <FontAwesomeIcon icon={faArrowLeft} className="client-access-search-icon" />
+          <span>Volver</span>
         </Link>
       ) : null}
     </nav>

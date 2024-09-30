@@ -1,11 +1,17 @@
 import React from 'react';
 import './css/Section.css';
 
-const Section = ({ id, title, content, backgroundColor }) => {
+const Section = ({ id, leftContent, rightContent, backgroundColor }) => {
   return (
     <div id={id} className="section" style={{ backgroundColor }}>
-      <h1>{title}</h1>
-      <p>{content}</p>
+      <div className="section-content">
+        <div className="left-content">
+          {leftContent}
+        </div>
+        <div className="right-content">
+          {rightContent}
+        </div>
+      </div>
     </div>
   );
 }
