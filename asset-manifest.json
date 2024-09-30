@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/functionalGymReact/static/css/main.a3a72151.css",
-    "main.js": "/functionalGymReact/static/js/main.72c522fc.js",
+    "main.css": "/functionalGymReact/static/css/main.2a98e295.css",
+    "main.js": "/functionalGymReact/static/js/main.d67a473b.js",
+    "static/media/section_one.jpg": "/functionalGymReact/static/media/section_one.33e3d6fbc33a05f9ea69.jpg",
     "index.html": "/functionalGymReact/index.html",
-    "main.a3a72151.css.map": "/functionalGymReact/static/css/main.a3a72151.css.map",
-    "main.72c522fc.js.map": "/functionalGymReact/static/js/main.72c522fc.js.map"
+    "main.2a98e295.css.map": "/functionalGymReact/static/css/main.2a98e295.css.map",
+    "main.d67a473b.js.map": "/functionalGymReact/static/js/main.d67a473b.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3a72151.css",
-    "static/js/main.72c522fc.js"
+    "static/css/main.2a98e295.css",
+    "static/js/main.d67a473b.js"
   ]
 }
