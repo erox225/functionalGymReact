@@ -1,7 +1,7 @@
 /* Sección 2 */
 .SectionTwo-why-choose-us {
   background-color: #000000;
-  padding: 50px 0; /* Eliminamos padding horizontal */
+  padding: 50px 0;
 }
 
 .SectionTwo-title {
@@ -15,67 +15,137 @@
 /* Contenedor con scroll horizontal */
 .SectionTwo-card-container {
   display: flex;
-  overflow-x: hidden; /* Ocultar overflow horizontal */
-  scroll-snap-type: x mandatory; /* Activar snap horizontal obligatorio */
+  overflow-x: hidden; 
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   gap: 20px;
-  width: 100vw; /* Asegurarse que el contenedor ocupa todo el ancho de la ventana */
-  justify-content: flex-start; /* Asegura que las tarjetas se alineen correctamente */
+  width: 100vw; 
+  justify-content: flex-start;
 }
 
 .SectionTwo-card-container::-webkit-scrollbar {
-  display: none; /* Oculta la barra de scroll en Chrome/Safari */
+  display: none;
 }
 
+/* Carta general */
 .SectionTwo-card {
-  background-color: #242424;
-  border-radius: 15px;
+  border-radius: 20px; 
   padding: 20px;
   color: white;
-  flex: 0 0 100%; /* Cada tarjeta ocupa el 100% del contenedor visible en móviles */
+  flex: 0 0 100%;
   max-width: 100%;
   margin: 0 auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  scroll-snap-align: center; /* Asegura que la tarjeta se centra en el contenedor */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  text-align: right;
+  scroll-snap-align: center;
+  position: relative; 
+  overflow: hidden;
 }
 
+/* Colores personalizados por suscripción */
+
+/* Carta Premium */
+.SectionTwo-card-premium {
+  background: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%); /* Degradado Premium */
+}
+
+/* Carta Matutino */
+.SectionTwo-card-matutino {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Degradado Matutino */
+}
+
+/* Carta 3 Sesiones */
+.SectionTwo-card-3sesiones {
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%); /* Degradado 3 Sesiones */
+}
+
+/* Carta Estudiantil */
+.SectionTwo-card-estudiantil {
+  background: linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%); /* Degradado Estudiantil */
+}
+
+/* Carta Corporativo */
+.SectionTwo-card-corporativo {
+  background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%); /* Degradado Corporativo */
+}
+
+/* Carta Familiar */
+.SectionTwo-card-familiar {
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); /* Degradado Familiar */
+}
+
+/* Imagen de fondo común */
+.SectionTwo-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../public/images/section_one.jpg'); /* Imagen de fondo común */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; 
+  z-index: 0;
+  border-radius: 20px;
+}
+
+/* Icono pequeño encima */
 .SectionTwo-card-icon {
-  background-color: #bada55;
-  padding: 15px;
-  border-radius: 50%;
-  margin-bottom: 15px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 10px;
   font-size: 2em;
-  width: 72px;
+  z-index: 1;
 }
 
+/* Contenido de la tarjeta */
+.SectionTwo-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+/* Título de la carta */
 .SectionTwo-card-title {
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-weight: bold;
   margin-bottom: 10px;
-  font-family: 'Arial', sans-serif;
+  color: white;
 }
 
+/* Texto adicional */
 .SectionTwo-card-text {
   font-size: 1.2em;
-  margin-bottom: 15px;
-  color: #cfcfcf;
-}
-
-.SectionTwo-card-features {
-  list-style-type: none;
-  padding: 0;
-}
-
-.SectionTwo-card-features li {
-  font-size: 1em;
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
+  color: white;
 }
 
-.SectionTwo-card-features li svg {
-  margin-right: 10px;
+/* Estilo de la fecha */
+.SectionTwo-card-date {
+  font-size: 0.9em;
+  color: white;
+  margin-top: 20px;
+}
+
+/* Botón con estilo */
+.SectionTwo-card-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.SectionTwo-card-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 /* Barra de navegación inferior */
@@ -106,11 +176,11 @@
 /* Media query para tablets/escritorio */
 @media (min-width: 768px) {
   .SectionTwo-card {
-    flex: 0 0 calc(33.33% - 20px); /* Cada tarjeta ocupa un tercio del contenedor */
-    max-width: calc(33.33% - 20px); /* Ajustar el ancho de cada tarjeta */
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
   }
 
   .SectionTwo-card-container {
-    justify-content: space-between; /* Distribuir uniformemente las tarjetas */
+    justify-content: space-between;
   }
 }
