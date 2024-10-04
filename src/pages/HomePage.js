@@ -3,8 +3,74 @@ import Section from '../components/Section';
 import SectionTwo from '../components/SectionTwo'; // Asegúrate de importar SectionTwo
 import SectionThree from '../components/SectionThree'; // Asegúrate de importar SectionTwo
 import SectionFour from '../components/SectionFour'; // Importamos SectionFour
+import SectionFive from '../components/SectionFive'; // Importamos SectionFour
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Icono para el botón
+
+
+const subscriptions = [
+  {
+    id: 1,
+    title: "Plan Premium",
+    price: "50€ + Matrícula 30€",
+    features: [
+      "Acceso a todas las clases (podrás reservar una clase y al finalizar tendrás acceso a otra reserva del mismo día)",
+      "Plan de alimentación básico que se actualizará cada 3 meses",
+      "+Más taller de postura"
+    ],
+    date: "30.11.2022",
+    class: "SectionTwo-card-premium"
+  },
+  {
+    id: 2,
+    title: "Plan Matutino",
+    price: "40€ + Matrícula 30€",
+    features: [
+      "Acceso a todas las clases en la mañana (podrás reservar una clase y al finalizar tendrás acceso a otra reserva matutina del mismo día)",
+      "Plan de alimentación básico que se actualizará cada 3 meses",
+      "Más taller de postura"
+    ],
+    date: "30.11.2022",
+    class: "SectionTwo-card-matutino"
+  },
+  {
+    id: 3,
+    title: "Plan 3 Sesiones a la Semana",
+    price: "34.90€ + Matrícula 30€",
+    features: ["Acceso a cualquier hora 3 sesiones a la semana"],
+    date: "30.11.2022",
+    class: "SectionTwo-card-3sesiones"
+  },
+  {
+    id: 4,
+    title: "Plan Estudiantil",
+    price: "34.90€ Matrícula gratis",
+    features: [
+      "No podrás acceder a la franja horaria marcada en color gris",
+      "Acceso a taller de postura"
+    ],
+    date: "30.11.2022",
+    class: "SectionTwo-card-estudiantil"
+  },
+  {
+    id: 5,
+    title: "Plan Corporativo (2 personas)",
+    price: "34.90€ + Matrícula 15€",
+    features: ["No podrás acceder a la franja horaria marcada en color gris"],
+    date: "30.11.2022",
+    class: "SectionTwo-card-corporativo"
+  },
+  {
+    id: 6,
+    title: "Plan Familiar",
+    price: "Paga 50% de matrícula y escoge tu plan",
+    features: [],
+    date: "30.11.2022",
+    class: "SectionTwo-card-familiar"
+  }
+];
+
+
 
 const HomePage = () => {
   return (
@@ -40,18 +106,13 @@ const HomePage = () => {
       />
       
       {/* Aquí llamamos a SectionTwo */}
-      <SectionTwo />
+      <SectionTwo subscriptions={subscriptions}/>
 
       <SectionThree />
 
       <SectionFour />
 
-      <Section
-        id="section4"
-        title="Sección 4"
-        content="Has llegado a la última sección."
-        backgroundColor="#f44336"
-      />
+      <SectionFive subscriptions={subscriptions} />
     </>
   );
 };
