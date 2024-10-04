@@ -1,0 +1,116 @@
+/* Sección 2 */
+.SectionTwo-why-choose-us {
+  background-color: #000000;
+  padding: 50px 0; /* Eliminamos padding horizontal */
+}
+
+.SectionTwo-title {
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Contenedor con scroll horizontal */
+.SectionTwo-card-container {
+  display: flex;
+  overflow-x: hidden; /* Ocultar overflow horizontal */
+  scroll-snap-type: x mandatory; /* Activar snap horizontal obligatorio */
+  scroll-behavior: smooth;
+  gap: 20px;
+  width: 100vw; /* Asegurarse que el contenedor ocupa todo el ancho de la ventana */
+  justify-content: flex-start; /* Asegura que las tarjetas se alineen correctamente */
+}
+
+.SectionTwo-card-container::-webkit-scrollbar {
+  display: none; /* Oculta la barra de scroll en Chrome/Safari */
+}
+
+.SectionTwo-card {
+  background-color: #242424;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  flex: 0 0 100%; /* Cada tarjeta ocupa el 100% del contenedor visible en móviles */
+  max-width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  scroll-snap-align: center; /* Asegura que la tarjeta se centra en el contenedor */
+}
+
+.SectionTwo-card-icon {
+  background-color: #bada55;
+  padding: 15px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  font-size: 2em;
+  width: 72px;
+}
+
+.SectionTwo-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: 'Arial', sans-serif;
+}
+
+.SectionTwo-card-text {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  color: #cfcfcf;
+}
+
+.SectionTwo-card-features {
+  list-style-type: none;
+  padding: 0;
+}
+
+.SectionTwo-card-features li {
+  font-size: 1em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.SectionTwo-card-features li svg {
+  margin-right: 10px;
+}
+
+/* Barra de navegación inferior */
+.SectionTwo-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.SectionTwo-nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #444;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.SectionTwo-nav-dot.active {
+  background-color: #bada55;
+}
+
+.SectionTwo-nav-dot:hover {
+  background-color: #bada55;
+}
+
+/* Media query para tablets/escritorio */
+@media (min-width: 768px) {
+  .SectionTwo-card {
+    flex: 0 0 calc(33.33% - 20px); /* Cada tarjeta ocupa un tercio del contenedor */
+    max-width: calc(33.33% - 20px); /* Ajustar el ancho de cada tarjeta */
+  }
+
+  .SectionTwo-card-container {
+    justify-content: space-between; /* Distribuir uniformemente las tarjetas */
+  }
+}

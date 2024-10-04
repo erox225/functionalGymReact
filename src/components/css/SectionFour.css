@@ -1,0 +1,185 @@
+.section-four {
+  background-color: black;
+  padding: 30px 20px;
+}
+
+/* Cabecera de la semana */
+.week-header {
+  padding: 5px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  max-width: 740px;
+  margin: auto;
+}
+
+.week-day {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: capitalize;
+  margin: 0px 2px;
+  background-color: rgba(230, 107, 154, 0.107); /* Relieve inicial */
+}
+
+.week-day.active {
+  background-color: #ea377b;
+}
+
+.week-day:hover {
+  background-color: #444;
+}
+
+/* Estilos para el horario de clases */
+.class-schedule {
+  background-color: #242424;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 740px;
+  margin: auto;
+}
+
+.schedule-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+/* Contenedor de cada ítem de clase */
+.class-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #242424;
+  margin-bottom: 15px;
+  color: white;
+  border: 1px solid black;
+  background-color: rgb(234, 55, 123, .1); /* Relieve inicial */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Parte izquierda (70%) */
+.class-info {
+  width: 70%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Siempre alinea el texto a la izquierda */
+}
+
+/* Parte derecha (30%) */
+.class-time {
+  width: 30%;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+  align-self: flex-start; /* Alinea el tiempo siempre a la derecha */
+}
+
+/* Estilos individuales para los elementos dentro de class-info */
+.class-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.class-aforo,
+.class-intensidad,
+.class-duracion {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Texto a la izquierda */
+}
+
+.class-aforo {
+  margin-top: 5px;
+}
+
+.class-intensidad {
+  margin-top: 5px;
+}
+
+.class-duracion {
+  margin-top: 5px;
+}
+
+.intensidad-alta {
+  color: rgb(227, 64, 64);
+}
+
+.intensidad-media {
+  color: rgb(238, 190, 102);
+}
+
+.intensidad-baja {
+  color: rgb(101, 176, 101);
+}
+
+/* Estilos responsivos */
+
+/* Para pantallas de tableta */
+@media (min-width: 768px) {
+  .week-header {
+    justify-content: space-between;
+  }
+
+  .week-day {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Para pantallas de escritorio */
+@media (min-width: 1024px) {
+  .section-four {
+    padding: 50px 40px;
+  }
+
+  .week-day {
+    font-size: 1.2rem;
+  }
+
+  .schedule-title {
+    font-size: 2rem;
+  }
+
+  .class-item {
+    padding: 20px;
+  }
+}
+
+.section-four-title{
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 30px;
+  font-family: 'Arial', sans-serif;
+}
+
+.intensidad-value{
+  margin-left: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sin-actividades{
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.class-item:hover{
+  transform: translate(2px, 2px);
+}

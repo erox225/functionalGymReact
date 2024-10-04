@@ -1,0 +1,83 @@
+/* Estilos para SectionThree */
+
+/* Contenedor general */
+.section-three {
+    background-color: #000; /* Fondo oscuro */
+    padding: 50px 20px;
+    color: white;
+  }
+  
+  /* Contenedor de cada bloque (info + imagen) */
+  .section-three-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  
+  /* Estilos para el texto */
+  .section-three-title {
+    color: #ea377b; /* Color rosa para el título */
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .section-three-description {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    max-width: 600px;
+    text-align: left;
+  }
+  
+  /* Imagen de cada bloque */
+  .section-three-image {
+    margin: 20px 0;
+  }
+  
+  .info-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+  }
+  
+  /* Estilos para pantallas de tabletas y ordenadores */
+  @media (min-width: 768px) {
+    .section-three-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .section-three-info,
+    .section-three-image {
+      flex: 1;
+      max-width: 50%;
+      padding: 20px;
+    }
+  
+    .section-three-description {
+      text-align: left;
+      margin-right: 20px;
+    }
+  
+    .info-image {
+      margin-left: 20px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-three-title {
+      font-size: 2.5rem;
+    }
+  
+    .section-three-description {
+      font-size: 1.3rem;
+    }
+  
+    .info-image {
+      max-width: 550px;
+    }
+  }
+  
