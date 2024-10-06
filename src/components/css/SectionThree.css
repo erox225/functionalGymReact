@@ -2,82 +2,152 @@
 
 /* Contenedor general */
 .section-three {
-    background-color: #000; /* Fondo oscuro */
-    padding: 50px 20px;
-    color: white;
-  }
-  
-  /* Contenedor de cada bloque (info + imagen) */
+  background-color: #000;
+  padding: 20px 20px;
+  color: white;
+}
+
+.section-three-image {
+  max-width: 360px;
+}
+
+.section-three-trainer-name{
+  text-align: center;
+  padding-top: 1px;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  font-weight: bold;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-transform: uppercase;
+  color: white;
+  border: 2px solid rgba(234, 55, 123, 0.4);
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: rgba(234, 55, 123, 0.4);
+  border-top: none;
+  background-color: rgb(234, 55, 123, .1);
+}
+
+/* Contenedor de cada bloque (info + imagen) */
+.section-three-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+/* Estilos para el texto */
+.section-three-title {
+  color: #ea377b;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.section-three-description {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  max-width: 600px;
+  text-align: justify;
+}
+
+/* Imagen de cada bloque */
+.section-three-image {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+/* Estilo para imágenes de fondo de los entrenadores */
+.trainer-image {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: top;
+  border-radius: 10px;
+}
+
+/* Específicos para cada entrenador */
+.trainer-one {
+  background-image: url('../../../public/images/trainer_two.jpg');
+}
+
+.trainer-two {
+  background-image: url('../../../public/images/trainer_one.jpg');
+}
+
+/* Estilos para pantallas de tabletas y ordenadores */
+@media (min-width: 768px) {
   .section-three-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
-  }
-  
-  /* Estilos para el texto */
-  .section-three-title {
-    color: #ea377b; /* Color rosa para el título */
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .section-three-description {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    max-width: 600px;
-    text-align: left;
-  }
-  
-  /* Imagen de cada bloque */
-  .section-three-image {
-    margin: 20px 0;
-  }
-  
-  .info-image {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 10px;
-  }
-  
-  /* Estilos para pantallas de tabletas y ordenadores */
-  @media (min-width: 768px) {
-    .section-three-container {
       flex-direction: row;
       justify-content: space-between;
-    }
-  
-    .section-three-info,
-    .section-three-image {
+  }
+
+  .section-three-info,
+  .section-three-image {
       flex: 1;
       max-width: 50%;
       padding: 20px;
-    }
-  
-    .section-three-description {
+  }
+
+  .section-three-description {
       text-align: left;
       margin-right: 20px;
-    }
-  
-    .info-image {
-      margin-left: 20px;
-    }
   }
+
+  .trainer-image {
   
-  @media (min-width: 1024px) {
-    .section-three-title {
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-three-title {
       font-size: 2.5rem;
-    }
-  
-    .section-three-description {
-      font-size: 1.3rem;
-    }
-  
-    .info-image {
-      max-width: 550px;
-    }
   }
-  
+
+  .section-three-description {
+      font-size: 1.3rem;
+  }
+
+  .trainer-image {
+      max-width: 550px;
+  }
+}
+
+
+@media (max-width: 450px) {
+  .trainer-image {
+    height: 340px;
+}
+}
+
+@media (min-width: 451px) and (max-width: 767px) {
+  .trainer-image {
+    width: 57%;
+    margin:auto;
+}
+}
+
+/* Añadir efecto al hacer clic */
+.clickable {
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .section-three-container {
+    flex-direction: column-reverse; /* Cambia el orden, imágenes debajo del texto */
+  }
+
+  .section-three-info {
+    order: 2; /* Asegura que el texto esté primero */
+  }
+
+
+
+}
+
+

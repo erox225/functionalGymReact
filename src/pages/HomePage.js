@@ -4,6 +4,7 @@ import SectionTwo from '../components/SectionTwo'; // Asegúrate de importar Sec
 import SectionThree from '../components/SectionThree'; // Asegúrate de importar SectionTwo
 import SectionFour from '../components/SectionFour'; // Importamos SectionFour
 import SectionFive from '../components/SectionFive'; // Importamos SectionFour
+import SectionFooter from '../components/SectionFooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Icono para el botón
 
@@ -113,6 +114,8 @@ const HomePage = () => {
       <SectionFour />
 
       <SectionFive subscriptions={subscriptions} />
+
+      <SectionFooter />
     </>
   );
 };

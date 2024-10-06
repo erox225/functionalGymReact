@@ -1,145 +1,159 @@
-/* Sección del formulario */
+/* Sección general */
 .SectionFive {
-    background-color: black; /* Fondo negro */
+    background-color: black;
     padding: 10px;
-    max-width: 1200px;
+    max-width: 400px; /* Reducir el tamaño máximo para móvil */
     margin: 0 auto;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4); /* Sombra suave */
-  }
-  
-  .SectionFive-title {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
     text-align: center;
-    font-size: 2em;
-    margin-bottom: 30px;
-    margin-top: 40px;
+    min-width: 400px; /* Reducir el tamaño máximo para móvil */
+  max-width: 420px;
+  padding-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 42px;
+}
+
+.SectionFive-title {
     color: white;
+    font-size: 2em;
+    margin-bottom: 20px;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    text-transform: uppercase;
     letter-spacing: 2px;
-  }
-  
-  /* Formulario */
-  .SectionFive-form {
-    display: grid;
-    gap: 20px;
-    padding: 20px;
-    background-color: #1a1a1a;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+}
+
+/* Carrusel de suscripciones */
+.SectionFive-subscription-carousel {
+    display: flex;
+    overflow-x: auto; /* Habilitar el scroll horizontal automático */
+    scroll-behavior: smooth;
+    margin-bottom: 20px;
+    border: 1px solid #333;
     border-radius: 10px;
-    grid-template-columns: 1fr 1fr; /* Siempre dos columnas */
-  }
-  
-  /* Grupo de formulario con iconos */
-  .SectionFive-form-group {
+    padding: 10px;
+    background-color: #1a1a1a;
+    max-width: 100%; /* Mantener dentro del ancho del contenedor */
+    white-space: nowrap; /* Mantener las tarjetas en una fila continua */
+    scrollbar-width: thin; /* Hacer más delgada la barra de scroll en Firefox */
+    max-width: 350px; /* Límite máximo para evitar desbordamiento */
+    margin : auto;
+}
+
+.SectionFive-subscription-carousel::-webkit-scrollbar {
+    height: 8px; /* Alto de la barra de desplazamiento */
+}
+
+.SectionFive-subscription-carousel::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del scroll */
+    border-radius: 10px;
+}
+
+.SectionFive-carousel {
+    display: flex;
+    gap: 10px;
+}
+
+.SectionFive-card {
+    display: inline-block; /* Asegurar que las tarjetas se comporten como elementos en línea */
+    min-width: 120px; /* Tamaño reducido para tarjetas en móvil */
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex-shrink: 0; /* Evita que se encoja */
+    white-space: normal;
+    text-transform: uppercase;
+    font-size: 0.6em;
+}
+
+.SectionFive-card.selected {
+    background-color: #00d976;
+    color: black;
+}
+
+.SectionFive-card:hover {
+    transform: scale(1.05);
+}
+
+/* Formulario */
+.SectionFive-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 400px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.SectionFive-form-group {
+    position: relative;
     display: flex;
     flex-direction: column;
-    position: relative;
-  }
-  
-  .SectionFive-form-group label {
-    margin-bottom: 6px;
-    font-size: 1rem;
+    max-width: 100%; /* Asegura que los inputs no superen el ancho del formulario */
+}
+
+.SectionFive-form-group label {
     color: white;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
     font-weight: bold;
     text-transform: uppercase;
-  }
-  
-  /* Inputs con padding para los iconos */
-  .SectionFive-form-group input,
-  .SectionFive-form-group select {
-    padding: 10px 15px 10px 40px; /* Espacio adicional a la izquierda para el icono */
+}
+
+.SectionFive-form-group input,
+.SectionFive-form-group select {
+    padding: 10px 15px 10px 40px;
+    background-color: #1a1a1a;
     border: 2px solid #333;
     border-radius: 5px;
-    font-size: 0.9rem;
-    background-color: #1a1a1a;
     color: white;
-    transition: border-color 0.3s ease;
-    background-color: rgb(234, 55, 123, .1);
-  border: 0.1px solid rgba(234, 55, 123, 0.4);
-  }
-  
-  /* Iconos dentro de los inputs */
-  .SectionFive-form-group .icon {
+    font-size: 0.9rem;
+    max-width: 100%; /* Limitar el ancho al tamaño del contenedor padre */
+    box-sizing: border-box; /* Asegura que padding y borde se incluyan en el ancho total */
+}
+
+.SectionFive-form-group .icon {
     position: absolute;
-    left: 10px; /* Mejor ajuste para iconos pequeños */
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     color: #ccc;
-    font-size: 1.2rem;
-  }
-  
-  .SectionFive-form-group input:focus,
-  .SectionFive-form-group select:focus {
-    border-color: #00ff87;
-    outline: none;
-  }
-  
-  .SectionFive-form-group input::placeholder,
-  .SectionFive-form-group select::placeholder {
-    color: #ccc;
-  }
-  
-  /* Botón de envío */
-  .SectionFive-submit-button {
-    padding: 15px;
-    background-color: #ea377b;
-    color: #0a0a0a;
-    border: none;
-    border-radius: 30px;
     font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
+}
+
+.SectionFive-submit-button {
+    padding: 10px;
+    background-color: #ea377b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
     font-weight: bold;
-    letter-spacing: 1.5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 46%;
-  margin: auto;
-  color: white;
-  }
-  
-  .SectionFive-submit-button:hover {
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.SectionFive-submit-button:hover {
     background-color: #00d976;
-    transform: translateY(-3px);
-  }
-  
-  /* Responsividad para móviles */
-  @media (max-width: 768px) {
-    .SectionFive-form {
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 30px 10px;
+}
+
+/* Responsividad adicional para móviles */
+@media (max-width: 768px) {
+    .SectionFive {
+        max-width: 100%; /* Ajustar a ancho completo de móvil */
+        padding: 20px;
     }
-  
-    .SectionFive-submit-button {
-      grid-column: span 2; /* Botón ocupa todo el ancho en móviles */
+
+    .SectionFive-card {
+        min-width: 100px;
     }
-  }
-  
-  /* Responsividad para tabletas */
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .SectionFive-form {
-      grid-template-columns: 1fr 1fr;
-    }
-  
-    .SectionFive-form-group {
-      margin-bottom: 15px;
-    }
-  
-    .SectionFive-submit-button {
-      grid-column: span 2;
-    }
-  }
-  
-  /* Estilos para pantallas grandes (escritorio) */
-  @media (min-width: 1024px) {
-    .SectionFive-form {
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-  
-    .SectionFive-submit-button {
-      grid-column: span 2;
-      width: 100%;
-    }
-  }
-  
+}

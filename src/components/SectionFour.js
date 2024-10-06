@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faHeartbeat, faClock, faBolt } from '@fortawesome/free-solid-svg-icons'; // Íconos
 import './css/SectionFour.css'; // Estilos para esta sección
 
 // Datos de actividades por fecha
 const activitiesByDate = {
-  "2024-10-02": [
-    { name: 'Gimnasio', time: '09:00 - 10:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'" },
-    { name: 'Reunión de equipo', time: '11:00 - 12:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'" },
+  "2024-10-06": [
+    { name: 'Gimnasio', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'" },
+    { name: 'Reunión de equipo', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'" },
   ],
-  "2024-09-19": [
+  "2024-10-07": [
     { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
-    { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" },
+    { name: 'Clase de inglés', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" },
   ],
   // Añade más fechas y actividades según necesites
 };
@@ -64,14 +64,14 @@ const SectionFour = () => {
   };
 
   return (
-    <section className="section-four">
-      <h2 className="section-four-title">CALENDARIO</h2>
+    <section className="sectionFour">
+      <h2 className="sectionFour-title">CALENDARIO</h2>
       {/* Cabecera con los días de la semana */}
-      <div className="week-header">
+      <div className="sectionFour-week-header">
         {weekDays.map((day) => (
           <button
             key={day}
-            className={`week-day ${day === selectedDate ? 'active' : ''}`}
+            className={`sectionFour-week-day ${day === selectedDate ? 'active' : ''}`}
             onClick={() => handleDayClick(day)}
           >
             {new Date(day).toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric' }).replace('.', '')} {/* Día en formato abreviado */}
@@ -80,26 +80,21 @@ const SectionFour = () => {
       </div>
 
       {/* Mostrar las actividades del día seleccionado */}
-      <div className="class-schedule">
-        <h2 className="schedule-title">{new Date(selectedDate).toLocaleDateString('es-ES', { weekday: 'long' })}</h2>
+      <div className="sectionFour-class-schedule">
+        <h2 className="sectionFour-schedule-title">{new Date(selectedDate).toLocaleDateString('es-ES', { weekday: 'long' })}</h2>
         {activities.length > 0 ? (
           activities.map((activity, index) => (
-            <div key={index} className="class-item">
-
-              <div className="class-time"><FontAwesomeIcon icon={faClock} />  {activity.time}</div>
-              <div className="class-info">
-                <span className="class-name">{activity.name}</span>
-                <div className={`class-intensidad ${getIntensityClass(activity.intensidad)}`}>
-                  <FontAwesomeIcon icon={faBolt} /> 
-                  <span className ="intensidad-value">
-                  Intensidad: {activity.intensidad}
-                  </span>
-                </div>
+            <div key={index} className="sectionFour-class-item">
+              <div className="sectionFour-class-time">
+                <FontAwesomeIcon icon={faClock} />  {activity.time}
+              </div>
+              <div className="sectionFour-class-info">
+                <span className="sectionFour-class-name">{activity.name}</span>
               </div>
             </div>
           ))
         ) : (
-          <p className='sin-actividades'>No hay actividades programadas para hoy.</p>
+          <p className='sectionFour-sin-actividades'>No hay actividades programadas para hoy.</p>
         )}
       </div>
     </section>

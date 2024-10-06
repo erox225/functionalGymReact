@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope, faPhone, faCalendarAlt, faIdBadge } from '@fortawesome/free-solid-svg-icons'; // Importar iconos
+import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionFive.css';
 
 const SectionFive = ({ subscriptions }) => {
+  const [selectedSubscription, setSelectedSubscription] = useState(subscriptions[0].id); // Selección inicial
+  const carouselRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Función para manejar la selección de una tarjeta de suscripción
+  const handleCardClick = (id) => {
+    setSelectedSubscription(id);
+    setIsPaused(true); // Pausar el movimiento del carrusel
+  };
+
+  // Animación del carrusel
+  useEffect(() => {
+    if (!isPaused) {
+      const interval = setInterval(() => {
+        const currentScroll = carouselRef.current.scrollLeft;
+        const cardWidth = carouselRef.current.firstChild.offsetWidth;
+        carouselRef.current.scrollTo({
+          left: currentScroll + cardWidth,
+          behavior: 'smooth',
+        });
+      }, 2000); // Desliza cada 2 segundos
+
+      return () => clearInterval(interval); // Limpiar intervalo al desmontar
+    }
+  }, [isPaused]);
+
   return (
     <section className="SectionFive">
-      <h2 className="SectionFive-title">Formulario de Suscripción</h2>
+      <h2 className="SectionFive-title">¡Inscribete Ahora!</h2>
+
+      {/* Formulario */}
       <form className="SectionFive-form">
         {/* Nombre */}
         <div className="SectionFive-form-group">
@@ -22,38 +50,22 @@ const SectionFive = ({ subscriptions }) => {
           <input type="text" id="apellidos" name="apellidos" placeholder="Escribe tus apellidos" />
         </div>
 
-        {/* Suscripción */}
+        {/* Carrusel de suscripciones */}
         <div className="SectionFive-form-group">
           <label htmlFor="suscripcion">Suscripción</label>
-          <FontAwesomeIcon icon={faIdBadge} className="icon" />
-          <select id="suscripcion" name="suscripcion">
-            {subscriptions.map((sub) => (
-              <option key={sub.id} value={sub.id}>
-                {sub.title}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Fecha de inicio */}
-        <div className="SectionFive-form-group">
-          <label htmlFor="fechaInicio">Fecha de Inicio</label>
-          <FontAwesomeIcon icon={faCalendarAlt} className="icon" />
-          <input type="date" id="fechaInicio" name="fechaInicio" />
-        </div>
-
-        {/* Fecha de fin */}
-        <div className="SectionFive-form-group">
-          <label htmlFor="fechaFin">Fecha de Fin</label>
-          <FontAwesomeIcon icon={faCalendarAlt} className="icon" />
-          <input type="date" id="fechaFin" name="fechaFin" />
-        </div>
-
-        {/* Teléfono */}
-        <div className="SectionFive-form-group">
-          <label htmlFor="telefono">Teléfono</label>
-          <FontAwesomeIcon icon={faPhone} className="icon" />
-          <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu teléfono" />
+          <div className="SectionFive-subscription-carousel" ref={carouselRef}>
+            <div className="SectionFive-carousel">
+              {subscriptions.map((sub) => (
+                <div
+                  key={sub.id}
+                  className={`SectionFive-card ${selectedSubscription === sub.id ? 'selected' : ''}`}
+                  onClick={() => handleCardClick(sub.id)}
+                >
+                  <h3>{sub.title}</h3> {/* Solo muestra el nombre de la suscripción */}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Email */}
@@ -62,6 +74,9 @@ const SectionFive = ({ subscriptions }) => {
           <FontAwesomeIcon icon={faEnvelope} className="icon" />
           <input type="email" id="email" name="email" placeholder="Escribe tu email" />
         </div>
+
+        {/* Campo oculto para enviar la suscripción seleccionada */}
+        <input type="hidden" name="suscripcion" value={selectedSubscription} />
 
         {/* Botón de enviar */}
         <button type="submit" className="SectionFive-submit-button">
