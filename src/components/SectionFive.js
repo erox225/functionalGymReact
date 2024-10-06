@@ -32,7 +32,7 @@ const SectionFive = ({ subscriptions }) => {
 
   return (
     <section className="SectionFive">
-      <h2 className="SectionFive-title">¡Inscribete Ahora!</h2>
+      <h2 className="SectionFive-title">¡Inscribete!</h2>
 
       {/* Formulario */}
       <form className="SectionFive-form">

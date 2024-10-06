@@ -5,9 +5,8 @@
     max-width: 400px; /* Reducir el tamaño máximo para móvil */
     margin: 0 auto;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    min-width: 400px; /* Reducir el tamaño máximo para móvil */
-  max-width: 420px;
+    text-align: center;/* Reducir el tamaño máximo para móvil */
+  max-width: 320px;
   padding-top: 20px;
   margin-top: 30px;
   margin-bottom: 42px;
@@ -27,18 +26,19 @@
 /* Carrusel de suscripciones */
 .SectionFive-subscription-carousel {
     display: flex;
-    overflow-x: auto; /* Habilitar el scroll horizontal automático */
+    overflow-x: auto;
     scroll-behavior: smooth;
     margin-bottom: 20px;
     border: 1px solid #333;
     border-radius: 10px;
     padding: 10px;
     background-color: #1a1a1a;
-    max-width: 100%; /* Mantener dentro del ancho del contenedor */
-    white-space: nowrap; /* Mantener las tarjetas en una fila continua */
-    scrollbar-width: thin; /* Hacer más delgada la barra de scroll en Firefox */
-    max-width: 350px; /* Límite máximo para evitar desbordamiento */
-    margin : auto;
+    max-width: 100%;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    max-width: 300px;
+    margin: auto;
+    min-width: 300px;
 }
 
 .SectionFive-subscription-carousel::-webkit-scrollbar {
@@ -88,8 +88,7 @@
     background-color: #1a1a1a;
     padding: 15px;
     border-radius: 10px;
-    min-width: 400px;
-    max-width: 400px;
+    max-width: 360px;
     margin: auto;
 }
 
