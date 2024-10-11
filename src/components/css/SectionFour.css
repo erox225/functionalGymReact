@@ -157,7 +157,12 @@
   color: white;
   text-align: center;
   font-size: 2em;
-  margin-bottom: 30px;
+  margin-bottom: 13px;
   font-family: 'Arial', sans-serif;
+}
+
+.sectionFour-sub-title{
+  color:white;
+  text-align:center;
 }
 

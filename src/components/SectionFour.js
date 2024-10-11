@@ -64,6 +64,7 @@ const SectionFour = () => {
   return (
     <section className="sectionFour">
       <h2 className="sectionFour-title">CALENDARIO</h2>
+      <h5 className="sectionFour-sub-title">Selecciona algún día para ver las clases</h5>
       {/* Cabecera con los días de la semana */}
       <div className="sectionFour-week-header">
         {weekDays.map((day) => (

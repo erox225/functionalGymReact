@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,26 +13,113 @@
   }
   
   .modal-content {
-    background: white;
+    background: #333; /* Fondo oscuro */
+    color: #fff;
     padding: 20px;
     border-radius: 10px;
     max-width: 500px;
     width: 100%;
     text-align: center;
     position: relative;
+    overflow: hidden;
+    padding-top: 0px;
+    padding-left:0px;
+    padding-right:0px;
+  }
+  
+  .modal-header-bar {
+    background: linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
   
   .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     background: none;
     border: none;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    width:10%;
+  }
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+  }
+  
+  .modal-image {
+    width: 106px;
+    height: 100px;
+    background-size: cover;
+
+    border-radius: 50%;
+  }
+  
+  .image-miguel {
+    background-image: url('../../../public/images/trainer_two.jpg'); /* Reemplaza con la ruta de la imagen de Miguel Labrador */
+  }
+  
+  .image-jessica {
+    background-image: url('../../../public/images/trainer_one.jpg'); /* Reemplaza con la ruta de la imagen de Jessica Di Maggio */
+  }
+  
+  .modal-title {
     font-size: 1.5rem;
-    cursor: pointer;
+    margin: 0;
+    text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
   }
   
-  .clickable {
-    cursor: pointer;
+  .modal-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
   }
   
+  .modal-job-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #aaa;
+    text-align: left;
+  }
+  
+  .modal-job-list li {
+    margin-bottom: 8px;
+    text-align:center;
+  }
+  
+  /* Opcional: Efecto de hover en el botón de cerrar */
+  .modal-close:hover {
+    color: #ff5252; /* Cambia a un color destacado al pasar el mouse */
+  }
+  
+  .modal-subtitle {
+    font-size: 1rem;
+    color: #aaa;
+    margin-top: 5px;
+  }
+
+  .modal-body{
+    padding: 10px;
+  }
+
+  .modal-list{
+    display: flex;
+  justify-content: center;
+  }
+
+  .modal-list div{
+padding: 5px;
+  }

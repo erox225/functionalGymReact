@@ -199,23 +199,23 @@
 
 /* Cada una de las imágenes de fondo */
 .slide-0 {
-  background-image: url('../../../public/images/section_one.jpg');
+  background-image: url('../../../public/images/Balance.jpg');
 }
 
 .slide-1 {
-  background-image: url('../../../public/images/section_one.jpg');
+  background-image: url('../../../public/images/BodyCom.jpg');
 }
 
 .slide-2 {
-  background-image: url('../../../public/images/section_one.jpg');
+  background-image: url('../../../public/images/Cross.jpg');
 }
 
 .slide-3 {
-  background-image: url('../../../public/images/section_one.jpg');
+  background-image: url('../../../public/images/TrainNow.jpg');
 }
 
 .slide-4 {
-  background-image: url('../../../public/images/section_one.jpg');
+  background-image: url('../../../public/images/BodyPom.jpg');
 }
 
 /* Estilos para pantallas más pequeñas */
