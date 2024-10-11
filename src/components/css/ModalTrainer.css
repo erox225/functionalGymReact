@@ -13,77 +13,103 @@
   }
   
   .modal-content {
-    background: #333; /* Fondo oscuro */
+    background: linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%);
     color: #fff;
-    padding: 20px;
     border-radius: 10px;
     max-width: 500px;
     width: 100%;
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding-top: 0px;
-    padding-left:0px;
-    padding-right:0px;
+    padding-top: 0;
+  }
+  
+  .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 100%;
+    background-image: url('../../../public/images/trainer_two-sin-fondo.png'); /* Imagen de fondo común */
+    background-size: contain;
+    background-position: right;
+    opacity: 0.9; /* Mantener la imagen más transparente */
+    z-index: 0;
+    background-repeat: no-repeat;
   }
   
   .modal-header-bar {
-    background: linear-gradient(135deg, #12c2e9 0%, #c471ed 50%, #f64f59 100%);
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    background: transparent;
   }
   
   .modal-close {
     background: none;
     border: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #fff;
     cursor: pointer;
-    width:10%;
+    position: relative;
+    z-index: 1;
   }
   
   .modal-header {
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-    padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 10px;
-  }
-  
-  .modal-image {
-    width: 106px;
-    height: 100px;
-    background-size: cover;
-
-    border-radius: 50%;
-  }
-  
-  .image-miguel {
-    background-image: url('../../../public/images/trainer_two.jpg'); /* Reemplaza con la ruta de la imagen de Miguel Labrador */
-  }
-  
-  .image-jessica {
-    background-image: url('../../../public/images/trainer_one.jpg'); /* Reemplaza con la ruta de la imagen de Jessica Di Maggio */
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    text-align:left;
+    
   }
   
   .modal-title {
-    font-size: 1.5rem;
-    margin: 0;
+    font-size: 1.2rem;
     text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 0px;
+  }
+  
+  .modal-subtitle {
+    font-size: 1rem;
+    color: #ddd;
+    margin-top: 5px;
+  }
+  
+  .modal-body {
+    padding: 10px;
+    background: rgba(51, 51, 51, 0.8); /* Fondo semitransparente para el texto */
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   
   .modal-description {
     font-size: 1rem;
     margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .modal-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .modal-list h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
   }
   
   .modal-job-list {
@@ -91,35 +117,35 @@
     padding: 0;
     margin: 0;
     font-size: 1rem;
-    color: #aaa;
-    text-align: left;
+    color: #bbb;
+    text-align: center;
   }
   
   .modal-job-list li {
     margin-bottom: 8px;
-    text-align:center;
   }
   
-  /* Opcional: Efecto de hover en el botón de cerrar */
-  .modal-close:hover {
-    color: #ff5252; /* Cambia a un color destacado al pasar el mouse */
+  .modal-job-list li::before {
+    content: "• ";
+    color: #c471ed;
+  }
+
+  @media (max-width: 400px) {
+    .modal-title {
+        font-size: 1.2rem;
+      }
+
+      .modal-content::before {
+        width: 130%;
+      }
+
+      .modal-body {
+        margin-top: 80px;
+      }
+
+      .modal-header {
+        margin-top: 30px;
+      }
   }
   
-  .modal-subtitle {
-    font-size: 1rem;
-    color: #aaa;
-    margin-top: 5px;
-  }
-
-  .modal-body{
-    padding: 10px;
-  }
-
-  .modal-list{
-    display: flex;
-  justify-content: center;
-  }
-
-  .modal-list div{
-padding: 5px;
-  }
+  

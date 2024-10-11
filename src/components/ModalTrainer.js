@@ -17,7 +17,7 @@ const ModalTrainer = ({ trainer, onClose }) => {
           <button className="modal-close" onClick={onClose}>X</button>
         </div>
         <div className="modal-header">
-          <div className={`modal-image ${trainer === 'Miguel Labrador' ? 'image-miguel' : 'image-jessica'}`}></div>
+
           <div>
             <h2 className="modal-title">{trainer}</h2>
             <h5 className="modal-subtitle">Entrenador Personal</h5>
