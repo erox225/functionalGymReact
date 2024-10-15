@@ -16,13 +16,12 @@
 }
 
 .sectionFour-week-day {
-  background-color: #333;
+  background-color: rgba(230, 107, 154, 0.107);
   color: white;
   cursor: pointer;
   font-size: .8rem;
   text-transform: capitalize;
   margin: 0px 2px;
-  background-color: rgba(230, 107, 154, 0.107); /* Relieve inicial */
 }
 
 .sectionFour-week-day.active {
@@ -60,39 +59,71 @@
   align-items: flex-start;
   padding: 15px;
   border-radius: 10px;
-  background-color: #242424;
   margin-bottom: 15px;
   color: white;
-  border: 1px solid black;
-  background-color: rgb(234, 55, 123, .1); /* Relieve inicial */
   transition: all 0.3s ease-in-out;
 }
 
-/* Parte izquierda (70%) */
+/* Colores de fondo según el tipo */
+.tipo-fuerza {
+  background: linear-gradient(135deg, #182b4f 0%, #182b4f 50%, #f64f59 100%);
+  border: 1px solid #f64f59;
+}
+
+.tipo-mente {
+  background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+  border: 1px solid #70e1f5;
+}
+
+.tipo-relajacion {
+  background: linear-gradient(135deg, #1d2b53 0%, #1d2b53 50%, #ff6f61 100%);
+  border: 1px solid #ff6f61;
+}
+
+.tipo-cardio {
+  background: linear-gradient(135deg, #0f2027 0%, #0f2027 50%, #2193b0 100%);
+  border: 1px solid #2193b0;
+}
+
+/* Parte derecha del contenido */
+.sectionFour-right-class-data {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: right;
+  width: 60%;
+  text-align: right;
+}
+
 .sectionFour-class-info {
-  width: 70%;
   text-align: left;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Siempre alinea el texto a la izquierda */
+  align-items: flex-end;
 }
 
-/* Parte derecha (30%) */
 .sectionFour-class-time {
-  width: 30%;
   font-weight: bold;
-  font-size: 1rem;
-  text-align: left;
-  align-self: flex-start; /* Alinea el tiempo siempre a la derecha */
+  font-size: 0.9rem;
+  text-align: right;
+  color: khaki;
 }
 
-/* Estilos individuales para los elementos dentro de class-info */
-.sectionFour-class-name {
+.sectionFour-class-duration {
+  font-weight: bold;
   font-size: 0.9rem;
+  color: white;
+  padding: 10px;
+  border-radius: 14px;
+}
+
+.sectionFour-class-name {
+  font-size: 1.12rem;
   font-weight: bold;
   margin-bottom: 5px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  text-align: right;
 }
 
 .sectionFour-sin-actividades {
@@ -101,59 +132,8 @@
   font-size: 1rem;
 }
 
-/* Hover effect */
-.sectionFour-class-item:hover {
-  transform: translate(2px, 2px);
-}
-
-/* Estilos responsivos */
-
-/* Para pantallas de tableta */
-@media (min-width: 768px) {
-  .sectionFour-week-header {
-    justify-content: space-between;
-  }
-
-  .sectionFour-week-day {
-    padding: 10px 20px;
-    font-size: 1.1rem;
-  }
-
-  .sectionFour-schedule-title {
-    font-size: 1.6rem;
-  }
-}
-
-/* Para pantallas de escritorio */
-@media (min-width: 1024px) {
-  .sectionFour {
-    padding: 50px 40px;
-  }
-
-  .sectionFour-week-day {
-    font-size: 1.2rem;
-  }
-
-  .sectionFour-schedule-title {
-    font-size: 2rem;
-  }
-
-  .sectionFour-class-item {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .sectionFour-schedule-title {
-    font-size: 0.8rem;
-  }
-
-  .sectionFour-sin-actividades {
-    font-size: 0.8rem;
-  }
-}
-
-.sectionFour-title{
+/* Título */
+.sectionFour-title {
   color: white;
   text-align: center;
   font-size: 2em;
@@ -161,8 +141,12 @@
   font-family: 'Arial', sans-serif;
 }
 
-.sectionFour-sub-title{
-  color:white;
-  text-align:center;
+.sectionFour-sub-title {
+  color: white;
+  text-align: center;
 }
 
+/* Hover effect */
+.sectionFour-class-item:hover {
+  transform: translate(2px, 2px);
+}

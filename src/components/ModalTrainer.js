@@ -10,9 +10,12 @@ const ModalTrainer = ({ trainer, onClose }) => {
     ? ['Entrenador Personal', 'Instructor de clases grupales', 'Consultor de bienestar']
     : ['Especialista en entrenamiento funcional', 'Coach de nutrición', 'Experta en rehabilitación deportiva'];
 
+ const modalContentTrainer = trainer === 'Miguel Labrador' 
+    ? 'modal-content-miguel'
+    : 'modal-content-jessica'
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className={modalContentTrainer}>
         <div className="modal-header-bar">
           <button className="modal-close" onClick={onClose}>X</button>
         </div>
