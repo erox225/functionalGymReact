@@ -43,7 +43,7 @@
 }
 
 .sectionFour-schedule-title {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
   margin-bottom: 10px;
@@ -144,9 +144,17 @@
 .sectionFour-sub-title {
   color: white;
   text-align: center;
+  margin-bottom: 5px;
 }
 
 /* Hover effect */
 .sectionFour-class-item:hover {
   transform: translate(2px, 2px);
+}
+
+.sectionFour-schedule-subtitle{
+  color: beige;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 0.7em;
 }

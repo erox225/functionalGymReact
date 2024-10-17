@@ -14,21 +14,7 @@ const SectionFive = ({ subscriptions }) => {
     setIsPaused(true); // Pausar el movimiento del carrusel
   };
 
-  // Animación del carrusel
-  useEffect(() => {
-    if (!isPaused) {
-      const interval = setInterval(() => {
-        const currentScroll = carouselRef.current.scrollLeft;
-        const cardWidth = carouselRef.current.firstChild.offsetWidth;
-        carouselRef.current.scrollTo({
-          left: currentScroll + cardWidth,
-          behavior: 'smooth',
-        });
-      }, 2000); // Desliza cada 2 segundos
 
-      return () => clearInterval(interval); // Limpiar intervalo al desmontar
-    }
-  }, [isPaused]);
 
   return (
     <section className="SectionFive">

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
 /* Estilos para la modal */
 .modal-overlay {
     position: fixed;
@@ -22,7 +25,6 @@
     position: relative;
     overflow: hidden;
     padding-top: 0;
-    border-radius: 38px;
   }
 
   .modal-content-jessica {
@@ -43,7 +45,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 110%;
+    width: 115%;
     height: 100%;
     background-image: url('../../../public/images/trainer_two-sin-fondo.png'); /* Imagen de fondo común */
     background-size: contain;
@@ -58,7 +60,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 110%;
     height: 100%;
     background-image: url('../../../public/images/trainer_one_sin_fondo.png'); /* Imagen de fondo común */
     background-size: contain;
@@ -105,15 +107,17 @@
   }
   
   .modal-title {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 2.4rem;
+    letter-spacing: 4px;
     margin-bottom: 0px;
+    max-width: 166px;
+    font-family: 'Bebas Neue', sans-serif;
+    color: floralwhite;
   }
   
   .modal-subtitle {
     font-size: 1rem;
-    color: #d5d59f;
+    color: gold;
     margin-top: 5px;
   }
   
@@ -131,6 +135,7 @@
     font-size: 1rem;
     margin-bottom: 20px;
     color: #fff;
+    text-align: justify;
   }
   
   .modal-list {
@@ -140,9 +145,11 @@
   }
   
   .modal-list h4 {
-    color: #fff;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    color: darkturquoise;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.1em;
+  margin-bottom: 10px;
   }
   
   .modal-job-list {
@@ -152,24 +159,25 @@
     font-size: 1rem;
     color: #bbb;
     text-align: center;
+    display: flex;
+    justify-content: space-around;
   }
   
   .modal-job-list li {
     margin-bottom: 8px;
+    padding: 5px 0.6em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: white;
   }
   
-  .modal-job-list li::before {
-    content: "* ";
-    color: #c471ed;
-  }
 
   @media (max-width: 400px) {
-    .modal-title {
-        font-size: 1.2rem;
-      }
+
 
       .modal-content::before {
-        width: 130%;
+        width: 170%;
       }
 
       .modal-body {
@@ -179,6 +187,39 @@
       .modal-header {
         margin-top: 30px;
       }
+  }
+
+  .objetivo-trainer-text{
+    color: lightyellow;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  }
+
+  .modal-trainer-clases-favoritas-box{
+    display: block;
+  width: 98%;
+  }
+
+  .tipo-fuerza-modal-trainer {
+    background: linear-gradient(135deg, #182b4f 0%, #182b4f 50%, #f64f59 100%);
+    border: 0.5px solid red;
+  }
+  
+  .tipo-mente-modal-trainer {
+    background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+    border: 1px solid #70e1f5;
+  }
+  
+  .tipo-relajacion-modal-trainer {
+    background: linear-gradient(135deg, #1d2b53 0%, #1d2b53 50%, #ff6f61 100%);
+    border: 1px solid #ff6f61;
+  }
+  
+  .tipo-cardio-modal-trainer {
+    background: linear-gradient(135deg, #0f2027 0%, #0f2027 50%, #2193b0 100%);
+    border: 1px solid #ff6f61;
   }
   
   

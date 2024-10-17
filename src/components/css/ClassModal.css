@@ -1,0 +1,131 @@
+.modal-class-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-class-content {
+    background: #333;
+    color: white;
+    padding: 3px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .modal-class-close {
+    -webkit-text-stroke-width: .6px;
+    -webkit-text-stroke-color: black;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    text-align: end;
+    border-radius: 12px;
+  }
+  
+  .modal-class-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    text-decoration: aliceblue;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  
+  .modal-class-description {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #ddd;
+  }
+  
+  /* Imagen en la parte superior */
+  .modal-class-image {
+    height: 283px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 15px;
+    background-repeat: no-repeat;
+  }
+  
+  /* Colores de fondo según el tipo de clase */
+  .tipo-fuerza {
+    background: linear-gradient(135deg, #182b4f 0%, #182b4f 50%, #f64f59 100%);
+  }
+  
+  .tipo-mente {
+    background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+  }
+  
+  .tipo-relajacion {
+    background: linear-gradient(135deg, #1d2b53 0%, #1d2b53 50%, #ff6f61 100%);
+  }
+  
+  .tipo-cardio {
+    background: linear-gradient(135deg, #0f2027 0%, #0f2027 50%, #2193b0 100%);
+  }
+
+
+.modal-class-items-box{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 15px;
+}  
+
+.modal-class-items{
+  width: 20%;
+  font-size: 21px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+} 
+
+.BodyPom{
+  background-image: url('../../../public/images/BodyPom.jpg');
+}
+.Cross{
+  background-image: url('../../../public/images/Cross.jpg');
+}
+.BodyCom{
+  background-image: url('../../../public/images/BodyCom.jpg');
+}
+.TrainNow{
+  background-image: url('../../../public/images/TrainNow.jpg');
+}
+.Balance{
+  background-image: url('../../../public/images/Balance.jpg');
+}
+
+.modal-class-items-text{
+  font-size: 15px;
+  margin-top: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.Baja{
+  color: cyan;
+}
+
+.Media{
+  color: yellow;
+}
+
+.Alta{
+  color: rgb(255, 149, 0);
+}

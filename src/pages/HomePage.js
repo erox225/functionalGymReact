@@ -71,6 +71,70 @@ const subscriptions = [
   }
 ];
 
+const activitiesByDate = {
+  "2024-10-16": [
+    {
+      name: 'Body Combat',
+      time: '09:00',
+      aforoMax: 30,
+      aforoActual: 15,
+      intensidad: 'Alta',
+      duracion: "60'",
+      tipo: 'Fuerza - Intensidad',
+      imagen: 'BodyCom',
+      descripcion: 'Una sesión intensa de entrenamiento de fuerza para mejorar tu resistencia y musculatura.'
+    },
+    {
+      name: 'TrainNow',
+      time: '11:00',
+      aforoMax: 10,
+      aforoActual: 5,
+      intensidad: 'Media',
+      duracion: "45'",
+      tipo: 'Mente - Cuerpo',
+      imagen: 'TrainNow',
+      descripcion: 'Un espacio de colaboración para definir estrategias y fortalecer el trabajo en equipo.'
+    },
+  ],
+  "2024-10-17": [
+    {
+      name: 'Balance',
+      time: '08:00',
+      aforoMax: 20,
+      aforoActual: 12,
+      intensidad: 'Baja',
+      duracion: "60'",
+      tipo: 'Mente - Cuerpo',
+      imagen: 'Balance',
+      descripcion: 'Relaja tu cuerpo y mente con una sesión de yoga guiada por expertos.'
+    },
+    {
+      name: 'Cross Training',
+      time: '10:00',
+      aforoMax: 25,
+      aforoActual: 20,
+      intensidad: 'Media',
+      duracion: "50'",
+      tipo: 'Mente - Cuerpo',
+      imagen: 'Cross',
+      descripcion: 'Mejora tus habilidades lingüísticas y practica inglés en un entorno dinámico.'
+    },
+    {
+      name: 'BodyPom',
+      time: '12:00',
+      aforoMax: 15,
+      aforoActual: 10,
+      intensidad: 'Baja',
+      duracion: "30'",
+      tipo: 'Relajación',
+      imagen: 'BodyPom',
+      descripcion: 'Un espacio de calma y serenidad para conectar contigo mismo a través de la meditación.'
+    },
+  ],
+  // Agrega más clases si es necesario
+};
+
+
 
 
 const HomePage = () => {
@@ -111,7 +175,7 @@ const HomePage = () => {
 
       <SectionThree />
 
-      <SectionFour />
+      <SectionFour activitiesByDate={activitiesByDate}/>
 
       <SectionFive subscriptions={subscriptions} />
 
