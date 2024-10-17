@@ -14,6 +14,10 @@ const ModalTrainer = ({ trainer, onClose }) => {
     ? 'modal-content-miguel'
     : 'modal-content-jessica'
 
+    const modalNameTrainer = trainer === 'Miguel Labrador' 
+    ? 'modal-title-miguel'
+    : 'modal-title-jessica'
+
     const getTipoClass = (tipo) => {
       switch (tipo) {
         case 'TrainNow': return 'tipo-fuerza-modal-trainer';
@@ -33,7 +37,7 @@ const ModalTrainer = ({ trainer, onClose }) => {
         <div className="modal-header">
 
           <div>
-            <h2 className="modal-title">{trainer}</h2>
+            <h2 className={modalNameTrainer}>{trainer}</h2>
             <h5 className="modal-subtitle">Entrenador Personal</h5>
           </div>
         </div>
@@ -42,7 +46,7 @@ const ModalTrainer = ({ trainer, onClose }) => {
         <p className="modal-description">{description}</p>
         <div className="modal-list">
             <div className="modal-trainer-clases-favoritas-box">
-                <h4>Clases favoritas</h4>
+                <h4>Clases <span className='modal-trainer-favoritas'>favoritas</span></h4>
                 <div className="modal-sub-body">
                     <ul className="modal-job-list">
                     {jobs.map((job, index) => (

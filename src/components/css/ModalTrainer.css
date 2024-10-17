@@ -20,7 +20,7 @@
     color: #fff;
     border-radius: 10px;
     max-width: 500px;
-    width: 100%;
+    width: 95%;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -32,7 +32,7 @@
     color: #fff;
     border-radius: 10px;
     max-width: 500px;
-    width: 100%;
+    width: 95%;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -60,7 +60,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 110%;
+    width: 105%;
     height: 100%;
     background-image: url('../../../public/images/trainer_one_sin_fondo.png'); /* Imagen de fondo común */
     background-size: contain;
@@ -106,13 +106,26 @@
     padding-left: 20px;
   }
   
-  .modal-title {
-    font-size: 2.4rem;
+  .modal-title-jessica {
+    font-size: 2.9rem;
     letter-spacing: 4px;
     margin-bottom: 0px;
-    max-width: 166px;
+    max-width: 60%;
     font-family: 'Bebas Neue', sans-serif;
     color: floralwhite;
+    -webkit-text-stroke-width: 0.3px;
+    -webkit-text-stroke-color: chocolate;
+  }
+
+  .modal-title-miguel {
+    font-size: 2.9rem;
+    letter-spacing: 4px;
+    margin-bottom: 0px;
+    max-width: 60%;
+    font-family: 'Bebas Neue', sans-serif;
+    color: floralwhite;
+    -webkit-text-stroke-width: 0.3px;
+    -webkit-text-stroke-color: steelblue;
   }
   
   .modal-subtitle {
@@ -123,7 +136,7 @@
   
   .modal-body {
     padding: 10px;
-    background: rgba(51, 51, 51, 0.8); /* Fondo semitransparente para el texto */
+    background: rgba(9, 13, 40,0.7); /* Fondo semitransparente para el texto */
     margin-top: 15px;
     position: relative;
     z-index: 1;
@@ -171,23 +184,75 @@
   font-size: 0.8em;
   color: white;
   }
+
+  
+  @media (max-width: 373px) {
+
+    .modal-content-jessica::before {
+      width: 130%;
+    }
+
+    .modal-title-jessica{
+      max-width: 80%;
+    }
+
+    .modal-title-miguel{
+      max-width: 80%;
+    }
+
+    .modal-description {
+      font-size: 0.8rem;
+    }
+
+    .modal-job-list li {
+      font-size: 0.7em;
+    }
+}
   
 
-  @media (max-width: 400px) {
+  @media (max-width: 400px) and (min-width: 374px ){
 
 
-      .modal-content::before {
-        width: 170%;
+      .modal-content-jessica::before {
+        width: 120%;
       }
 
-      .modal-body {
-        margin-top: 80px;
+      .modal-title-jessica {
+        max-width: 57%;
       }
 
-      .modal-header {
-        margin-top: 30px;
+      .modal-title-miguel {
+        max-width: 57%;
       }
+
+      .modal-description {
+        font-size: 0.8rem;
+      }
+
+      
+    .modal-job-list li {
+      font-size: 0.7em;
+    }
   }
+
+  @media (min-width: 500px) {
+
+    .modal-title-jessica {
+      max-width: 40%;
+    }
+
+    .modal-title-miguel {
+      max-width: 40%;
+    }
+
+
+  
+
+    .modal-job-list li {
+    font-size: 0.8em;
+    }
+}
+
 
   .objetivo-trainer-text{
     color: lightyellow;
@@ -220,6 +285,13 @@
   .tipo-cardio-modal-trainer {
     background: linear-gradient(135deg, #0f2027 0%, #0f2027 50%, #2193b0 100%);
     border: 1px solid #ff6f61;
+  }
+
+  .modal-trainer-favoritas{
+    background: steelblue;
+  color: white;
+  padding-left: 1%;
+  padding-right: 1%;
   }
   
   
