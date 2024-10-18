@@ -9,6 +9,8 @@ const SectionThree = () => {
   const [touchStart, setTouchStart] = useState(null); // Para manejar el deslizamiento táctil
   const timeoutRef = useRef(null);
 
+  const [tiltStyle, setTiltStyle] = useState({}); // Estado para manejar el estilo de tilt
+
   const handleOpenModal = (trainer) => {
     setSelectedTrainer(trainer);
     setIsModalOpen(true);
@@ -17,6 +19,20 @@ const SectionThree = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedTrainer(null);
+  };
+
+  // Manejar el movimiento del cursor para el efecto tilt
+  const handleMouseMove = (e, element) => {
+    const { width, height, left, top } = element.getBoundingClientRect();
+    const x = ((e.clientX - left) / width - 0.5) * 40; // Movimiento horizontal más profundo (antes 20)
+    const y = ((e.clientY - top) / height - 0.5) * 40; // Movimiento vertical más profundo (antes 20)
+    setTiltStyle({
+      transform: `rotateX(${-y}deg) rotateY(${x}deg)`,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({ transform: 'rotateX(0deg) rotateY(0deg)' }); // Resetear cuando sale el cursor
   };
 
   // Para el deslizamiento táctil
@@ -66,14 +82,28 @@ const SectionThree = () => {
     <section className="section-three">
       <div className="section-three-container">
         {/* Segunda sección - QUIENES SOMOS */}
-        <div className="section-three-image clickable" onClick={() => handleOpenModal('Miguel Labrador')}>
+        <div
+          className="section-three-image clickable"
+          onClick={() => handleOpenModal('Miguel Labrador')}
+          onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+          onMouseLeave={handleMouseLeave}
+          style={tiltStyle} // Aplicar el estilo de tilt
+        >
           <div className="trainer-image trainer-one"></div>
           <p className="section-three-trainer-name">Miguel Labrador</p>
         </div>
-        <div className="section-three-image clickable" onClick={() => handleOpenModal('Jessica Di Maggio')}>
+
+        <div
+          className="section-three-image clickable"
+          onClick={() => handleOpenModal('Jessica Di Maggio')}
+          onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+          onMouseLeave={handleMouseLeave}
+          style={tiltStyle} // Aplicar el estilo de tilt
+        >
           <div className="trainer-image trainer-two"></div>
           <p className="section-three-trainer-name">Jessica Di Maggio</p>
         </div>
+
         <div className="section-three-info">
           <h2 className="section-three-title">QUIENES SOMOS</h2>
           <p className="section-three-description">
