@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "title": "Plan Premium",
+      "price": "50€ + Matrícula 30€",
+      "features": [
+        "Acceso a todas las clases (podrás reservar una clase y al finalizar tendrás acceso a otra reserva del mismo día)",
+        "Plan de alimentación básico que se actualizará cada 3 meses",
+        "+Más taller de postura"
+      ],
+      "class": "SectionTwo-card-premium"
+    },
+    {
+      "id": 2,
+      "title": "Plan Matutino",
+      "price": "40€ + Matrícula 30€",
+      "features": [
+        "Acceso a todas las clases en la mañana (podrás reservar una clase y al finalizar tendrás acceso a otra reserva matutina del mismo día)",
+        "Plan de alimentación básico que se actualizará cada 3 meses",
+        "Más taller de postura"
+      ],
+      "class": "SectionTwo-card-matutino"
+    },
+    {
+      "id": 3,
+      "title": "Plan 3 Sesiones a la Semana",
+      "price": "34.90€ + Matrícula 30€",
+      "features": ["Acceso a cualquier hora 3 sesiones a la semana"],
+      "class": "SectionTwo-card-3sesiones"
+    },
+    {
+        "id": 4,
+        "title": "Plan 3 Sesiones a la Semana",
+        "price": "34.90€ + Matrícula 30€",
+        "features": ["Acceso a cualquier hora 3 sesiones a la semana"],
+        "class": "SectionTwo-card-3sesiones"
+      }
+  ]
+  

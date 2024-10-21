@@ -1,53 +1,265 @@
 /* Estilos generales para la cuadrícula */
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-    grid-template-rows: repeat(3, 1fr);    /* 3 filas */
-    gap: 10px; /* Margen entre los elementos */
-    width: 80%; /* Hacer que el grid ocupe el 80% de la pantalla */
-    max-width: 600px; /* Máximo tamaño para pantallas grandes */
-    margin: auto; /* Centrar el grid horizontalmente */
-  }
-  
-  .grid-item {
-    text-decoration: none;
-    background-color: #6200ea;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100px; /* Altura fija para las celdas */
-    border-radius: 8px;
-    font-size: 1.5rem; /* Tamaño de fuente en pantallas grandes */
-    text-align: center;
-  }
-  
-  .grid-icon {
-    font-size: 2rem; /* Tamaño de los iconos */
-    margin-bottom: 10px; /* Espaciado entre el icono y el texto */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  /*grid-template-rows: repeat(4, 1fr);     3 filas */
+  gap: 10px; /* Margen entre los elementos */
+  width: 80%; /* Hacer que el grid ocupe el 80% de la pantalla */
+  max-width: 600px; /* Máximo tamaño para pantallas grandes */
+  margin: auto; /* Centrar el grid horizontalmente */
+  justify-content: center;
+}
+
+.grid-item {
+  grid-column: span 1;
+  grid-row: span 1;
+  text-decoration: none;
+  background-color: #6200ea;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.grid-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.grid-item:hover {
+  background-color: #0c54b9;
+}
+
+/* Estilo para el elemento rectangular */
+.grid-item-rectangular {
+  grid-column: span 1;
+  grid-row: span 3;
+  background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 5px;
+  max-height: 319px;
+}
+
+.grid-item-header {
+  font-size: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.grid-item-itenName {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}
+
+.grid-item-day-number {
+  font-size: 3rem;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+
+.grid-item-days {
+  text-align: center;
+  margin: auto;
+}
+
+.grid-item-days-day {
+  color: #ea377b;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.grid-item-days-month {
+  color: grey;
+  font-weight: bold;
+}
+
+.grid-item-class-list {
+  list-style: none;
+  padding: 0;
+  margin: auto;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 90%;
+}
+
+.grid-item-iten-time{
+  font-size: .8em;
+  color: ivory;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.grid-item-class-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.grid-item-class-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5); /* Color del scrollbar */
+  border-radius: 10px;
+}
+
+/* Estilo para los items de las clases */
+.grid-item-class {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para las reservas */
+.grid-item-reservations {
+  grid-column: span 2;
+  grid-row: span 5;
+  background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.grid-item-reservations-title {
+  font-size: .77rem;
+  margin-bottom: 5px;
+  color: lightgray;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.grid-item-reservation-list {
+  display: flex;
+  overflow-x: auto;  /* Scroll horizontal */
+}
+
+.grid-item-reservation {
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-right: 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-width: 209px;
+  display: flex;
+  background-color: white;
+  font-size: .9em;
+}
+
+.grid-item-reservation-date{
+  font-size: .75em;
+  letter-spacing: 2px;
+  color: black;
+  font-weight: bold;
+}
+.grid-item-no-reservations {
+  font-size: 1rem;
+  color: #333;
+}
+
+.grid-item-reservation-inicio{
+  color: midnightblue;
+  font-size: .8em;
+  font-weight: bold;
+  letter-spacing: 0px;
+}
+
+.grid-item-reservations-link {
+  text-align: right;
+  margin-top: 10px;
+  color: indigo;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.grid-item-reservations-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilos responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
   }
 
-  .grid-item:hover{
-    background-color: #0c54b9;
+  .grid-item {
+    font-size: 1rem;
+    padding: 0.5rem;
   }
-  
-  /* Estilos responsive para pantallas pequeñas */
-  @media (max-width: 768px) {
-    .grid-container {
-      grid-template-columns: repeat(2, 1fr); /* En pantallas pequeñas, mantenemos 2 columnas */
-      grid-template-rows: auto; /* El número de filas será automático */
-      width: 100%; /* Ocupa el 100% de la pantalla en móvil */
-    }
-  
-    .grid-item {
-      font-size: 1rem; /* Reducimos el tamaño de fuente en pantallas móviles */
-      padding: 0.5rem; /* Reducimos el padding para que los elementos sean más compactos */
-    }
-  
-    .grid-item {
-      width: 90%; /* Hacer que cada elemento del grid ocupe el 90% del contenedor */
-      margin: 0 auto; /* Centramos los elementos dentro de cada columna */
-    }
-  }
-  
+}
+
+.grid-item-reservation-details{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+}
+
+.vertical-button {
+  color: white;
+  background-color: white;
+  cursor: pointer;
+  width: 34%;
+  font-size: 1em;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: revert-layer;
+  justify-content: center;
+  border-left: .1em dashed black;
+}
+
+.vertical-button:hover {
+  background-color: wheat; /* Cambia el color en hover */
+}
+
+.vertical-button span {
+  transform: rotate(-90deg);
+  text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+}
+.vertical-button div {
+  transform: rotate(-90deg);
+  text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+}
+
+.vertical-button-code-bar{
+  display: block;
+  width: 100%;
+  font-size: 1.4em;
+  display: flex;
+}
+
+.vertical-button-text{
+  font-size: 0.65em;
+  width: 100%;
+  display: block;
+  height: 37px;
+  font-weight: lighter;
+}
+
+.grid-item-reservation-name{
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

@@ -6,21 +6,24 @@
     margin: 0 auto;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
     text-align: center;/* Reducir el tamaño máximo para móvil */
-  max-width: 320px;
   padding-top: 20px;
   margin-top: 30px;
   margin-bottom: 42px;
 }
 
+.input-error{
+    border: 2px solid red;
+  }
+
 .SectionFive-title {
     color: white;
     font-size: 2em;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 /* Carrusel de suscripciones */
@@ -156,3 +159,44 @@
         min-width: 100px;
     }
 }
+
+/* Responsividad adicional para móviles */
+@media (min-width: 768px) {
+
+/* Formulario */
+.SectionFive-form {
+    min-width: 324px;
+}
+}
+
+.section-five-success-message{
+color: black;
+font-size: .8em;
+background: #00d976;
+font-weight: bold;
+}
+
+.section-five-error-message{
+    color: #ea377b;
+    font-size: .8em;
+    background: #190b10;
+}
+
+.section-five-success-message,
+.section-five-error-message {
+  visibility: hidden; /* El mensaje es invisible, pero sigue ocupando espacio */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.section-five-success-message.visible,
+.section-five-error-message.visible {
+  visibility: visible; /* El mensaje es visible */
+  opacity: 1;
+}
+
+
+
+
+  
+

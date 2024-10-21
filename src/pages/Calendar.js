@@ -2,7 +2,7 @@ import React from 'react';
 import WeeklyCalendar from '../components/WeeklyCalendar'; // Importamos el componente del calendario
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'; // Importamos los iconos
 import { useNavigate } from 'react-router-dom';
-import './css/Calendar.css';
+import './css/Calendar.css'; // Importa el archivo CSS
 import HeaderIcons from '../components/HeaderIcons'; // Importamos el componente HeaderIcons
 
 const Calendar = () => {
@@ -18,7 +18,7 @@ const Calendar = () => {
   };
 
   return (
-    <div>
+    <div className="calendar-page"> {/* Añadimos la clase CSS para el fondo */}
       {/* Usamos el componente HeaderIcons y le pasamos los props */}
       <HeaderIcons 
         icon={faCalendarAlt} 

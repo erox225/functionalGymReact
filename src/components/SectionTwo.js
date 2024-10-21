@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt, faDumbbell, faCheck } from '@fortawesome/free-solid-svg-icons';
+import {faDumbbell, faCheck } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionTwo.css';
 
 const SectionTwo = ({ subscriptions }) => {

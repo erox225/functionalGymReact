@@ -1,143 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Section from '../components/Section';
-import SectionTwo from '../components/SectionTwo'; // Asegúrate de importar SectionTwo
-import SectionThree from '../components/SectionThree'; // Asegúrate de importar SectionTwo
-import SectionFour from '../components/SectionFour'; // Importamos SectionFour
-import SectionFive from '../components/SectionFive'; // Importamos SectionFour
+import SectionTwo from '../components/SectionTwo';
+import SectionThree from '../components/SectionThree';
+import SectionFour from '../components/SectionFour';
+import SectionFive from '../components/SectionFive';
 import SectionFooter from '../components/SectionFooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Icono para el botón
-
-
-const subscriptions = [
-  {
-    id: 1,
-    title: "Plan Premium",
-    price: "50€ + Matrícula 30€",
-    features: [
-      "Acceso a todas las clases (podrás reservar una clase y al finalizar tendrás acceso a otra reserva del mismo día)",
-      "Plan de alimentación básico que se actualizará cada 3 meses",
-      "+Más taller de postura"
-    ],
-    date: "30.11.2022",
-    class: "SectionTwo-card-premium"
-  },
-  {
-    id: 2,
-    title: "Plan Matutino",
-    price: "40€ + Matrícula 30€",
-    features: [
-      "Acceso a todas las clases en la mañana (podrás reservar una clase y al finalizar tendrás acceso a otra reserva matutina del mismo día)",
-      "Plan de alimentación básico que se actualizará cada 3 meses",
-      "Más taller de postura"
-    ],
-    date: "30.11.2022",
-    class: "SectionTwo-card-matutino"
-  },
-  {
-    id: 3,
-    title: "Plan 3 Sesiones a la Semana",
-    price: "34.90€ + Matrícula 30€",
-    features: ["Acceso a cualquier hora 3 sesiones a la semana"],
-    date: "30.11.2022",
-    class: "SectionTwo-card-3sesiones"
-  },
-  {
-    id: 4,
-    title: "Plan Estudiantil",
-    price: "34.90€ Matrícula gratis",
-    features: [
-      "No podrás acceder a la franja horaria marcada en color gris",
-      "Acceso a taller de postura"
-    ],
-    date: "30.11.2022",
-    class: "SectionTwo-card-estudiantil"
-  },
-  {
-    id: 5,
-    title: "Plan Corporativo (2 personas)",
-    price: "34.90€ + Matrícula 15€",
-    features: ["No podrás acceder a la franja horaria marcada en color gris"],
-    date: "30.11.2022",
-    class: "SectionTwo-card-corporativo"
-  },
-  {
-    id: 6,
-    title: "Plan Familiar",
-    price: "Paga 50% de matrícula y escoge tu plan",
-    features: [],
-    date: "30.11.2022",
-    class: "SectionTwo-card-familiar"
-  }
-];
-
-const activitiesByDate = {
-  "2024-10-16": [
-    {
-      name: 'Body Combat',
-      time: '09:00',
-      aforoMax: 30,
-      aforoActual: 15,
-      intensidad: 'Alta',
-      duracion: "60'",
-      tipo: 'Fuerza - Intensidad',
-      imagen: 'BodyCom',
-      descripcion: 'Una sesión intensa de entrenamiento de fuerza para mejorar tu resistencia y musculatura.'
-    },
-    {
-      name: 'TrainNow',
-      time: '11:00',
-      aforoMax: 10,
-      aforoActual: 5,
-      intensidad: 'Media',
-      duracion: "45'",
-      tipo: 'Mente - Cuerpo',
-      imagen: 'TrainNow',
-      descripcion: 'Un espacio de colaboración para definir estrategias y fortalecer el trabajo en equipo.'
-    },
-  ],
-  "2024-10-17": [
-    {
-      name: 'Balance',
-      time: '08:00',
-      aforoMax: 20,
-      aforoActual: 12,
-      intensidad: 'Baja',
-      duracion: "60'",
-      tipo: 'Mente - Cuerpo',
-      imagen: 'Balance',
-      descripcion: 'Relaja tu cuerpo y mente con una sesión de yoga guiada por expertos.'
-    },
-    {
-      name: 'Cross Training',
-      time: '10:00',
-      aforoMax: 25,
-      aforoActual: 20,
-      intensidad: 'Media',
-      duracion: "50'",
-      tipo: 'Mente - Cuerpo',
-      imagen: 'Cross',
-      descripcion: 'Mejora tus habilidades lingüísticas y practica inglés en un entorno dinámico.'
-    },
-    {
-      name: 'BodyPom',
-      time: '12:00',
-      aforoMax: 15,
-      aforoActual: 10,
-      intensidad: 'Baja',
-      duracion: "30'",
-      tipo: 'Relajación',
-      imagen: 'BodyPom',
-      descripcion: 'Un espacio de calma y serenidad para conectar contigo mismo a través de la meditación.'
-    },
-  ],
-  // Agrega más clases si es necesario
-};
-
-
-
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { fetchSubscriptions, fetchActivities } from '../bussinesLogic/api';  // Importa las funciones de fetch
 
 const HomePage = () => {
+  const [subscriptions, setSubscriptions] = useState([]);  // Inicializa con un array vacío
+  const [activitiesByDate, setActivitiesByDate] = useState({});  // Inicializa con un objeto vacío
+
+  useEffect(() => {
+    // Función para obtener los datos de la API o mock
+    const fetchData = async () => {
+      const subs = await fetchSubscriptions();  // Llama a la función para obtener las suscripciones
+      setSubscriptions(subs || []);  // Asegura que no sea undefined y asigna un array vacío si es necesario
+
+      const activities = await fetchActivities();  // Llama a la función para obtener las actividades
+      setActivitiesByDate(activities || {});  // Asegura que no sea undefined y asigna un objeto vacío si es necesario
+    };
+
+    fetchData();  // Ejecuta la función al cargar el componente
+  }, []);
+
   return (
     <>
       <Section
@@ -167,18 +55,26 @@ const HomePage = () => {
             </button>
           </>
         }
-        backgroundColor="#6200ea" // Este color de fondo se puede ignorar o usar como fallback
+        backgroundColor="#6200ea"
       />
-      
-      {/* Aquí llamamos a SectionTwo */}
-      <SectionTwo subscriptions={subscriptions}/>
 
+      {/* Segunda sección: Subscriptions */}
+      {subscriptions.length > 0 ? (
+        <SectionTwo subscriptions={subscriptions} />
+      ) : (
+        <p>Cargando suscripciones...</p>  // Mensaje de carga si aún no hay datos
+      )}
+
+      {/* Tercera sección: Vacía en este caso */}
       <SectionThree />
 
-      <SectionFour activitiesByDate={activitiesByDate}/>
+      {/* Cuarta sección: Activities */}
+      <SectionFour activitiesByDate={activitiesByDate} />
 
+      {/* Quinta sección: Subscriptions */}
       <SectionFive subscriptions={subscriptions} />
 
+      {/* Footer de la página */}
       <SectionFooter />
     </>
   );

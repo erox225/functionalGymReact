@@ -1,0 +1,28 @@
+{
+    "2024-10-20": [
+      {
+        "name": "Body Combat",
+        "time": "09:00",
+        "aforoMax": 30,
+        "aforoActual": 15,
+        "intensidad": "Alta",
+        "duracion": "60'",
+        "tipo": "Fuerza - Intensidad",
+        "imagen": "BodyCom",
+        "descripcion": "Una sesión intensa de entrenamiento de fuerza para mejorar tu resistencia y musculatura."
+      },
+      {
+        "name": "TrainNow",
+        "time": "11:00",
+        "aforoMax": 10,
+        "aforoActual": 5,
+        "intensidad": "Media",
+        "duracion": "45'",
+        "tipo": "Mente - Cuerpo",
+        "imagen": "TrainNow",
+        "descripcion": "Un espacio de colaboración para definir estrategias y fortalecer el trabajo en equipo."
+      }
+    ],
+    "2024-10-21":[]
+  }
+  

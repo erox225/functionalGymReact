@@ -15,11 +15,11 @@ const HeaderIcons = ({ icon, title, onAddClick }) => {
     <div className="header-icons">
       {/* Botón para volver */}
       <button onClick={goBack} className="header-icon-back">
-        <FontAwesomeIcon icon={faArrowLeft} />
+        <FontAwesomeIcon icon={faArrowLeft} className='header-icon-back-icon'/>
       </button>
       
       {/* Título con ícono */}
-      <h1 className="class-header">
+      <h1 className="class-header-header-icons">
         <FontAwesomeIcon icon={icon} className="header-icon" />
         {title}
       </h1>

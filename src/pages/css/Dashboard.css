@@ -1,0 +1,19 @@
+.dashboard-page {
+    background-color: #121212; /* Fondo oscuro */
+    min-height: 90vh; /* Asegura que el fondo cubra toda la altura de la pantalla */
+    padding: 10px;
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  .dashboard-greeting {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    
+    /* Flexbox para centrar verticalmente con margen a la izquierda */
+    display: flex;
+    justify-content: center; /* Alinea hacia la izquierda */
+    align-items: center; /* Centra verticalmente */
+    font-weight: lighter;
+  }
+  
