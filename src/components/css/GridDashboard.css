@@ -14,7 +14,7 @@
   grid-column: span 1;
   grid-row: span 1;
   text-decoration: none;
-  background-color: #6200ea;
+  background-color: #70059e;
   color: white;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@
 .grid-item-rectangular {
   grid-column: span 1;
   grid-row: span 3;
-  background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+  background: linear-gradient(135deg, #1a023d 0%, rgb(62, 2, 80) 50%, #1e0344 100%);
   color: white;
   display: flex;
   flex-direction: column;
@@ -58,8 +58,10 @@
 
 .grid-item-itenName {
   font-weight: bold;
-  letter-spacing: 0.5px;
-  text-transform: capitalize;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: .9em;
+  padding-bottom: 5px;
 }
 
 .grid-item-day-number {
@@ -95,10 +97,21 @@
 }
 
 .grid-item-iten-time{
-  font-size: .8em;
+  font-size: 0.7em;
   color: ivory;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   font-weight: bold;
+}
+
+.grid-item-bar-color{
+  width: 5%;
+  border-radius: 10px;
+}
+
+.grid-item-text-container{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
 }
 
 .grid-item-class-list::-webkit-scrollbar {
@@ -113,19 +126,18 @@
 /* Estilo para los items de las clases */
 .grid-item-class {
   background-color: rgba(0, 0, 0, 0.1);
-  padding: 5px 10px;
   margin-bottom: 10px;
   border-radius: 4px;
   font-size: 1rem;
   display: flex;
-  flex-direction: column;
+  border: 1px solid black;
 }
 
 /* Estilos para las reservas */
 .grid-item-reservations {
   grid-column: span 2;
   grid-row: span 5;
-  background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+  background: linear-gradient(135deg, #1e0344 0%, #3e0235 50%, #6a0277 100%);
   padding: 10px;
   border-radius: 8px;
   display: flex;
@@ -178,7 +190,7 @@
 .grid-item-reservations-link {
   text-align: right;
   margin-top: 10px;
-  color: indigo;
+  color: rgb(229, 219, 219);
   text-decoration: none;
   font-weight: bold;
   letter-spacing: 1px;

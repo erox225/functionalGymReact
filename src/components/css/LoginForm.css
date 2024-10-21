@@ -10,7 +10,7 @@
 
 /* Estilos para el formulario */
 .form-login-form {
-  background: linear-gradient(135deg, #182b4f 0%, #57097d 50%, #f64f59 100%);
+  background: linear-gradient(135deg, #400588e5 0%, #57097d 50%, #ce05b8 100%);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -73,8 +73,8 @@
 /* Estilos para el botón de envío */
 .form-login-button {
   position: relative;
-  background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
-  color: #70e1f5;
+  background: linear-gradient(135deg, #5e06fb 0%, #400348 50%, #4e14cf 100%);
+  color: #d5a9fb;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-size: .8em;

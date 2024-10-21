@@ -47,7 +47,7 @@ const GridDashboard = () => {
   ];
 
   // Array de colores para las reservas
-  const reservationColors = ['#B0E0E6', '#FFA07A', '#98FB98', '#FFDAB9', '#DDA0DD']; // Colores diferentes para cada reserva
+  const reservationColors = ['rgb(4, 157, 176)', 'rgb(176, 6, 6)', 'rgb(36, 196, 143)', 'rgb(247, 193, 28)', 'rgb(248, 199, 6)']; // Colores diferentes para cada reserva
 
   return (
     <div className="grid-container">
@@ -62,16 +62,27 @@ const GridDashboard = () => {
         </div>
         {/* Ajuste del formato Nombre, Hora */}
         <ul className="grid-item-class-list">
+
           {classesToday.map((classItem, index) => (
             <li 
               key={index} 
               className="grid-item-class"
-              style={{ 
-                border: `1px solid ${classStyles[index % classStyles.length].borderColor}`, 
-                backgroundColor: classStyles[index % classStyles.length].backgroundColor 
-              }}>
-              <span className='grid-item-itenName'>{classItem.name}</span>
-              <span className='grid-item-iten-time'>{classItem.time}</span>
+              >
+
+          <div
+          className='grid-item-bar-color'
+          style={{ 
+            border: `1px solid ${classStyles[index % classStyles.length].borderColor}`, 
+            backgroundColor: classStyles[index % classStyles.length].backgroundColor 
+          }}
+          >
+            
+          </div>
+          <div className='grid-item-text-container'>
+          <span className='grid-item-itenName'>{classItem.name}</span>
+          <span className='grid-item-iten-time'>{classItem.time}</span>
+          </div>
+              
             </li>
           ))}
         </ul>
