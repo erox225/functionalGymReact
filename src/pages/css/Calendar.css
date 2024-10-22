@@ -21,7 +21,7 @@
   .calendar-page {
     background-color: #121212; /* Fondo oscuro */
     min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la pantalla */
-    padding: 20px; /* Opcional, para dar espacio alrededor del contenido */
+     /* Opcional, para dar espacio alrededor del contenido */
     color: #ffffff; /* Opcional: Texto blanco para contraste */
   }
   

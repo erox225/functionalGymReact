@@ -23,7 +23,6 @@ const ClientAccessPage = () => {
     <div>
       {/* Usamos el componente HeaderIcons y le pasamos los props sin onAddClick */}
       <HeaderIcons 
-        icon={faClipboardList} 
         title="Accesos"
       />
 

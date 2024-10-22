@@ -50,8 +50,7 @@ const Classes = () => {
   return (
     <div>
       {/* Usamos el componente HeaderIcons y le pasamos los props */}
-      <HeaderIcons 
-        icon={faChalkboardTeacher} 
+      <HeaderIcons  
         title="Clases" 
         onAddClick={handleAddClick} 
       />

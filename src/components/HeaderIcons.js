@@ -7,14 +7,14 @@ import './css/HeaderIcons.css'; // CSS específico para el componente si lo nece
 const HeaderIcons = ({ icon, title, onAddClick }) => {
   const navigate = useNavigate();
 
-  const goBack = () => {
-    navigate(-1); // Navega a la página anterior
+  const goToDashboard = () => {
+    navigate('/dashboard'); // Navega al dashboard
   };
 
   return (
     <div className="header-icons">
       {/* Botón para volver */}
-      <button onClick={goBack} className="header-icon-back">
+      <button onClick={goToDashboard} className="header-icon-back">
         <FontAwesomeIcon icon={faArrowLeft} className='header-icon-back-icon'/>
       </button>
       
@@ -38,6 +38,3 @@ const HeaderIcons = ({ icon, title, onAddClick }) => {
 };
 
 export default HeaderIcons;
-
-
-

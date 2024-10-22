@@ -21,7 +21,6 @@ const Calendar = () => {
     <div className="calendar-page"> {/* Añadimos la clase CSS para el fondo */}
       {/* Usamos el componente HeaderIcons y le pasamos los props */}
       <HeaderIcons 
-        icon={faCalendarAlt} 
         title="Calendario" 
         onAddClick={handleAddClick} 
       />

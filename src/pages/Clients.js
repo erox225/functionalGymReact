@@ -24,7 +24,6 @@ const Clients = () => {
     <div>
       {/* Usamos el componente HeaderIcons y le pasamos los props */}
       <HeaderIcons 
-        icon={faClipboardList} 
         title="Clientes" 
         onAddClick={handleAddClick}
       />

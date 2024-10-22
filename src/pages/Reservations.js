@@ -44,7 +44,6 @@ const Reservations = () => {
   return (
     <div>
       <HeaderIcons 
-        icon={faClipboardList} 
         title="Reservas" 
         onAddClick={handleAddClick}
       />
