@@ -61,3 +61,9 @@
     padding-left: 7px;
   }
   
+  .footer-btn.selected {
+    background-color: #e0e0e0; /* Un color de fondo para indicar que está seleccionado */
+    border-radius: 10px; /* Respeta las esquinas redondeadas */
+    color: #6200ea; /* El color del texto e icono cuando está seleccionado */
+  }
+  
