@@ -131,6 +131,7 @@
   font-size: 1rem;
   display: flex;
   border: 1px solid black;
+  cursor: pointer;
 }
 
 /* Estilos para las reservas */

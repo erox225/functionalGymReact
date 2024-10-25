@@ -73,7 +73,7 @@ const HomePage = () => {
 
       {/* Quinta sección: Subscriptions */}
       <SectionFive subscriptions={subscriptions} />
-
+      
       {/* Footer de la página */}
       <SectionFooter />
     </>

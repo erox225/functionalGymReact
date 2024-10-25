@@ -19,9 +19,8 @@
   }
 
   .calendar-page {
-    background-color: #121212; /* Fondo oscuro */
-    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la pantalla */
-     /* Opcional, para dar espacio alrededor del contenido */
-    color: #ffffff; /* Opcional: Texto blanco para contraste */
+    background-color: #f5f5f5;
+    min-height: 90vh;
+    color: #ffffff;
   }
   

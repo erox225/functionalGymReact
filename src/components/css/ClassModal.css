@@ -14,7 +14,6 @@
   .modal-class-content {
     background: #333;
     color: white;
-    padding: 3px;
     border-radius: 10px;
     width: 90%;
     max-width: 400px;
@@ -30,11 +29,12 @@
     right: 0px;
     background: none;
     border: none;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: white;
     cursor: pointer;
     text-align: end;
     border-radius: 12px;
+    font-weight: bold;
   }
   
   .modal-class-title {
@@ -53,7 +53,8 @@
   
   /* Imagen en la parte superior */
   .modal-class-image {
-    height: 283px;
+    /*height: 283px;*/
+    height: 165px;
     background-size: cover;
     background-position: center;
     border-radius: 10px 10px 0 0;
@@ -64,18 +65,22 @@
   /* Colores de fondo según el tipo de clase */
   .tipo-fuerza {
     background: linear-gradient(135deg, #182b4f 0%, #182b4f 50%, #f64f59 100%);
+    border:none;
   }
   
   .tipo-mente {
     background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+    border:none;
   }
   
   .tipo-relajacion {
     background: linear-gradient(135deg, #1d2b53 0%, #1d2b53 50%, #ff6f61 100%);
+    border:none;
   }
   
   .tipo-cardio {
     background: linear-gradient(135deg, #0f2027 0%, #0f2027 50%, #2193b0 100%);
+    border:none;
   }
 
 
@@ -128,4 +133,31 @@
 
 .Alta{
   color: rgb(255, 149, 0);
+}
+
+.modal-reservar-button {
+  background-color: #0c54b9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: .8rem;
+  width: 48%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  border: 1.4px solid wheat;
+  font-weight: bold;
+}
+
+.modal-reservar-button:hover {
+  background-color: #063a7a;
+}
+
+.modal-reservar-boton-icon{
+  margin-left: 10px;
+  font-size: 1.5em;
 }

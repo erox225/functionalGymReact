@@ -183,3 +183,7 @@
     font-size: 0.7em;
     margin-left: 5px;
   }
+
+  .modal-reservar-button{
+    background-color: rgba(4, 34, 71, 0.9);
+  }

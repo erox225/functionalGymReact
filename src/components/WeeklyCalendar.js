@@ -73,11 +73,15 @@ const WeeklySchedule = () => {
 
   // Actividades con intensidad y duración añadidas
   const activitiesByDate = {
-    "2024-09-18": [
-      { name: 'Gimnasio', time: '09:00 - 10:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'" },
-      { name: 'Reunión de equipo', time: '11:00 - 12:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'" },
+    "2024-10-25": [
+      { name: 'Gimnasio', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'" },
+      { name: 'Reunión de equipo', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'" },
+      { name: 'Yoga', time: '08:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
+      { name: 'Clase de inglés', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" },
+      { name: 'Yoga', time: '08:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
+      { name: 'Clase de inglés', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" }
     ],
-    "2024-09-19": [
+    "2024-10-26": [
       { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
       { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" },
     ],
@@ -127,16 +131,16 @@ const WeeklySchedule = () => {
 
                 <div className="activity-aforo">
                   <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
-                  Aforo: {activity.aforoMax}/{activity.aforoActual}
+                  {activity.aforoMax}/{activity.aforoActual}
                 </div>
                 {/* Añadimos intensidad y duración con íconos */}
                 <div className="activity-intensity">
                   <FontAwesomeIcon icon={faBolt} style={{ marginRight: '0.3rem' }} />
-                  Intensidad: {activity.intensidad}
+                  {activity.intensidad}
                 </div>
                 <div className="activity-duration">
                   <FontAwesomeIcon icon={faClock} style={{ marginRight: '0.3rem' }} />
-                  Duración: {activity.duracion}
+                  {activity.duracion}
                 </div>
               </div>
 
@@ -148,9 +152,6 @@ const WeeklySchedule = () => {
                 <div className="activity-buttons">
                   <Link to={`/edit/${activity.name}`} className="edit-button">
                     <FontAwesomeIcon icon={faEdit} />
-                  </Link>
-                  <Link to={`/view/${activity.name}`} className="view-button">
-                    <FontAwesomeIcon icon={faEye} />
                   </Link>
                   <Link to={`/view/${activity.name}`} className="reserve-button">
                     <FontAwesomeIcon icon={faClipboardList} /> 

@@ -21,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     gap: 10%;
+    background-color: black;
   }
   
   .header-icon-add {

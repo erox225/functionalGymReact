@@ -1,15 +1,19 @@
 import React from 'react';
 import './css/ClassModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faUsers, faCalendarAlt, faHeartbeat } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faUsers, faCalendarAlt, faHeartbeat, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+
+import { useLocation } from 'react-router-dom';
 
 const ClassModal = ({ classInfo, onClose }) => {
+  const location = useLocation();  // Hook para verificar la ruta actual
+
   if (!classInfo) return null;
 
   const { name, time, aforoMax, aforoActual, intensidad, duracion, tipo, colorClass, imagen, descripcion } = classInfo;
 
   const modalClassName = "modal-class-image " + imagen;
-  const classIntensidad = "modal-class-items " +  intensidad;
+  const classIntensidad = "modal-class-items " + intensidad;
 
   return (
     <div className="modal-class-overlay" onClick={onClose}>
@@ -44,6 +48,16 @@ const ClassModal = ({ classInfo, onClose }) => {
             </span> 
           </p>
         </div>
+
+        {/* Mostrar el botón de reservar si estamos en /dashboard */}
+        {location.pathname === '/dashboard' && (
+          <button className="modal-reservar-button">
+            Reservar
+            <FontAwesomeIcon icon={faClipboardList} 
+            className='modal-reservar-boton-icon'
+            />
+          </button>
+        )}
 
       </div>
     </div>
