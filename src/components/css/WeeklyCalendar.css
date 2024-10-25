@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+
+
 /* Cabecera del calendario */
 .calendar-header {
   display: flex;
@@ -105,6 +109,8 @@
   flex-grow: 1;
   overflow-y: auto;
   max-height: calc(90vh - 200px);
+  padding-left: .3em;
+  padding-right: 0.3em;
 }
 
 
@@ -115,26 +121,35 @@
 
 /* Contenedor de actividades */
 .activity {
-  background-color: #f5f5f5;
-  padding: 1rem;
+  background-color: white;
   margin-bottom: 1rem;
   border-radius: 8px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
   border: 1px solid #ddd; /* Borde suave */
+  padding: 0px;
+  -webkit-box-shadow: 10px 10px 18px 0px rgba(64, 63, 63, 0.15);
+  -moz-box-shadow: 10px 10px 18px 0px rgba(64, 63, 63, 0.15);
+  box-shadow: 10px 10px 18px 0px rgba(64, 63, 63, 0.15);
+  align-items: initial;
+  
 }
 
 /* Estilo para la intensidad y duración */
-.activity-intensity, .activity-duration, .activity-time, .activity-aforo {
-  margin-top: 0.5rem;
+.activity-intensity, .activity-aforo {
   font-size: 0.9rem;
   color: #333;
 }
 
 .activity-time {
-  margin-top: 0.5rem;
+  color: #555;
+  font-size: 1.2rem;
+  
+  letter-spacing: 3px;
+}
+
+.activity-duration {
+  margin-bottom: 1.6rem;
   font-size: 0.9rem;
   color: #333;
 }
@@ -151,7 +166,7 @@
 .activity-columns {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /*align-items: center;*/
   width: 100%;
 }
 
@@ -167,11 +182,7 @@
   font-size: 1rem;
 }
 
-.activity-time {
-  color: #555;
-  font-size: 0.85rem;
-  margin-bottom: 1.6rem;
-}
+
 
 /* Columna 2: Aforo */
 .activity-column-2 {
@@ -205,9 +216,34 @@
 }
 
 .reserve-button{
-  background-color: #8192fe;
-  color: white;
-  border: 2px solid black;
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 1em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .boton-reservar{
@@ -252,7 +288,7 @@
   }
 
   .activity {
-      padding: 0.75rem;
+      /*padding: 0.75rem;*/
       /*border: 1px solid black;*/
   }
 
@@ -276,13 +312,7 @@
       font-size: 0.95rem;
   }
 
-  .view-class-button{
-    font-size: 0.9em;
-    text-decoration: none;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  font-weight: bold;
-  }
+
 
 }
 
@@ -299,6 +329,12 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: end;
+  padding: .3em .4em;
+  background-color: #f5f5f5;
+  max-width: 37%;
+  -webkit-box-shadow: inset 10px 10px 99px 0px rgba(242,242,242,1);
+  -moz-box-shadow: inset 10px 10px 99px 0px rgba(242,242,242,1);
+  box-shadow: inset 10px 10px 99px 0px rgba(242,242,242,1);
 }
 
 .no-activity {
@@ -320,6 +356,75 @@ button {
   color: black;
   font-size: 0.8em;
 }
+
+.activity-details{
+  min-width: 63%;
+  display: flex;
+  align-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.activity-buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-atributes-card{
+  -webkit-box-shadow: 10px 10px 18px 0px rgba(64, 63, 63, 0.15);
+  -moz-box-shadow: 10px 10px 18px 0px rgba(64, 63, 63, 0.15);
+  box-shadow: 10px 10px 18px 0px rgba(64, 63, 63, 0.15);
+  display: flex;
+  justify-content: space-around;
+  align-self: flex-end;
+  width: 100%;
+  padding: 0.3em 0.3em 0.3em 0.8em;
+}
+
+.activity-aforo{
+  letter-spacing: 1.3px;
+}
+
+.activity-details-name{
+  color: black;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-family: 'Bungee', cursive;
+}
+
+.activity-details-name-by{
+  align-self: end;
+  width: 100%;
+  font-size: 0.7em;
+}
+
+.activity-details-name-trainer{
+  align-self: end;
+  width: 100%;
+  font-size: 0.7em;
+}
+
+.view-class-button{
+  text-decoration: none;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 100%;
+  padding: 0.8em 0.3em 0.8em 0.8em;
+}
+
+.view-class-button p{
+
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+
+
+
+
 
 
 

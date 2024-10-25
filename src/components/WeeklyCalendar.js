@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleChevronLeft, faAngleLeft, faAngleRight, faEdit, faEye, faArrowRight, faArrowLeft, faBolt, faClock, faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight, faBolt, faClock, faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
-// Diccionario para mapear los días completos a las abreviaturas
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
-// Función para obtener el primer día de la semana (lunes)
 const getMonday = (date) => {
   const day = date.getDay();
   const diff = date.getDate() - day + (day === 0 ? -6 : 1); // Ajuste si el día es domingo
@@ -71,39 +69,35 @@ const WeeklySchedule = () => {
     setCurrentDate(prevDate);
   };
 
-  // Actividades con intensidad y duración añadidas
+  // Actividades con color según tipo y color de intensidad
   const activitiesByDate = {
     "2024-10-25": [
-      { name: 'Gimnasio', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'" },
-      { name: 'Reunión de equipo', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'" },
-      { name: 'Yoga', time: '08:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
-      { name: 'Clase de inglés', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" },
-      { name: 'Yoga', time: '08:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
-      { name: 'Clase de inglés', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" }
+      { name: 'BodyCombat', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'", color: 'rgb(176, 6, 6)', intensityColor: 'rgb(176, 6, 6)' },
+      { name: 'Pilates', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)' },
+      { name: 'Yoga', time: '08:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'", color: 'rgb(247, 193, 28)', intensityColor: 'rgb(36, 196, 143)' },
+      { name: 'TrainNow', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'", color: '#9b59b6', intensityColor: 'rgb(247, 193, 28)' },
     ],
     "2024-10-26": [
-      { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'" },
-      { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'" },
+      { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'", color: '#2ecc71', intensityColor: '#2ecc71' },
+      { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'", color: '#34495e', intensityColor: '#f1c40f' },
     ],
   };
 
   return (
     <div className="weekly-schedule">
-      {/* Mostrar el mes y el rango de la semana con las flechas */}
       <div className="calendar-header">
         <button className="arrow-button" onClick={prevWeek}>
           <FontAwesomeIcon icon={faAngleLeft} className="header-icon" />
-          </button>
+        </button>
         <div className="week-info">
           <h2>{monthRange}</h2>
           <p>Semana: {weekRange}</p>
         </div>
         <button className="arrow-button" onClick={nextWeek}>
           <FontAwesomeIcon icon={faAngleRight} className="header-icon" />
-          </button>
+        </button>
       </div>
 
-      {/* Lista horizontal de días con el número arriba de la abreviatura */}
       <ul className="days-list">
         {weekDates.map((date, index) => (
           date && date.dateObj ? (
@@ -119,42 +113,41 @@ const WeeklySchedule = () => {
         ))}
       </ul>
 
-      {/* Lista vertical de actividades basadas en la fecha seleccionada */}
       {selectedDay && activitiesByDate[selectedDay] ? (
         <div className="activities-list">
           {activitiesByDate[selectedDay].map((activity, index) => (
             <div key={index} className="activity">
               <div className="activity-details">
                 <Link to={`/class/${activity.name}`} className="view-class-button">
-                  {activity.name}
+                  <p className='activity-details-name' style={{ color: activity.color }}>{activity.name}</p>
+                  <p className='activity-details-name-by'>By</p>
+                  <p className='activity-details-name-trainer'>Jessica Di Maggio</p>
                 </Link>
 
-                <div className="activity-aforo">
-                  <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
-                  {activity.aforoMax}/{activity.aforoActual}
+                <div className='activity-atributes-card'>
+                  <div className="activity-aforo">
+                    <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
+                    {activity.aforoMax}/{activity.aforoActual}
+                  </div>
+                  <div className="activity-intensity" style={{ color: activity.intensityColor }}>
+                    <FontAwesomeIcon icon={faBolt} style={{ marginRight: '0.3rem' }} />
+                    {activity.intensidad}
+                  </div>
                 </div>
-                {/* Añadimos intensidad y duración con íconos */}
-                <div className="activity-intensity">
-                  <FontAwesomeIcon icon={faBolt} style={{ marginRight: '0.3rem' }} />
-                  {activity.intensidad}
+              </div>
+
+              <div className="right-activity">
+                <div className="activity-time">
+                  {activity.time}
                 </div>
                 <div className="activity-duration">
                   <FontAwesomeIcon icon={faClock} style={{ marginRight: '0.3rem' }} />
                   {activity.duracion}
                 </div>
-              </div>
 
-              {/* Botones de edición y visualización */}
-              <div className="right-activity">
-                <div className="activity-time">
-                  {activity.time}
-                </div>
                 <div className="activity-buttons">
-                  <Link to={`/edit/${activity.name}`} className="edit-button">
-                    <FontAwesomeIcon icon={faEdit} />
-                  </Link>
                   <Link to={`/view/${activity.name}`} className="reserve-button">
-                    <FontAwesomeIcon icon={faClipboardList} /> 
+                    <FontAwesomeIcon icon={faClipboardList} />
                     <span className='boton-reservar'>Reservar</span>
                   </Link>
                 </div>
@@ -172,5 +165,3 @@ const WeeklySchedule = () => {
 };
 
 export default WeeklySchedule;
-
-<FontAwesomeIcon icon="fa-solid faCircleChevronLeft" />
