@@ -1,0 +1,82 @@
+/* Contenedor principal del formulario */
+.persona-form-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Etiquetas */
+  .persona-form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Campos de entrada de texto */
+  .persona-form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Selector de suscripción */
+  .persona-form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  /* Botón de envío */
+  .persona-form-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6200ea;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .persona-form-button:hover {
+    background-color: #4b00b5;
+  }
+  
+  /* Adaptación para dispositivos móviles */
+  @media (max-width: 768px) {
+    .persona-form-container {
+      padding: 15px;
+      box-shadow: none;
+    }
+  
+    .persona-form-button {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    .persona-form-label {
+      font-size: 0.9rem;
+    }
+  
+    .persona-form-input,
+    .persona-form-select {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  }
+  

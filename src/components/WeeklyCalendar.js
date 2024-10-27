@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/WeeklyCalendar.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight, faBolt, faClock, faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight, faBolt, faClock, faUsers, faClipboardList, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
@@ -20,6 +20,8 @@ const WeeklySchedule = () => {
   const [monthRange, setMonthRange] = useState('');
   const [weekRange, setWeekRange] = useState('');
   const [currentDate, setCurrentDate] = useState(() => getMonday(new Date()));
+  const [loadingActivityId, setLoadingActivityId] = useState(null);
+  const [reservedActivities, setReservedActivities] = useState([]);
 
   useEffect(() => {
     const updateWeekDates = (startDate) => {
@@ -69,17 +71,36 @@ const WeeklySchedule = () => {
     setCurrentDate(prevDate);
   };
 
-  // Actividades con color según tipo y color de intensidad
+  const reserveActivity = async (activityId) => {
+    setLoadingActivityId(activityId);
+
+    try {
+      const response = await fetch('https://api.example.com/reserve', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ activityId }),
+      });
+
+      if (response.ok) {
+        setReservedActivities((prev) => [...prev, activityId]);
+      } else {
+        console.error('Error reservando la actividad');
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
+
+    setLoadingActivityId(null);
+  };
+
   const activitiesByDate = {
     "2024-10-25": [
-      { name: 'BodyCombat', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'", color: 'rgb(176, 6, 6)', intensityColor: 'rgb(176, 6, 6)' },
-      { name: 'Pilates', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)' },
-      { name: 'Yoga', time: '08:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'", color: 'rgb(247, 193, 28)', intensityColor: 'rgb(36, 196, 143)' },
-      { name: 'TrainNow', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'", color: '#9b59b6', intensityColor: 'rgb(247, 193, 28)' },
-    ],
-    "2024-10-26": [
-      { name: 'Yoga', time: '08:00 - 09:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'", color: '#2ecc71', intensityColor: '#2ecc71' },
-      { name: 'Clase de inglés', time: '10:00 - 11:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'", color: '#34495e', intensityColor: '#f1c40f' },
+      { id: 1, name: 'BodyCombat', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'", color: 'rgb(176, 6, 6)', intensityColor: 'rgb(176, 6, 6)', trainer: 'Jessica Di Maggio' },
+      { id: 2, name: 'Pilates', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)', trainer: 'Alex Rivera' },
+      { id: 3, name: 'Yoga', time: '08:00', aforoMax: 20, aforoActual: 12, intensidad: 'Baja', duracion: "60'", color: 'rgb(247, 193, 28)', intensityColor: 'rgb(36, 196, 143)', trainer: 'Lucía Martínez' },
+      { id: 4, name: 'TrainNow', time: '10:00', aforoMax: 25, aforoActual: 20, intensidad: 'Media', duracion: "50'", color: '#9b59b6', intensityColor: 'rgb(247, 193, 28)', trainer: 'Carlos Santamaría' },
     ],
   };
 
@@ -115,13 +136,13 @@ const WeeklySchedule = () => {
 
       {selectedDay && activitiesByDate[selectedDay] ? (
         <div className="activities-list">
-          {activitiesByDate[selectedDay].map((activity, index) => (
-            <div key={index} className="activity">
+          {activitiesByDate[selectedDay].map((activity) => (
+            <div key={activity.id} className="activity">
               <div className="activity-details">
                 <Link to={`/class/${activity.name}`} className="view-class-button">
                   <p className='activity-details-name' style={{ color: activity.color }}>{activity.name}</p>
                   <p className='activity-details-name-by'>By</p>
-                  <p className='activity-details-name-trainer'>Jessica Di Maggio</p>
+                  <p className='activity-details-name-trainer'>{activity.trainer}</p>
                 </Link>
 
                 <div className='activity-atributes-card'>
@@ -146,10 +167,27 @@ const WeeklySchedule = () => {
                 </div>
 
                 <div className="activity-buttons">
-                  <Link to={`/view/${activity.name}`} className="reserve-button">
-                    <FontAwesomeIcon icon={faClipboardList} />
-                    <span className='boton-reservar'>Reservar</span>
-                  </Link>
+                  {reservedActivities.includes(activity.id) ? (
+                    <button className="reserve-button reserved">
+                      <FontAwesomeIcon icon={faCheckCircle} />
+                      <span className='boton-reservar'>Reservado</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => reserveActivity(activity.id)}
+                      className="reserve-button"
+                      disabled={loadingActivityId === activity.id}
+                    >
+                      {loadingActivityId === activity.id ? (
+                        <div className="loading-circle"></div>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon icon={faClipboardList} />
+                          <span className='boton-reservar'>Reservar</span>
+                        </>
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -165,3 +203,4 @@ const WeeklySchedule = () => {
 };
 
 export default WeeklySchedule;
+  

@@ -11,7 +11,8 @@ const allowedPaths = [
    '/clients',
    '/reservations',
    '/accessControl',
-   '/dashboard'
+   '/dashboard',
+   '/planificacion'
 ]; // Array con las rutas permitidas
 
 const allowedPaths2 = [
