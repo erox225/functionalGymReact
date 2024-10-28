@@ -1,102 +1,154 @@
 /* Contenedor principal del formulario */
 .planificacion-form-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 90vw; /* Ancho adaptable para móviles */
+  box-sizing: border-box;
+}
+
+/* Etiquetas */
+.planificacion-form-label {
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+/* Campos de entrada y selectores */
+.planificacion-form-input,
+.planificacion-form-select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.planificacion-form-input:focus,
+.planificacion-form-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Ajustes para evitar zoom en dispositivos móviles al hacer clic en los campos */
+input[type="date"],
+input[type="time"],
+select,
+button {
+  font-size: 16px; /* Tamaño de fuente para evitar zoom en iOS */
+}
+
+/* Checkbox */
+.planificacion-form-checkbox {
+  transform: scale(1.2);
+  margin: 0;
+}
+
+/* Botón de enviar */
+.planificacion-form-button {
+  padding: 0.7rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.planificacion-form-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos específicos para pantallas grandes (desktop) */
+@media (min-width: 768px) {
+  .planificacion-form-container {
+    padding: 2rem;
   }
-  
-  /* Etiquetas */
+
   .planificacion-form-label {
-    font-size: 1rem;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
+    font-size: 1.1rem;
   }
-  
-  /* Campos de entrada y selectores */
+
+  .planificacion-form-button {
+    font-size: 1.1rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Estilos específicos para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+  .planificacion-form-container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .planificacion-form-label {
+    font-size: 0.9rem;
+  }
+
   .planificacion-form-input,
   .planificacion-form-select {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
+    font-size: 0.9rem;
+    padding: 0.4rem;
   }
-  
-  .planificacion-form-input:focus,
-  .planificacion-form-select:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Checkbox */
-  .planificacion-form-checkbox {
-    margin-top: 0.5rem;
-    transform: scale(1.2);
-  }
-  
-  /* Botón de enviar */
+
   .planificacion-form-button {
-    padding: 0.7rem;
     font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    padding: 0.6rem;
   }
-  
-  .planificacion-form-button:hover {
-    background-color: #0056b3;
+}
+
+/* Ajustes adicionales para iPhone */
+@media screen and (max-width: 480px) {
+  .planificacion-form-container {
+      padding: 15px;
   }
-  
-  /* Estilos específicos para pantallas grandes (desktop) */
-  @media (min-width: 768px) {
-    .planificacion-form-container {
-      padding: 2rem;
-    }
-  
-    .planificacion-form-label {
-      font-size: 1.1rem;
-    }
-  
-    .planificacion-form-button {
-      font-size: 1.1rem;
-      padding: 0.8rem;
-    }
+
+  .planificacion-form-label {
+      font-size: 0.85rem;
   }
-  
-  /* Estilos específicos para pantallas pequeñas (móviles) */
-  @media (max-width: 767px) {
-    .planificacion-form-container {
-      padding: 1rem;
-      max-width: 100%;
-    }
-  
-    .planificacion-form-label {
-      font-size: 0.9rem;
-    }
-  
-    .planificacion-form-input,
-    .planificacion-form-select {
-      font-size: 0.9rem;
-      padding: 0.4rem;
-    }
-  
-    .planificacion-form-button {
-      font-size: 1rem;
-      padding: 0.6rem;
-    }
+
+  .planificacion-form-input,
+  .planificacion-form-select {
+      font-size: 0.85rem;
+      padding: 0.3rem;
   }
-  
+
+  .planificacion-form-button {
+      font-size: 0.95rem;
+      padding: 0.5rem;
+  }
+}
+
+/* Estilo de etiquetas para checkboxes en línea */
+.planificacion-form-label-inline {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+  gap: 0.5rem; /* Espacio entre el checkbox y el texto */
+  margin-bottom: 15px; /* Espaciado inferior entre los checkboxes */
+}
+
+/* Checkbox */
+.planificacion-form-checkbox {
+  transform: scale(1.2);
+  margin: 0;
+  accent-color: #007bff; /* Cambia el color del checkbox */
+}
+
+
+

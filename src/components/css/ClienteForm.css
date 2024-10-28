@@ -1,13 +1,15 @@
-/* Contenedor principal del formulario */
-.persona-form-container {
+  /* Contenedor principal del formulario */
+  .persona-form-container {
     max-width: 500px;
     margin: auto;
     padding: 20px;
     background-color: #f8f8f8;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90vw; /* Ajuste para pantallas pequeñas */
+    box-sizing: border-box;
   }
-  
+
   /* Etiquetas */
   .persona-form-label {
     display: block;
@@ -15,7 +17,7 @@
     margin-bottom: 10px;
     color: #333;
   }
-  
+
   /* Campos de entrada de texto */
   .persona-form-input {
     width: 100%;
@@ -26,7 +28,7 @@
     font-size: 1rem;
     box-sizing: border-box;
   }
-  
+
   /* Selector de suscripción */
   .persona-form-select {
     width: 100%;
@@ -38,7 +40,17 @@
     background-color: #fff;
     box-sizing: border-box;
   }
-  
+
+  /* Ajuste para evitar zoom en iPhone */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  button {
+    font-size: 16px; /* Tamaño de fuente para evitar zoom en iOS */
+  }
+
   /* Botón de envío */
   .persona-form-button {
     width: 100%;
@@ -52,31 +64,57 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   .persona-form-button:hover {
     background-color: #4b00b5;
   }
-  
+
   /* Adaptación para dispositivos móviles */
   @media (max-width: 768px) {
     .persona-form-container {
-      padding: 15px;
-      box-shadow: none;
+        padding: 15px;
+        box-shadow: none;
     }
-  
+
     .persona-form-button {
-      font-size: 0.9rem;
-      padding: 10px;
+        font-size: 0.9rem;
+        padding: 10px;
     }
-  
+
     .persona-form-label {
-      font-size: 0.9rem;
+        font-size: 0.9rem;
     }
-  
+
     .persona-form-input,
     .persona-form-select {
-      font-size: 0.9rem;
-      padding: 8px;
+        font-size: 0.9rem;
+        padding: 8px;
     }
+  }
+
+  /* Ajustes específicos para pantallas pequeñas como iPhone */
+  @media screen and (max-width: 480px) {
+    .persona-form-container {
+        padding: 15px;
+    }
+
+    .persona-form-label {
+        font-size: 0.85rem;
+    }
+
+    .persona-form-input,
+    .persona-form-select {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .persona-form-button {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+  }
+
+  .client-form-div-general {
+    padding-bottom: 80px; /* Ajusta el espacio inferior para evitar el footer */
   }
   

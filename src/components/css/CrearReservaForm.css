@@ -1,96 +1,127 @@
 /* Contenedor principal del formulario */
 .class-crear-reserva-form-container {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Etiquetas */
-  .class-crear-reserva-form-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  /* Campos de selección y texto */
-  .class-crear-reserva-form-input,
-  .class-crear-reserva-form-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-  }
-  
-  /* Botón de envío */
-  .class-crear-reserva-form-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #6200ea;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .class-crear-reserva-form-button:hover {
-    background-color: #4b00b5;
-  }
-  
-  /* Lista de sugerencias */
-  .class-crear-reserva-form-suggestions {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    max-height: 150px;
-    overflow-y: auto;
-    position: absolute;
-    background-color: #fff;
-    width: 100%;
-    z-index: 1;
-  }
-  
-  .class-crear-reserva-form-suggestion-item {
-    padding: 10px;
-    cursor: pointer;
-    color: #333;
-  }
-  
-  .class-crear-reserva-form-suggestion-item:hover {
-    background-color: #f0f0f0;
-  }
-  
-  /* Adaptación para dispositivos móviles */
-  @media (max-width: 768px) {
-    .class-crear-reserva-form-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90vw; /* Ancho adaptable para pantallas pequeñas */
+  box-sizing: border-box;
+}
+
+/* Etiquetas */
+.class-crear-reserva-form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Campos de selección y texto */
+.class-crear-reserva-form-input,
+.class-crear-reserva-form-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Ajuste para evitar zoom en iPhone */
+input[type="text"],
+input[type="date"],
+select,
+button {
+  font-size: 16px; /* Tamaño de fuente para evitar zoom en iOS */
+}
+
+/* Botón de envío */
+.class-crear-reserva-form-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #6200ea;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.class-crear-reserva-form-button:hover {
+  background-color: #4b00b5;
+}
+
+/* Lista de sugerencias */
+.class-crear-reserva-form-suggestions {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  z-index: 1;
+}
+
+.class-crear-reserva-form-suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+}
+
+.class-crear-reserva-form-suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Adaptación para dispositivos móviles */
+@media (max-width: 768px) {
+  .class-crear-reserva-form-container {
       padding: 15px;
       box-shadow: none;
-    }
-  
-    .class-crear-reserva-form-button {
+  }
+
+  .class-crear-reserva-form-button {
       font-size: 0.9rem;
       padding: 10px;
-    }
-  
-    .class-crear-reserva-form-label {
+  }
+
+  .class-crear-reserva-form-label {
       font-size: 0.9rem;
-    }
-  
-    .class-crear-reserva-form-input,
-    .class-crear-reserva-form-select {
+  }
+
+  .class-crear-reserva-form-input,
+  .class-crear-reserva-form-select {
       font-size: 0.9rem;
       padding: 8px;
-    }
   }
-  
+}
+
+/* Ajustes específicos para pantallas pequeñas como iPhone */
+@media screen and (max-width: 480px) {
+  .class-crear-reserva-form-container {
+      padding: 15px;
+  }
+
+  .class-crear-reserva-form-label {
+      font-size: 0.85rem;
+  }
+
+  .class-crear-reserva-form-input,
+  .class-crear-reserva-form-select {
+      font-size: 0.85rem;
+      padding: 8px;
+  }
+
+  .class-crear-reserva-form-button {
+      font-size: 0.95rem;
+      padding: 10px;
+  }
+}

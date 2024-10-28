@@ -68,8 +68,9 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode }) => {
         </select>
       </label>
 
-      <label className="class-page-form-label">
-        Estado:
+      {/* Checkbox de Estado alineado en una sola línea */}
+      <label className="class-page-form-label-inline">
+      <span>¿Visibilidad de la clase?</span>
         <input
           type="checkbox"
           name="estado"
@@ -77,7 +78,7 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode }) => {
           onChange={handleInputChange}
           className="class-page-form-checkbox"
         />
-        Activo
+
       </label>
 
       {isEditMode && (
