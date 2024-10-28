@@ -66,7 +66,7 @@ const ClientePage = ({ clienteId = null }) => {
   };
 
   return (
-    <div>
+    <div className='client-form-div-general'>
       <HeaderIcons 
         title={clienteId ? 'Editar Cliente' : 'Crear Cliente'}
         onAddClick={handleAddClick}

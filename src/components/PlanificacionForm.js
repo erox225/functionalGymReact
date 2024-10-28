@@ -92,19 +92,6 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
       </label>
 
       <label className="planificacion-form-label">
-        Día de Ejecución:
-        <input
-          type="date"
-          name="diaEjecucion"
-          value={formData.diaEjecucion || ''}
-          onChange={handleInputChange}
-          required={!isClaseRecurrente}
-          disabled={isClasePuntual}
-          className="planificacion-form-input"
-        />
-      </label>
-
-      <label className="planificacion-form-label">
         Hora de Inicio:
         <input
           type="time"
@@ -117,24 +104,41 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
       </label>
 
       {/* Checkboxes de selección de clase */}
-      <label className="planificacion-form-label">
+      <label className="planificacion-form-label-inline">
+      <span className="planificacion-form-label-inline-span">¿Es una clase puntual?</span>
         <input
           type="checkbox"
           checked={isClasePuntual}
           onChange={handleClasePuntualChange}
           className="planificacion-form-checkbox"
         />
-        ¿Es una clase puntual?
+        
       </label>
 
-      <label className="planificacion-form-label">
+      {/* Solo mostrar Día de Ejecución si isClasePuntual está activado */}
+      {isClasePuntual && (
+        <label className="planificacion-form-label">
+          Día de Ejecución:
+          <input
+            type="date"
+            name="diaEjecucion"
+            value={formData.diaEjecucion || ''}
+            onChange={handleInputChange}
+            required
+            className="planificacion-form-input"
+          />
+        </label>
+      )}
+
+      <label className="planificacion-form-label-inline">
+      <span className='planificacion-form-label-inline-span'>¿Esta clase se repetirá todas las semanas por un largo periodo?</span>
         <input
           type="checkbox"
           checked={isClaseRecurrente}
           onChange={handleClaseRecurrenteChange}
           className="planificacion-form-checkbox"
         />
-        ¿Esta clase se repetirá todas las semanas por un largo periodo?
+        
       </label>
 
       {isClaseRecurrente && (
