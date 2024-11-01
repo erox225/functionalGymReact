@@ -60,9 +60,9 @@ const ClasePage = ({ claseId = null }) => {
       };
 
   return (
-    <div>
+    <div className='client-form-div-general'> 
      <HeaderIcons 
-        title={claseId ? 'Editar Clase' : 'Crear Clase'}
+        title={'Clases'}
         onAddClick={handleAddClick}
       />
       <ClaseForm
@@ -70,6 +70,7 @@ const ClasePage = ({ claseId = null }) => {
         setFormData={setFormData}
         onSubmit={handleSubmit}
         isEditMode={!!claseId}
+        title={claseId ? 'Editar Clase' : 'Crear Clase'}
       />
     </div>
   );

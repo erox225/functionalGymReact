@@ -1,120 +1,142 @@
-  /* Contenedor principal del formulario */
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre el icono y el texto */
+}
+
+/* Ajustes para inputs y selects en Safari/iOS */
+.persona-form-input,
+.persona-form-select {
+  color: black; /* Asegura color negro */
+  -webkit-text-fill-color: black; /* Safari iOS */
+}
+
+/* Estilos generales de los campos */
+.persona-form-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100vw; /* Ajuste para pantallas pequeñas */
+  box-sizing: border-box;
+  overflow-x: hidden; /* Evitar scroll horizontal */
+}
+
+.persona-form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.persona-form-input,
+.persona-form-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Ajuste para evitar zoom en iPhone */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+button {
+  font-size: 16px; /* Tamaño de fuente para evitar zoom en iOS */
+}
+
+/* Botón de envío */
+.persona-form-button {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#6200ea67 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #FCFCFD;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  font-size: 1em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  border: 2px solid #6200ea86;
+  background-color: #6200ea88;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.persona-form-button:hover {
+  background-color: #6200eac9;
+  color: #FCFCFD;
+}
+
+/* Adaptación para dispositivos móviles */
+@media (max-width: 768px) {
   .persona-form-container {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100vw; /* Ajuste para pantallas pequeñas */
-    box-sizing: border-box;
+      padding: 15px;
+      box-shadow: none;
   }
 
-  /* Etiquetas */
-  .persona-form-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-  }
-
-  /* Campos de entrada de texto */
-  .persona-form-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-  }
-
-  /* Selector de suscripción */
-  .persona-form-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: #fff;
-    box-sizing: border-box;
-  }
-
-  /* Ajuste para evitar zoom en iPhone */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="date"],
-  select,
-  button {
-    font-size: 16px; /* Tamaño de fuente para evitar zoom en iOS */
-  }
-
-  /* Botón de envío */
   .persona-form-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #6200ea;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+      font-size: 0.9rem;
+      padding: 10px;
   }
 
-  .persona-form-button:hover {
-    background-color: #4b00b5;
+  .persona-form-label {
+      font-size: 0.9rem;
   }
 
-  /* Adaptación para dispositivos móviles */
-  @media (max-width: 768px) {
-    .persona-form-container {
-        padding: 15px;
-        box-shadow: none;
-    }
+  .persona-form-input,
+  .persona-form-select {
+      font-size: 0.9rem;
+      padding: 8px;
+  }
+}
 
-    .persona-form-button {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-
-    .persona-form-label {
-        font-size: 0.9rem;
-    }
-
-    .persona-form-input,
-    .persona-form-select {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
+/* Ajustes específicos para pantallas pequeñas como iPhone */
+@media screen and (max-width: 480px) {
+  .persona-form-container {
+      padding: 15px;
   }
 
-  /* Ajustes específicos para pantallas pequeñas como iPhone */
-  @media screen and (max-width: 480px) {
-    .persona-form-container {
-        padding: 15px;
-    }
-
-    .persona-form-label {
-        font-size: 0.85rem;
-    }
-
-    .persona-form-input,
-    .persona-form-select {
-        font-size: 0.85rem;
-        padding: 8px;
-    }
-
-    .persona-form-button {
-        font-size: 0.95rem;
-        padding: 10px;
-    }
+  .persona-form-label {
+      font-size: 0.85rem;
   }
 
-  .client-form-div-general {
-    padding-bottom: 80px; /* Ajusta el espacio inferior para evitar el footer */
+  .persona-form-input,
+  .persona-form-select {
+      font-size: 0.85rem;
+      padding: 8px;
   }
-  
+
+  .persona-form-button {
+      font-size: 0.95rem;
+      padding: 10px;
+  }
+}
+
+.client-form-div-general {
+  padding-bottom: 80px; /* Ajusta el espacio inferior para evitar el footer */
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}

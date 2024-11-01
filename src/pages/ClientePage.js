@@ -68,7 +68,7 @@ const ClientePage = ({ clienteId = null }) => {
   return (
     <div className='client-form-div-general'>
       <HeaderIcons 
-        title={clienteId ? 'Editar Cliente' : 'Crear Cliente'}
+        title={'Clientes'}
         onAddClick={handleAddClick}
       />
       <ClienteForm
@@ -77,6 +77,7 @@ const ClientePage = ({ clienteId = null }) => {
         onSubmit={handleSubmit}
         suscripciones={suscripciones}
         isEditMode={!!clienteId}
+        title={clienteId ? 'Editar Cliente' : 'Crear Cliente'}
       />
     </div>
   );

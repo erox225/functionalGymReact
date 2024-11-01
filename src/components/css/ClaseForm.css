@@ -8,6 +8,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100vw; /* Ajuste para pantallas pequeñas */
   box-sizing: border-box;
+  overflow-x: hidden; /* Evitar scroll horizontal */
 }
 
 /* Etiquetas */
@@ -26,6 +27,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+  color: black; /* Asegura color negro */
+  -webkit-text-fill-color: black; /* Safari */
   box-sizing: border-box;
 }
 
@@ -37,6 +40,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+  color: black; /* Asegura color negro */
+  -webkit-text-fill-color: black; /* Safari */
   resize: vertical;
   box-sizing: border-box;
   min-height: 80px;
@@ -51,6 +56,8 @@
   border-radius: 4px;
   font-size: 1rem;
   background-color: #fff;
+  color: black; /* Asegura color negro */
+  -webkit-text-fill-color: black; /* Safari */
   box-sizing: border-box;
 }
 
@@ -64,27 +71,64 @@ textarea {
   font-size: 16px; /* Tamaño de fuente para evitar zoom en iOS */
 }
 
+/* Ajuste específico para Safari */
+@supports (-webkit-touch-callout: none) {
+  .class-page-form-input,
+  .class-page-form-textarea,
+  .class-page-form-select {
+    font-size: 1rem;
+    color: black !important;
+    -webkit-text-fill-color: black !important;
+  }
+
+  .class-page-form-label-inline span {
+    width: 65%; /* Ajuste específico para Safari */
+  }
+}
+
 /* Checkbox de estado */
 .class-page-form-checkbox {
   margin-right: 8px;
+  accent-color: #6200eac9;
+  transform: scale(1.2); /* Aumenta el tamaño del checkbox */
+  width: 25%;
 }
 
-/* Botón de envío */
+.class-page-form-visibilidad-text{
+  width: 75%;
+}
+
+/* Botón de enviar */
 .class-page-form-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #6200ea;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
   border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #6200ea67 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #FCFCFD;
   cursor: pointer;
-  transition: background-color 0.3s;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s, transform .15s;
+  font-size: 1em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  border: 2px solid #6200ea86;
+  background-color: #6200ea88;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .class-page-form-button:hover {
-  background-color: #4b00b5;
+  background-color: #6200eac9;
+  color: #FCFCFD;
 }
 
 /* Adaptación para dispositivos móviles */
@@ -114,23 +158,23 @@ textarea {
 /* Ajustes específicos para pantallas pequeñas como iPhone */
 @media screen and (max-width: 480px) {
   .class-page-form-container {
-      padding: 10px;
+    padding: 18px;
   }
 
   .class-page-form-label {
-      font-size: 0.85rem;
+    font-size: 0.85rem;
   }
 
   .class-page-form-input,
   .class-page-form-textarea,
   .class-page-form-select {
-      font-size: 0.85rem;
-      padding: 8px;
+    font-size: 0.85rem;
+    padding: 8px;
   }
 
   .class-page-form-button {
-      font-size: 0.95rem;
-      padding: 10px;
+    font-size: 0.95rem;
+    padding: 10px;
   }
 }
 
@@ -144,8 +188,68 @@ textarea {
   gap: 0.5rem; /* Espacio entre el checkbox y el texto */
 }
 
-/* Checkbox de estado */
-.class-page-form-checkbox {
-  margin: 0;
-  transform: scale(1.2); /* Aumenta el tamaño del checkbox para mejor visibilidad */
+/* Ajuste específico para Safari */
+.class-page-form-label-inline span {
+  width: 65%; /* Ajuste de ancho específico para Safari */
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre el ícono y el texto */
+}
+
+/* Ajustes para inputs y selects en Safari/iOS */
+.class-page-form-input,
+.class-page-form-textarea,
+.class-page-form-select {
+  color: black; /* Asegura color negro */
+  -webkit-text-fill-color: black; /* Safari iOS */
+}
+
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre el ícono y el texto */
+}
+
+/* Ajustes para inputs y selects en Safari/iOS */
+.class-page-form-input,
+.class-page-form-textarea,
+.class-page-form-select,
+.class-page-form-color {
+  color: black; /* Asegura color negro */
+  -webkit-text-fill-color: black; /* Safari iOS */
+}
+
+/* Estilo del input de color */
+.class-page-form-color {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  appearance: none; /* Para asegurar consistencia en todos los navegadores */
+  cursor: pointer;
+}
+
+.class-page-form-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.class-page-form-color::-webkit-color-swatch {
+  border: none;
+}
+
+/* Ajuste para Firefox */
+.class-page-form-color::-moz-color-swatch {
+  border: none;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }

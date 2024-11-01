@@ -66,7 +66,7 @@ const ReservaPage = () => {
   return (
     <div>
      <HeaderIcons 
-        title="Crear Reserva" 
+        title="Reservas" 
         onAddClick={handleAddClick}
       />
       <CrearReservaForm

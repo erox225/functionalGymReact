@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt, faUser, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import './css/CrearReservaForm.css';
 
 const CrearReservaForm = ({
@@ -6,20 +8,17 @@ const CrearReservaForm = ({
   setFormData,
   onSubmit,
   clientes,
-  fetchClasesByDate // Función para obtener clases por fecha
+  fetchClasesByDate, // Función para obtener clases por fecha
 }) => {
   const [filteredClientes, setFilteredClientes] = useState([]);
   const [planificaciones, setPlanificaciones] = useState([]);
-
-  // Establece la fecha actual como valor por defecto en el input de fecha
+  const [errors, setErrors] = useState({});
   const todayDate = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
-    // Llama a la API con la fecha actual para obtener las clases del día
     fetchClases(todayDate);
   }, []);
 
-  // Función para obtener las clases según la fecha seleccionada
   const fetchClases = async (selectedDate) => {
     const clases = await fetchClasesByDate(selectedDate);
     setPlanificaciones(clases);
@@ -27,38 +26,62 @@ const CrearReservaForm = ({
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
 
-    if (name === "clienteId") {
-      const matches = clientes.filter(cliente =>
+    // Filtrar clientes por nombre o ID
+    if (name === 'clienteId') {
+      const matches = clientes.filter((cliente) =>
         `${cliente.id} - ${cliente.nombre}`.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredClientes(matches);
     }
 
-    // Llama a la API cuando se cambia la fecha
-    if (name === "fechaClase") {
+    // Cargar clases según la fecha seleccionada
+    if (name === 'fechaClase') {
       fetchClases(value);
     }
   };
 
-  // Maneja la selección de un cliente de la lista de sugerencias
   const handleSelectCliente = (cliente) => {
     setFormData((prevData) => ({
       ...prevData,
-      clienteId: `${cliente.id} - ${cliente.nombre}`, // Guarda ID y nombre del cliente
+      clienteId: `${cliente.id} - ${cliente.nombre}`,
     }));
     setFilteredClientes([]);
   };
 
+  const validateForm = () => {
+    let formErrors = {};
+
+    if (!formData.fechaClase) formErrors.fechaClase = 'La fecha de clase es obligatoria';
+    if (!formData.planificacionId) formErrors.planificacionId = 'La planificación es obligatoria';
+    if (!formData.clienteId) formErrors.clienteId = 'El cliente es obligatorio';
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      onSubmit(e);
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit} className="class-crear-reserva-form-container">
+    <form onSubmit={handleSubmit} className="class-crear-reserva-form-container">
+      <h4 className="planificacion-form-sub-title">Crear reserva</h4>
+
       {/* Selección de fecha de clase */}
       <label className="class-crear-reserva-form-label">
-        Escoga fecha de clase:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faCalendarAlt} />
+          Escoga fecha de clase:
+        </span>
         <input
           type="date"
           name="fechaClase"
@@ -67,11 +90,15 @@ const CrearReservaForm = ({
           required
           className="class-crear-reserva-form-input"
         />
+        {errors.fechaClase && <p className="error-text">{errors.fechaClase}</p>}
       </label>
 
       {/* Selección de planificación */}
       <label className="class-crear-reserva-form-label">
-        Planificación:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faClipboardList} />
+          Planificación:
+        </span>
         <select
           name="planificacionId"
           value={formData.planificacionId || ''}
@@ -86,11 +113,15 @@ const CrearReservaForm = ({
             </option>
           ))}
         </select>
+        {errors.planificacionId && <p className="error-text">{errors.planificacionId}</p>}
       </label>
 
       {/* Input de cliente con sugerencias */}
       <label className="class-crear-reserva-form-label">
-        Cliente:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faUser} />
+          Cliente:
+        </span>
         <input
           type="text"
           name="clienteId"
@@ -100,7 +131,7 @@ const CrearReservaForm = ({
           required
           className="class-crear-reserva-form-input"
         />
-        {/* Lista de sugerencias de clientes */}
+        {errors.clienteId && <p className="error-text">{errors.clienteId}</p>}
         {filteredClientes.length > 0 && (
           <ul className="class-crear-reserva-form-suggestions">
             {filteredClientes.map((cliente) => (

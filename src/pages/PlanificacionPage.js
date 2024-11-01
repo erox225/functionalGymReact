@@ -94,10 +94,10 @@ const PlanificacionPage = ({ planificacionId = null }) => {
   };
 
   return (
-    <div>
+    <div className='client-form-div-general'>
       {/* Usamos el componente HeaderIcons y le pasamos los props */}
       <HeaderIcons 
-        title={planificacionId ? 'Editar Planificación' : 'Crear Planificación'} 
+        title={'Calendario'} 
         onAddClick={handleAddClick}
       />
       <PlanificacionForm
@@ -109,6 +109,7 @@ const PlanificacionPage = ({ planificacionId = null }) => {
         estancias={estancias}
         entrenadores={entrenadores} // Pasar entrenadores como prop
         isEditMode={!!planificacionId}
+        title={planificacionId ? 'Editar Planificación' : 'Crear Planificación'}
       />
     </div>
   );

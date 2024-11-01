@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt, faChalkboardTeacher, faBuilding, faClock, faSyncAlt, faCalendarCheck, faUser } from '@fortawesome/free-solid-svg-icons';
 import './css/PlanificacionForm.css';
 
-const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendarios, estancias, entrenadores, isEditMode }) => {
-  const [isClasePuntual, setIsClasePuntual] = useState(false);
+const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendarios, estancias, entrenadores, isEditMode, title }) => {
+  const [isClasePuntual, setIsClasePuntual] = useState(true); // Por defecto, "Es una clase puntual" está seleccionado
   const [isClaseRecurrente, setIsClaseRecurrente] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const todayDate = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+  const threeWeeksFromNow = new Date();
+  threeWeeksFromNow.setDate(threeWeeksFromNow.getDate() + 21);
+  const minHastaFecha = threeWeeksFromNow.toISOString().split('T')[0];
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -32,19 +40,55 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
     }));
   };
 
+  const validateForm = () => {
+    const formErrors = {};
+
+    // Validación de campos obligatorios
+    if (!formData.claseId) formErrors.claseId = 'La clase es obligatoria';
+    if (!formData.calendarioId) formErrors.calendarioId = 'El calendario es obligatorio';
+    if (!formData.entrenadorId) formErrors.entrenadorId = 'El entrenador es obligatorio';
+    if (!formData.estanciaId) formErrors.estanciaId = 'La estancia es obligatoria';
+    if (!formData.horaInicio) formErrors.horaInicio = 'La hora de inicio es obligatoria';
+
+    // Validación de checkbox: al menos uno debe estar seleccionado
+    if (!isClasePuntual && !isClaseRecurrente) {
+      formErrors.checkboxes = 'Debe seleccionar "Clase puntual" o "Clase recurrente"';
+    }
+
+    // Validación para "Día de Ejecución" si es una clase puntual
+    if (isClasePuntual && formData.diaEjecucion) {
+      if (formData.diaEjecucion < todayDate) {
+        formErrors.diaEjecucion = 'La fecha de ejecución debe ser igual o posterior a la fecha actual';
+      }
+    }
+
+    // Validación para "Hasta Fecha" si es una clase recurrente
+    if (isClaseRecurrente && formData.hastaFecha) {
+      if (formData.hastaFecha < minHastaFecha) {
+        formErrors.hastaFecha = 'La fecha de fin debe ser al menos 3 semanas después de la fecha actual';
+      }
+    }
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isClasePuntual && !isClaseRecurrente) {
-      alert('Debes seleccionar "Clase puntual" o "Clase recurrente"');
-      return;
+    if (validateForm()) {
+      onSubmit(e);
     }
-    onSubmit(e);
   };
 
   return (
     <form onSubmit={handleSubmit} className="planificacion-form-container">
+      <h4 className="planificacion-form-sub-title">{title}</h4>
+
       <label className="planificacion-form-label">
-        Clase:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faChalkboardTeacher} />
+          Clase:
+        </span>
         <select name="claseId" value={formData.claseId || ''} onChange={handleInputChange} required className="planificacion-form-select">
           <option value="">Selecciona una clase</option>
           {clases.map((clase) => (
@@ -53,10 +97,14 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
             </option>
           ))}
         </select>
+        {errors.claseId && <p className="error-text">{errors.claseId}</p>}
       </label>
 
       <label className="planificacion-form-label">
-        Calendario:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faCalendarCheck} />
+          Calendario:
+        </span>
         <select name="calendarioId" value={formData.calendarioId || ''} onChange={handleInputChange} required className="planificacion-form-select">
           <option value="">Selecciona un calendario</option>
           {calendarios.map((calendario) => (
@@ -65,10 +113,14 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
             </option>
           ))}
         </select>
+        {errors.calendarioId && <p className="error-text">{errors.calendarioId}</p>}
       </label>
 
       <label className="planificacion-form-label">
-        Entrenador:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faUser} />
+          Entrenador:
+        </span>
         <select name="entrenadorId" value={formData.entrenadorId || ''} onChange={handleInputChange} required className="planificacion-form-select">
           <option value="">Selecciona un entrenador</option>
           {entrenadores.map((entrenador) => (
@@ -77,10 +129,14 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
             </option>
           ))}
         </select>
+        {errors.entrenadorId && <p className="error-text">{errors.entrenadorId}</p>}
       </label>
 
       <label className="planificacion-form-label">
-        Estancia:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faBuilding} />
+          Estancia:
+        </span>
         <select name="estanciaId" value={formData.estanciaId || ''} onChange={handleInputChange} required className="planificacion-form-select">
           <option value="">Selecciona una estancia</option>
           {estancias.map((estancia) => (
@@ -89,10 +145,14 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
             </option>
           ))}
         </select>
+        {errors.estanciaId && <p className="error-text">{errors.estanciaId}</p>}
       </label>
 
       <label className="planificacion-form-label">
-        Hora de Inicio:
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faClock} />
+          Hora de Inicio:
+        </span>
         <input
           type="time"
           name="horaInicio"
@@ -101,21 +161,24 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
           required
           className="planificacion-form-input"
         />
+        {errors.horaInicio && <p className="error-text">{errors.horaInicio}</p>}
       </label>
 
-      {/* Checkboxes de selección de clase */}
+      {/* Clase puntual checkbox */}
       <label className="planificacion-form-label-inline">
-      <span className="planificacion-form-label-inline-span">¿Es una clase puntual?</span>
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faCalendarAlt} />
+          ¿Es una clase puntual?
+        </span>
         <input
           type="checkbox"
           checked={isClasePuntual}
           onChange={handleClasePuntualChange}
           className="planificacion-form-checkbox"
         />
-        
+        {errors.checkboxes && <p className="error-text">{errors.checkboxes}</p>}
       </label>
 
-      {/* Solo mostrar Día de Ejecución si isClasePuntual está activado */}
       {isClasePuntual && (
         <label className="planificacion-form-label">
           Día de Ejecución:
@@ -125,20 +188,26 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
             value={formData.diaEjecucion || ''}
             onChange={handleInputChange}
             required
+            min={todayDate}
             className="planificacion-form-input"
           />
+          {errors.diaEjecucion && <p className="error-text">{errors.diaEjecucion}</p>}
         </label>
       )}
 
+      {/* Clase recurrente checkbox */}
       <label className="planificacion-form-label-inline">
-      <span className='planificacion-form-label-inline-span'>¿Esta clase se repetirá todas las semanas por un largo periodo?</span>
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faSyncAlt} />
+          ¿Esta clase se repetirá todas las semanas por un largo periodo?
+        </span>
         <input
           type="checkbox"
           checked={isClaseRecurrente}
           onChange={handleClaseRecurrenteChange}
           className="planificacion-form-checkbox"
         />
-        
+        {errors.checkboxes && <p className="error-text">{errors.checkboxes}</p>}
       </label>
 
       {isClaseRecurrente && (
@@ -164,11 +233,11 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
               name="hastaFecha"
               value={formData.hastaFecha || ''}
               onChange={handleInputChange}
-              min={formData.diaEjecucion}
-              max="2027-12-31"
+              min={minHastaFecha}
               required
               className="planificacion-form-input"
             />
+            {errors.hastaFecha && <p className="error-text">{errors.hastaFecha}</p>}
           </label>
         </>
       )}
