@@ -51,7 +51,7 @@ const ClassModal = ({ classInfo, onClose }) => {
 
         {/* Mostrar el botón de reservar si estamos en /dashboard */}
         {location.pathname === '/dashboard' && (
-          <button className="modal-reservar-button">
+          <button className="modal-reservar-button-2">
             Reservar
             <FontAwesomeIcon icon={faClipboardList} 
             className='modal-reservar-boton-icon'

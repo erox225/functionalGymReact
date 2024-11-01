@@ -69,7 +69,7 @@
   }
   
   .tipo-mente {
-    background: linear-gradient(135deg, #243b55 0%, #243b55 50%, #70e1f5 100%);
+    background: linear-gradient(135deg, #378ff2 0%, #2d66a6 50%, #70e1f5 100%);
     border:none;
   }
   
@@ -135,29 +135,54 @@
   color: rgb(255, 149, 0);
 }
 
-.modal-reservar-button {
-  background-color: #0c54b9;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-radius: 5px;
+.modal-reservar-button-2 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#6200ea67 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #FCFCFD;
   cursor: pointer;
-  font-size: .8rem;
-  width: 48%;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 1em;
   margin-bottom: 10px;
-  border: 1.4px solid wheat;
+  text-transform: uppercase;
+  border: 2px solid #6200ea86;
+  background-color: #f6bb1a;
   font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 50%;
+  max-width: 170px;
+  color: purple;
+  font-size: .9em;
+  letter-spacing: .5px;
 }
 
-.modal-reservar-button:hover {
-  background-color: #063a7a;
+.modal-reservar-button-2:hover {
+  background-color: #9d18c5d9;
+  color: #FCFCFD;
 }
 
 .modal-reservar-boton-icon{
   margin-left: 10px;
   font-size: 1.5em;
+  font-size: 1em;
+    margin-bottom: 2px;
 }

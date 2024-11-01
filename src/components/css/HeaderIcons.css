@@ -34,7 +34,12 @@
     display: flex;
     flex-direction: column;
     border-radius: 0px;
+    text-align: center;
+    width: 100%;
+  }
 
+  .header-icon-add-icon {
+    color: yellowgreen;
   }
   
   .header-icon-back {

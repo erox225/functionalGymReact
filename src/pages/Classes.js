@@ -8,13 +8,13 @@ import './css/Clases.css';
 const Classes = () => {
   const navigate = useNavigate();
 
-  // Simulación de clases (puedes conectar estos datos con una API real)
   const classes = [
     { 
       id: 1, 
       name: 'Gimnasio', 
       aforoMax: 30, 
-      estado: 'Disponible', 
+      estado: true,  // true significa "Disponible"
+      color: 'blue',  // Nuevo parámetro color
       ultimaModificacion: '2024-09-18',
       duracion: "60'",
       intensidad: 'Alta',
@@ -24,7 +24,8 @@ const Classes = () => {
       id: 2, 
       name: 'Yoga', 
       aforoMax: 20, 
-      estado: 'Completa', 
+      estado: false,  // false significa "En borrador"
+      color: 'purple',  // Nuevo parámetro color
       ultimaModificacion: '2024-09-17',
       duracion: "45'",
       intensidad: 'Baja',
@@ -34,13 +35,15 @@ const Classes = () => {
       id: 3, 
       name: 'Pilates', 
       aforoMax: 15, 
-      estado: 'Disponible', 
+      estado: true,  // true significa "Disponible"
+      color: 'green',  // Nuevo parámetro color
       ultimaModificacion: '2024-09-16',
       duracion: "50'",
       intensidad: 'Media',
       descripcion: 'Clase de Pilates para mejorar la flexibilidad y fortalecer el core.'
     },
   ];
+  
 
   const handleAddClick = () => {
     console.log('Agregar nueva clase');

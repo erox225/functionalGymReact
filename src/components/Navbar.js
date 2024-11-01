@@ -94,7 +94,9 @@ const Navbar = () => {
 {allowedPaths.includes(location.pathname) ? (
   <Link to="/login" className="nav-link" style={{ marginLeft: '16px' }}>
   <FontAwesomeIcon icon={faDoorOpen} className="nav-icon" />
-  <span style={{ marginTop: '3px' }}>
+  <span style={{ marginTop: '3px' }}
+  className="nav-salir"
+  >
     Salir
   </span>
 </Link>

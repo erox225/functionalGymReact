@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ClaseForm from '../components/ClaseForm';
-import HeaderIcons from '../components/HeaderIcons'; // Importamos el componente HeaderIcons
+import HeaderIcons from '../components/HeaderIcons';
 
-const ClasePage = ({ claseId = null }) => {
+const ClasePage = () => {
+  const { claseId } = useParams(); // Obtén claseId de la URL
   const [formData, setFormData] = useState({
     nombre: '',
     descripcion: '',
     aforoMax: '',
     duracion: '',
+    intensidad: '',
+    colorClase: '#000000',
     estado: true,
     fechaCreacion: '',
     fechaModificacion: '',
@@ -16,17 +20,11 @@ const ClasePage = ({ claseId = null }) => {
   useEffect(() => {
     if (claseId) {
       const fetchData = async () => {
-        const response = await fetch(`https://api.example.com/clase/${claseId}`);
-        const data = await response.json();
-        setFormData({
-          nombre: data.nombre,
-          descripcion: data.descripcion,
-          aforoMax: data.aforoMax,
-          duracion: data.duracion,
-          estado: data.estado,
-          fechaCreacion: data.fechaCreacion,
-          fechaModificacion: data.fechaModificacion,
-        });
+        // Simulación de llamada a la API para obtener datos de la clase
+        const data = await fetchClaseById(claseId); // Llama a tu función o API real aquí
+        if (data) {
+          setFormData(data); // Rellena formData con los datos obtenidos
+        }
       };
       fetchData();
     }
@@ -53,18 +51,13 @@ const ClasePage = ({ claseId = null }) => {
     }
   };
 
-    // Definir handleAddClick para el botón de agregar
-    const handleAddClick = () => {
-        // Aquí puedes agregar la acción que deseas realizar al hacer clic en "Agregar".
-        alert("Funcionalidad de agregar clickeada");
-      };
+  const handleAddClick = () => {
+    alert("Funcionalidad de agregar clickeada");
+  };
 
   return (
-    <div className='client-form-div-general'> 
-     <HeaderIcons 
-        title={'Clases'}
-        onAddClick={handleAddClick}
-      />
+    <div className="client-form-div-general">
+      <HeaderIcons title="Clases" onAddClick={handleAddClick} />
       <ClaseForm
         formData={formData}
         setFormData={setFormData}
@@ -74,6 +67,37 @@ const ClasePage = ({ claseId = null }) => {
       />
     </div>
   );
+};
+
+// Función simulada para obtener la clase por ID
+const fetchClaseById = async (id) => {
+  const simulatedData = [
+    {
+      id: '1',
+      nombre: 'Gimnasio',
+      descripcion: 'Entrenamiento de fuerza y cardio',
+      aforoMax: 30,
+      duracion: "60",
+      intensidad: 'Alta',
+      colorClase: '#ff0000',
+      estado: true,
+      fechaCreacion: '2024-09-01',
+      fechaModificacion: '2024-09-18'
+    },
+    {
+      id: '2',
+      nombre: 'Yoga',
+      descripcion: 'Clase de Yoga para relajación',
+      aforoMax: 20,
+      duracion: "45",
+      intensidad: 'Baja',
+      colorClase: '#00ff00',
+      estado: false,
+      fechaCreacion: '2024-08-01',
+      fechaModificacion: '2024-09-17'
+    }
+  ];
+  return simulatedData.find((clase) => clase.id === id);
 };
 
 export default ClasePage;

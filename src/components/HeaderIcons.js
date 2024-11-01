@@ -62,7 +62,7 @@ const HeaderIcons = ({ icon, title, onAddClick }) => {
           pointerEvents: isAddButtonVisible ? 'auto' : 'none'
         }}
       >
-        <FontAwesomeIcon icon={faCirclePlus} />
+        <FontAwesomeIcon icon={faCirclePlus} className="header-icon-add-icon"/>
         <span className="header-agregar">Agregar</span>
       </button>
     </div>

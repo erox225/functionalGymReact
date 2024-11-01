@@ -1,14 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChalkboard, faAlignLeft, faUsers, faClock, faEye, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { faChalkboard, faAlignLeft, faUsers, faClock, faEye, faPalette, faBolt } from '@fortawesome/free-solid-svg-icons';
 import './css/ClaseForm.css';
 
+// Función simulada para obtener la clase por ID
+const fetchClaseById = async (id) => {
+  const simulatedData = [
+    {
+      id: '1',
+      nombre: 'Gimnasio',
+      descripcion: 'Entrenamiento de fuerza y cardio',
+      aforoMax: 30,
+      duracion: '60',
+      intensidad: 'Alta',
+      colorClase: '#ff0000',
+      estado: true,
+      fechaCreacion: '2024-09-01',
+      fechaModificacion: '2024-09-18'
+    },
+    {
+      id: '2',
+      nombre: 'Yoga',
+      descripcion: 'Clase de Yoga para relajación',
+      aforoMax: 20,
+      duracion: '45',
+      intensidad: 'Baja',
+      colorClase: '#00ff00',
+      estado: false,
+      fechaCreacion: '2024-08-01',
+      fechaModificacion: '2024-09-17'
+    }
+  ];
+  return simulatedData.find((clase) => clase.id === id);
+};
+
 const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
+  const { claseId } = useParams();
   const [errors, setErrors] = useState({});
+
+
+  useEffect(() => {
+    if (isEditMode && claseId) {
+      fetchClaseById(claseId).then((data) => {
+        if (data) {
+          setFormData(data);
+        }
+      });
+    }
+  }, [claseId, isEditMode, setFormData]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value,
@@ -23,6 +66,7 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
     if (!formData.aforoMax || formData.aforoMax <= 0) formErrors.aforoMax = 'El aforo máximo debe ser un número mayor que 0';
     if (!formData.duracion) formErrors.duracion = 'La duración es obligatoria';
     if (!formData.colorClase) formErrors.colorClase = 'El color de la clase es obligatorio';
+    if (!formData.intensidad) formErrors.intensidad = 'La intensidad es obligatoria';
 
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
@@ -39,7 +83,6 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
     <form onSubmit={handleSubmit} className="class-page-form-container">
       <h4 className="planificacion-form-sub-title">{title}</h4>
 
-      {/* Nombre */}
       <label className="class-page-form-label">
         <span className="icon-text">
           <FontAwesomeIcon icon={faChalkboard} />
@@ -56,7 +99,6 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
         {errors.nombre && <p className="error-text">{errors.nombre}</p>}
       </label>
 
-      {/* Descripción */}
       <label className="class-page-form-label">
         <span className="icon-text">
           <FontAwesomeIcon icon={faAlignLeft} />
@@ -72,7 +114,6 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
         {errors.descripcion && <p className="error-text">{errors.descripcion}</p>}
       </label>
 
-      {/* Aforo Máximo */}
       <label className="class-page-form-label">
         <span className="icon-text">
           <FontAwesomeIcon icon={faUsers} />
@@ -90,7 +131,6 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
         {errors.aforoMax && <p className="error-text">{errors.aforoMax}</p>}
       </label>
 
-      {/* Duración */}
       <label className="class-page-form-label">
         <span className="icon-text">
           <FontAwesomeIcon icon={faClock} />
@@ -115,7 +155,26 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
         {errors.duracion && <p className="error-text">{errors.duracion}</p>}
       </label>
 
-      {/* Color de la clase */}
+      <label className="class-page-form-label">
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faBolt} />
+          Intensidad:
+        </span>
+        <select
+          name="intensidad"
+          value={formData.intensidad || ''}
+          onChange={handleInputChange}
+          required
+          className="class-page-form-select"
+        >
+          <option value="">Selecciona intensidad</option>
+          <option value="Baja">Baja</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+        </select>
+        {errors.intensidad && <p className="error-text">{errors.intensidad}</p>}
+      </label>
+
       <label className="class-page-form-label">
         <span className="icon-text">
           <FontAwesomeIcon icon={faPalette} />
@@ -132,7 +191,6 @@ const ClaseForm = ({ formData, setFormData, onSubmit, isEditMode, title }) => {
         {errors.colorClase && <p className="error-text">{errors.colorClase}</p>}
       </label>
 
-      {/* Visibilidad */}
       <label className="class-page-form-label-inline">
         <span className="icon-text">
           <FontAwesomeIcon icon={faEye} />

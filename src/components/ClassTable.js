@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
-import './css/ClassTable.css'; // Importa el archivo CSS
+import React, { useState, useEffect } from 'react';
+import './css/ClassTable.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faSearch, faClock, faBolt, faUsers, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye, faSearch, faClock, faBolt, faUsers, faCheckCircle, faTimesCircle, faPalette } from '@fortawesome/free-solid-svg-icons';
+
+// Función simulada para obtener los estados de las clases
+const fetchEstadosClases = async () => {
+  return [
+    { id: true, nombre: 'Disponible', color: 'green' },
+    { id: false, nombre: 'En borrador', color: 'gray' }
+  ];
+};
 
 const ClassTable = ({ classes }) => {
-  // Estado para almacenar el término de búsqueda
   const [searchTerm, setSearchTerm] = useState('');
+  const [estados, setEstados] = useState([]);
 
   // Función para manejar cambios en el input de búsqueda
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
+  };
+
+  // Cargar los estados de clases al montar el componente
+  useEffect(() => {
+    fetchEstadosClases().then((data) => setEstados(data));
+  }, []);
+
+  // Obtener color del estado
+  const getEstadoColor = (estado) => {
+    const estadoObj = estados.find((e) => e.id === estado);
+    return estadoObj ? estadoObj.color : '#000';
   };
 
   // Filtrar las clases basándose en el nombre y el término de búsqueda
@@ -42,6 +61,7 @@ const ClassTable = ({ classes }) => {
             <th>Nombre</th>
             <th>Aforo Máximo</th>
             <th>Estado</th>
+            <th>Color</th>
             <th>Última Modificación</th>
             <th>Acciones</th>
           </tr>
@@ -51,7 +71,15 @@ const ClassTable = ({ classes }) => {
             <tr key={index}>
               <td>{clase.name}</td>
               <td>{clase.aforoMax}</td>
-              <td>{clase.estado}</td>
+              <td style={{ color: getEstadoColor(clase.estado) }}>
+                {clase.estado ? "Disponible" : "En borrador"}
+              </td>
+              <td>
+                <span style={{ color: clase.color }}>
+                  <FontAwesomeIcon icon={faPalette} style={{ marginRight: '0.3em' }} />
+                  {clase.color}
+                </span>
+              </td>
               <td>{clase.ultimaModificacion}</td>
               <td>
                 <div className="action-buttons">
@@ -88,17 +116,17 @@ const ClassTable = ({ classes }) => {
               <strong>Aforo Máximo:</strong> {clase.aforoMax}
             </span>
             <span>
-              <FontAwesomeIcon icon={clase.estado === 'Disponible' ? faCheckCircle : faTimesCircle} style={{ marginRight: '0.5em' }} />
-              <strong>Estado:</strong> {clase.estado}
+              <FontAwesomeIcon icon={clase.estado ? faCheckCircle : faTimesCircle} style={{ marginRight: '0.5em', color: getEstadoColor(clase.estado) }} />
+              <strong>Estado:</strong> {clase.estado ? "Disponible" : "En borrador"}
+            </span>
+            <span>
+              <FontAwesomeIcon icon={faPalette} style={{ marginRight: '0.5em', color: clase.color }} />
+              <strong>Color:</strong> {clase.color}
             </span>
             <span><strong>Descripción:</strong> {clase.descripcion}</span>
           </div>
           <div className="action-buttons">
-            <Link to={`/view/${clase.id}`} className="view-button">
-              <FontAwesomeIcon icon={faEye} /> 
-              <span className="view-button-text"> Ver </span> 
-            </Link>
-            <Link to={`/edit/${clase.id}`} className="edit-button">
+            <Link to={`/clase/${clase.id}`} className="edit-button">
               <FontAwesomeIcon icon={faEdit} />
               <span className="edit-button-text"> Editar </span> 
             </Link>
