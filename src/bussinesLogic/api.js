@@ -45,8 +45,23 @@ const requestData = async (url, method, body = null) => {
 
 // Función simulada para manejar respuestas mock
 const mockResponse = (formData) => {
-  console.log('Mock response:', formData);
-  return { success: true };
+  const { username, password } = formData;
+
+  // Generación de un token JWT simulado
+  const generateMockToken = () => {
+    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." + 
+           "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ." +
+           "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+  };
+
+  // Comprobación básica de usuario y contraseña
+  if (username === 'trainer' && password === '123') {
+    return { success: true, role: 1, tokenJWT: generateMockToken() }; // 1 = Entrenador
+  } else if (username === 'client' && password === '123') {
+    return { success: true, role: 2, tokenJWT: generateMockToken() }; // 2 = Cliente
+  } else {
+    return { success: false }; // Credenciales incorrectas
+  }
 };
 
 // Funciones específicas de la API

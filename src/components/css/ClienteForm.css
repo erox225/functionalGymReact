@@ -140,3 +140,16 @@ button {
   margin-top: -10px;
   margin-bottom: 10px;
 }
+
+.form-login-error {
+  color: #ff4d4f; /* Color rojo para resaltar el error */
+  background-color: #ffe6e6; /* Fondo rosado claro */
+  padding: 10px; /* Espaciado interno */
+  margin-top: 15px; /* Espaciado superior */
+  margin-bottom: 15px; /* Espaciado inferior */
+  border: 1px solid #ff4d4f; /* Borde rojo alrededor */
+  border-radius: 5px; /* Bordes redondeados */
+  font-weight: bold; /* Texto en negrita */
+  text-align: center; /* Centrado */
+  font-size: 0.95rem; /* Tamaño de fuente */
+}

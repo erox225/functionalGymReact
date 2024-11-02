@@ -1,10 +1,10 @@
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard'; 
-import './App.css';
+import Dashboard from './pages/Dashboard';
 import Calendar from './pages/Calendar';
 import Class from './pages/Classes';
 import Clients from './pages/Clients';
@@ -18,49 +18,56 @@ import Settings from './pages/Settings';
 import PlanificacionPage from './pages/PlanificacionPage';
 import ClasePage from './pages/ClasePage';
 import ClientePage from './pages/ClientePage';
-import ReservaPage from './pages/ReservaPage'; // Importar la página de creación de reserva
+import ReservaPage from './pages/ReservaPage';
+import { AuthProvider } from './authContext/AuthContext';
+import PrivateRoute from './authContext/PrivateRoute';
+import './App.css';
 
 function App() {
   return (
     <Router basename="/functionalGymReact">
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+      <AuthProvider>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
 
-          {/* Rutas para ver AppWeb */}
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/accessControl" element={<ClientAccessPage />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/class" element={<Class />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/reservations" element={<Reservations />} />
-          <Route path="/suscriptions" element={<Suscriptions />} />
-          <Route path="/planingList" element={<PlaningList />} />
-          <Route path="/configurations" element={<Settings />} />
+            {/* Hacer que el Dashboard sea una ruta protegida */}
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
 
-          {/* Ruta de planificación para creación y edición */}
-          <Route path="/planificacion" element={<PlanificacionPage />} />
-          <Route path="/planificacion/:planificacionId" element={<PlanificacionPage />} />
+            {/* Rutas protegidas */}
+            <Route path="/accessControl" element={<PrivateRoute><ClientAccessPage /></PrivateRoute>} />
+            <Route path="/calendar" element={<PrivateRoute><Calendar /></PrivateRoute>} />
+            <Route path="/class" element={<PrivateRoute><Class /></PrivateRoute>} />
+            <Route path="/clients" element={<PrivateRoute><Clients /></PrivateRoute>} />
+            <Route path="/reservations" element={<PrivateRoute><Reservations /></PrivateRoute>} />
+            <Route path="/suscriptions" element={<PrivateRoute><Suscriptions /></PrivateRoute>} />
+            <Route path="/planingList" element={<PrivateRoute><PlaningList /></PrivateRoute>} />
+            <Route path="/configurations" element={<PrivateRoute><Settings /></PrivateRoute>} />
 
-          {/* Ruta de clase para creación y edición */}
-          <Route path="/clase" element={<ClasePage />} /> {/* Creación de clase */}
-          <Route path="/clase/:claseId" element={<ClasePage />} /> {/* Edición de clase */}
+            {/* Ruta de planificación para creación y edición */}
+            <Route path="/planificacion" element={<PrivateRoute><PlanificacionPage /></PrivateRoute>} />
+            <Route path="/planificacion/:planificacionId" element={<PrivateRoute><PlanificacionPage /></PrivateRoute>} />
 
-          {/* Ruta de cliente para creación y edición */}
-          <Route path="/cliente" element={<ClientePage />} /> {/* Creación de cliente */}
-          <Route path="/cliente/:clienteId" element={<ClientePage />} /> {/* Edición de cliente */}
+            {/* Ruta de clase para creación y edición */}
+            <Route path="/clase" element={<PrivateRoute><ClasePage /></PrivateRoute>} />
+            <Route path="/clase/:claseId" element={<PrivateRoute><ClasePage /></PrivateRoute>} />
 
-          {/* Ruta de reserva para creación y edición */}
-          <Route path="/reserva" element={<ReservaPage />} /> {/* Creación de reserva */}
-          <Route path="/reserva/:reservaId" element={<ReservaPage />} /> {/* Edición de reserva */}
+            {/* Ruta de cliente para creación y edición */}
+            <Route path="/cliente" element={<PrivateRoute><ClientePage /></PrivateRoute>} />
+            <Route path="/cliente/:clienteId" element={<PrivateRoute><ClientePage /></PrivateRoute>} />
 
-          {/* Rutas para ver detalles */}
-          <Route path="/class/:className" element={<ClassDetail />} /> 
-        </Routes>
-        <FooterButtons />
-      </div>
+            {/* Ruta de reserva para creación y edición */}
+            <Route path="/reserva" element={<PrivateRoute><ReservaPage /></PrivateRoute>} />
+            <Route path="/reserva/:reservaId" element={<PrivateRoute><ReservaPage /></PrivateRoute>} />
+
+            {/* Rutas para ver detalles */}
+            <Route path="/class/:className" element={<PrivateRoute><ClassDetail /></PrivateRoute>} />
+          </Routes>
+          <FooterButtons />
+        </div>
+      </AuthProvider>
     </Router>
   );
 }

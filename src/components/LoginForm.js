@@ -1,27 +1,26 @@
+// src/components/LoginForm.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { login } from '../bussinesLogic/api'; // Importa la función login
-import './css/LoginForm.css'; // Importa el archivo CSS
+import { login as performLogin } from '../bussinesLogic/api';
+import './css/LoginForm.css';
+import { useAuth } from '../authContext/AuthContext';
 
 const LoginForm = () => {
+  const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
 
     try {
-      const response = await login(username, password);
+      const response = await performLogin(username, password);
 
       if (response.success) {
-        console.log('Login exitoso:', response);
-        // Redirige al dashboard después del login
-        navigate('/dashboard');
+        login(response.role, response.tokenJWT);  // Pasa el token al contexto
       } else {
         setErrorMessage('Error de autenticación. Por favor, verifica tu usuario y contraseña.');
       }
@@ -36,7 +35,7 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit} className="form-login-form">
         <h2 className="form-login-title">Iniciar Sesión</h2>
 
-        {errorMessage && <p className="form-login-error">{errorMessage}</p>} {/* Mostrar mensaje de error */}
+        {errorMessage && <p className="form-login-error">{errorMessage}</p>}
 
         <div className="form-login-group">
           <label htmlFor="username" className="form-login-label">Usuario:</label>
