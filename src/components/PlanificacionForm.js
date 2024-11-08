@@ -1,17 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faChalkboardTeacher, faBuilding, faClock, faSyncAlt, faCalendarCheck, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
 import './css/PlanificacionForm.css';
 
+// Función simulada para obtener la planificación por ID
+const fetchPlanificacionById = async (id) => {
+  const simulatedData = [
+    {
+      id: '1',
+      claseId: '1',
+      calendarioId: '2',
+      entrenadorId: '3',
+      estanciaId: '4',
+      horaInicio: '09:00',
+      diaEjecucion: '2024-10-15',
+      diaSemana: 'martes',
+      hastaFecha: '2024-11-15',
+      isClasePuntual: true,
+      isClaseRecurrente: false
+    }
+  ];
+  return simulatedData.find((planificacion) => planificacion.id === id);
+};
+
 const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendarios, estancias, entrenadores, isEditMode, title }) => {
-  const [isClasePuntual, setIsClasePuntual] = useState(true); // Por defecto, "Es una clase puntual" está seleccionado
+  const { id } = useParams(); // Obtén el id desde la URL
+  const [isClasePuntual, setIsClasePuntual] = useState(true); 
   const [isClaseRecurrente, setIsClaseRecurrente] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const todayDate = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+  const todayDate = new Date().toISOString().split('T')[0];
   const threeWeeksFromNow = new Date();
   threeWeeksFromNow.setDate(threeWeeksFromNow.getDate() + 21);
   const minHastaFecha = threeWeeksFromNow.toISOString().split('T')[0];
+
+  // Cargar datos de planificación si el componente está en modo de edición
+  useEffect(() => {
+    if (isEditMode && id) {
+      fetchPlanificacionById(id)
+        .then((data) => {
+          if (data) {
+            setFormData(data);
+            setIsClasePuntual(data.isClasePuntual);
+            setIsClaseRecurrente(data.isClaseRecurrente);
+          }
+        })
+        .catch(error => console.error("Error al cargar la planificación:", error));
+    }
+  }, [isEditMode, id, setFormData]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -42,27 +79,22 @@ const PlanificacionForm = ({ formData, setFormData, onSubmit, clases, calendario
 
   const validateForm = () => {
     const formErrors = {};
-
-    // Validación de campos obligatorios
     if (!formData.claseId) formErrors.claseId = 'La clase es obligatoria';
     if (!formData.calendarioId) formErrors.calendarioId = 'El calendario es obligatorio';
     if (!formData.entrenadorId) formErrors.entrenadorId = 'El entrenador es obligatorio';
     if (!formData.estanciaId) formErrors.estanciaId = 'La estancia es obligatoria';
     if (!formData.horaInicio) formErrors.horaInicio = 'La hora de inicio es obligatoria';
 
-    // Validación de checkbox: al menos uno debe estar seleccionado
     if (!isClasePuntual && !isClaseRecurrente) {
       formErrors.checkboxes = 'Debe seleccionar "Clase puntual" o "Clase recurrente"';
     }
 
-    // Validación para "Día de Ejecución" si es una clase puntual
     if (isClasePuntual && formData.diaEjecucion) {
       if (formData.diaEjecucion < todayDate) {
         formErrors.diaEjecucion = 'La fecha de ejecución debe ser igual o posterior a la fecha actual';
       }
     }
 
-    // Validación para "Hasta Fecha" si es una clase recurrente
     if (isClaseRecurrente && formData.hastaFecha) {
       if (formData.hastaFecha < minHastaFecha) {
         formErrors.hastaFecha = 'La fecha de fin debe ser al menos 3 semanas después de la fecha actual';

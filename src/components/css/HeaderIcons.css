@@ -59,4 +59,22 @@
   .header-icon-back-icon{
     color: white;
   }
+
+  .class-header-header-icons.centered-header {
+    justify-content: center;
+  }
+  
+  .class-header-header-icons.left-header {
+    justify-content: flex-start;
+  }
+
+  .header-icon-info{
+    background: black;
+  color: black;
+  max-width: 110px;
+  }
+
+  .header-icon-info:hover{
+  color: black;
+  }
   

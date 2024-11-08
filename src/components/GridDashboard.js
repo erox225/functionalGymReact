@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends, faLock, faCogs, faBarcode } from '@fortawesome/free-solid-svg-icons';
-import QrModal from './QrModal';  // Importamos el componente QrModal
-import ClassModal from './ClassModal';  // Importamos el componente ClassModal
+import QrModal from './QrModal';
+import ClassModal from './ClassModal';
 import './css/GridDashboard.css';
+import { useAuth } from '../authContext/AuthContext';
 
 const GridDashboard = () => {
+  const { userRole } = useAuth();
   const today = new Date();
   const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
   const monthsOfYear = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -15,11 +17,11 @@ const GridDashboard = () => {
   const month = monthsOfYear[today.getMonth()];
   const dayNumber = today.getDate();
 
-  const [modalVisible, setModalVisible] = useState(false);  // Estado para controlar la visibilidad del modal del QR
-  const [qrData, setQrData] = useState(null);  // Estado para los datos del QR
+  const [modalVisible, setModalVisible] = useState(false);
+  const [qrData, setQrData] = useState(null);
 
-  const [classModalVisible, setClassModalVisible] = useState(false);  // Estado para el modal de clase
-  const [selectedClass, setSelectedClass] = useState(null);  // Estado para la clase seleccionada
+  const [classModalVisible, setClassModalVisible] = useState(false);
+  const [selectedClass, setSelectedClass] = useState(null);
 
   const classesToday = [
     { name: 'Yoga', time: '10:00', aforoMax: 30, aforoActual: 25, intensidad: 'Media', duracion: "60´", tipo: 'Mente - Cuerpo', colorClass: 'tipo-mente', imagen: 'Balance', descripcion: 'Clase de relajación y estiramiento.' },
@@ -53,7 +55,6 @@ const GridDashboard = () => {
 
   const reservationColors = ['rgb(4, 157, 176)', 'rgb(176, 6, 6)', 'rgb(36, 196, 143)', 'rgb(247, 193, 28)', 'rgb(248, 199, 6)'];
 
-  // Función para abrir el modal y generar el QR
   const handleQrClick = (reservation) => {
     const qrJson = JSON.stringify({
       name: reservation.name,
@@ -61,29 +62,25 @@ const GridDashboard = () => {
       inicio: reservation.inicio
     });
 
-    setQrData(qrJson);  // Establecemos los datos para el QR
-    setModalVisible(true);  // Mostramos el modal
+    setQrData(qrJson);
+    setModalVisible(true);
   };
 
-  // Función para cerrar el modal
   const handleCloseModal = () => {
     setModalVisible(false);
   };
 
-  // Función para abrir el modal de clase
   const handleClassClick = (classItem) => {
-    setSelectedClass(classItem);  // Establece la clase seleccionada
-    setClassModalVisible(true);  // Muestra el modal de clase
+    setSelectedClass(classItem);
+    setClassModalVisible(true);
   };
 
-  // Función para cerrar el modal de clase
   const handleCloseClassModal = () => {
     setClassModalVisible(false);
   };
 
   return (
     <div className="grid-container">
-      {/* Nuevo elemento rectangular para mostrar el día y clases */}
       <div className="grid-item-rectangular">
         <div className="grid-item-header">
           <span className="grid-item-days">
@@ -97,7 +94,7 @@ const GridDashboard = () => {
             <li 
               key={index} 
               className="grid-item-class"
-              onClick={() => handleClassClick(classItem)}  // Muestra el modal al hacer clic en una clase
+              onClick={() => handleClassClick(classItem)}
             >
               <div
                 className='grid-item-bar-color'
@@ -115,10 +112,18 @@ const GridDashboard = () => {
         </ul>
       </div>
 
-      <Link to="/clients" className="grid-item">
-        <FontAwesomeIcon icon={faUserFriends} className="grid-icon" />
-        <span>Clientes</span>
-      </Link>
+      {userRole === 1 ? (
+        <Link to="/clients" className="grid-item">
+          <FontAwesomeIcon icon={faUserFriends} className="grid-icon" />
+          <span>Clientes</span>
+        </Link>
+      ) : (
+        <Link className="grid-item">
+          <FontAwesomeIcon icon={faUserFriends} className="grid-icon" />
+          <span>Genérico</span>
+        </Link>
+      )}
+
       <Link to="/accessControl" className="grid-item">
         <FontAwesomeIcon icon={faLock} className="grid-icon" />
         <span>Control de acceso</span>
@@ -128,9 +133,10 @@ const GridDashboard = () => {
         <span>Configuraciones</span>
       </Link>
 
-      {/* Nuevo elemento para las reservas */}
       <div className="grid-item-reservations">
-        <h2 className="grid-item-reservations-title">Mis Reservas</h2>
+        <h2 className="grid-item-reservations-title">
+          {userRole === 1 ? "Todas las reservas" : "Mis Reservas"}
+        </h2>
         <div className="grid-item-reservation-list">
           {reservations.length > 0 ? (
             reservations.map((reservation, index) => (
@@ -145,7 +151,7 @@ const GridDashboard = () => {
                 </div>   
                 <button 
                   className="vertical-button"
-                  onClick={() => handleQrClick(reservation)}  // Mostrar el modal con QR al hacer clic
+                  onClick={() => handleQrClick(reservation)}
                 >
                   <span className='vertical-button-code-bar'>
                     <FontAwesomeIcon icon={faBarcode}/>
@@ -161,15 +167,15 @@ const GridDashboard = () => {
             <div className="grid-item-no-reservations">No existen reservas</div>
           )}
         </div>
-        <Link to="/reservations" className="grid-item-reservations-link">Ir a mis reservas</Link>
+        <Link to="/reservations" className="grid-item-reservations-link">
+          {userRole === 1 ? "Ir a todas las reservas" : "Ir a mis reservas"}
+        </Link>
       </div>
 
-      {/* Usamos el componente QrModal para mostrar el código QR */}
       {modalVisible && (
         <QrModal qrData={qrData} onClose={handleCloseModal} />
       )}
 
-      {/* Usamos el componente ClassModal para mostrar la información de la clase */}
       {classModalVisible && (
         <ClassModal classInfo={selectedClass} onClose={handleCloseClassModal} />
       )}

@@ -2,11 +2,12 @@ import React from 'react';
 import './css/ClassModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faUsers, faCalendarAlt, faHeartbeat, faClipboardList } from '@fortawesome/free-solid-svg-icons';
-
 import { useLocation } from 'react-router-dom';
+import { useAuth } from '../authContext/AuthContext';
 
 const ClassModal = ({ classInfo, onClose }) => {
-  const location = useLocation();  // Hook para verificar la ruta actual
+  const location = useLocation(); // Hook para verificar la ruta actual
+  const { userRole } = useAuth(); // Obtenemos el rol del usuario desde el contexto
 
   if (!classInfo) return null;
 
@@ -49,16 +50,13 @@ const ClassModal = ({ classInfo, onClose }) => {
           </p>
         </div>
 
-        {/* Mostrar el botón de reservar si estamos en /dashboard */}
-        {location.pathname === '/dashboard' && (
+        {/* Mostrar el botón de reservar solo si estamos en /dashboard y el usuario tiene el rol 2 */}
+        {location.pathname === '/dashboard' && userRole === 2 && (
           <button className="modal-reservar-button-2">
             Reservar
-            <FontAwesomeIcon icon={faClipboardList} 
-            className='modal-reservar-boton-icon'
-            />
+            <FontAwesomeIcon icon={faClipboardList} className="modal-reservar-boton-icon" />
           </button>
         )}
-
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PlanificacionForm from '../components/PlanificacionForm';
-import HeaderIcons from '../components/HeaderIcons'; // Importamos el componente HeaderIcons
+import HeaderIcons from '../components/HeaderIcons';
 
 const clases = [
   { id: 1, nombre: 'Yoga' },
@@ -20,14 +21,42 @@ const estancias = [
   { id: 3, nombre: 'Sala de Pilates' },
 ];
 
-// Lista de entrenadores
 const entrenadores = [
   { id: 1, nombre: 'Juan Pérez' },
   { id: 2, nombre: 'María García' },
   { id: 3, nombre: 'Carlos López' },
 ];
 
-const PlanificacionPage = ({ planificacionId = null }) => {
+// Definir simulatedData para simular datos de planificación
+const simulatedData = [
+  {
+    id: '1',
+    claseId: '1',
+    calendarioId: '2',
+    entrenadorId: '3',
+    estanciaId: '1',
+    diaEjecucion: '2024-10-15',
+    horaInicio: '09:00',
+    diaSemana: 'martes',
+    hastaFecha: '2024-11-15',
+    permanente: false,
+  },
+  {
+    id: '2',
+    claseId: '2',
+    calendarioId: '1',
+    entrenadorId: '2',
+    estanciaId: '3',
+    diaEjecucion: '2024-10-18',
+    horaInicio: '11:00',
+    diaSemana: 'jueves',
+    hastaFecha: '2024-12-15',
+    permanente: true,
+  },
+];
+
+const PlanificacionPage = () => {
+  const { planificacionId } = useParams();
   const [formData, setFormData] = useState({
     claseId: '',
     calendarioId: '',
@@ -42,64 +71,20 @@ const PlanificacionPage = ({ planificacionId = null }) => {
 
   useEffect(() => {
     if (planificacionId) {
-      const fetchData = async () => {
-        const response = await fetch(`https://api.example.com/planificacion/${planificacionId}`);
-        const data = await response.json();
-        setFormData({
-          claseId: data.claseId,
-          calendarioId: data.calendarioId,
-          entrenadorId: data.entrenadorId,
-          estanciaId: data.estanciaId,
-          diaEjecucion: data.diaEjecucion,
-          horaInicio: data.horaInicio,
-          diaSemana: data.diaSemana,
-          hastaFecha: data.hastaFecha,
-          permanente: data.permanente,
-        });
-      };
-      fetchData();
+      // Simulación de carga de datos desde simulatedData
+      const data = simulatedData.find(item => item.id === planificacionId);
+      if (data) setFormData(data);
     }
   }, [planificacionId]);
 
-  // Definir handleAddClick para el botón de agregar
-  const handleAddClick = () => {
-    // Aquí puedes agregar la acción que deseas realizar al hacer clic en "Agregar".
-    alert("Funcionalidad de agregar clickeada");
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.diaEjecucion && !formData.diaSemana) {
-      alert('Selecciona al menos "Clase puntual" o "Clase recurrente".');
-      return;
-    }
-
-    try {
-      const response = await fetch(`https://api.example.com/planificacion/${planificacionId || ''}`, {
-        method: planificacionId ? 'PUT' : 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        alert(planificacionId ? 'Planificación actualizada' : 'Planificación creada');
-      } else {
-        console.error('Error en la solicitud:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error en la solicitud:', error);
-    }
+    alert(planificacionId ? 'Planificación actualizada' : 'Planificación creada');
   };
 
   return (
-    <div className='client-form-div-general'>
-      {/* Usamos el componente HeaderIcons y le pasamos los props */}
-      <HeaderIcons 
-        title={'Calendario'} 
-        onAddClick={handleAddClick}
-      />
+    <div className="client-form-div-general">
+      <HeaderIcons title="Planificación" onAddClick={() => alert("Agregar planificación clickeado")} />
       <PlanificacionForm
         formData={formData}
         setFormData={setFormData}
@@ -107,7 +92,7 @@ const PlanificacionPage = ({ planificacionId = null }) => {
         clases={clases}
         calendarios={calendarios}
         estancias={estancias}
-        entrenadores={entrenadores} // Pasar entrenadores como prop
+        entrenadores={entrenadores}
         isEditMode={!!planificacionId}
         title={planificacionId ? 'Editar Planificación' : 'Crear Planificación'}
       />
