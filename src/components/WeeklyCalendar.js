@@ -139,11 +139,11 @@ const WeeklySchedule = () => {
           {activitiesByDate[selectedDay].map((activity) => (
             <div key={activity.id} className="activity">
               <div className="activity-details">
-                <Link to={`/class/${activity.name}`} className="view-class-button">
+                <div className="view-class-button">
                   <p className='activity-details-name' style={{ color: activity.color }}>{activity.name}</p>
                   <p className='activity-details-name-by'>By</p>
                   <p className='activity-details-name-trainer'>{activity.trainer}</p>
-                </Link>
+                </div>
 
                 <div className='activity-atributes-card'>
                   <div className="activity-aforo">

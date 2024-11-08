@@ -226,8 +226,8 @@ const ReservationTable = ({ reservations: initialReservations }) => {
       )}
 
       <ReservationModal isOpen={isModalOpen} onClose={closeModal}>
-        <h3>Posición en la Cola</h3>
-        <p>Hay {queuePosition} personas delante de ti en la cola.</p>
+        <h3 className='reservations-modal-titulo'>Posición en la Cola</h3>
+        <p className='reservations-modal-texto'>Hay <strong>{queuePosition}</strong> personas delante de ti en la cola.</p>
       </ReservationModal>
 
       <ConfirmDeleteModal 

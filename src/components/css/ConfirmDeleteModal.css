@@ -1,0 +1,40 @@
+.modal-content-eliminar-descripcion{
+    font-size: 1em;
+    text-align: justify;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    padding: .5em;
+}
+
+.modal-actions-confirm-delete-modal{
+    display: flex;
+    padding: .5em;
+}
+
+.cancel-button-confirm-delete-modal{
+    width: 65%;
+    margin-right: 5%;
+}
+
+.delete-button-confirm-delete-modal{
+    background-color: #ff4500;
+    width: 30%;
+}
+
+.modal-content-eliminar-titulo{
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: black;
+    color: white;
+    padding: .5em;
+}
+
+.modal-content-eliminar{
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
