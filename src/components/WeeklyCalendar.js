@@ -1,9 +1,12 @@
 // WeeklySchedule.js
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight, faBolt, faClock, faUsers, faClipboardList, faCheckCircle, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import './css/WeeklyCalendar.css';
+import ActivityTrainer from './ActivityTrainer';
+import ActivityClient from './ActivityClient';
+import { useAuth } from '../authContext/AuthContext';
 
 const dayAbbreviations = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
@@ -14,6 +17,7 @@ const getMonday = (date) => {
 };
 
 const WeeklySchedule = () => {
+  const { userRole } = useAuth(); // Obtener userRole desde el contexto de autenticación
   const todayFormatted = new Date().toISOString().split('T')[0];
   const navigate = useNavigate();
   const [selectedDay, setSelectedDay] = useState(todayFormatted);
@@ -23,7 +27,6 @@ const WeeklySchedule = () => {
   const [currentDate, setCurrentDate] = useState(() => getMonday(new Date()));
   const [loadingActivityId, setLoadingActivityId] = useState(null);
   const [reservedActivities, setReservedActivities] = useState([]);
-  const userRole = 1; // Asumiendo el rol para demostración
 
   useEffect(() => {
     const updateWeekDates = (startDate) => {
@@ -89,8 +92,9 @@ const WeeklySchedule = () => {
 
   const activitiesByDate = {
     "2024-10-25": [
-      { id: 1, name: 'BodyCombat', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'", color: 'rgb(176, 6, 6)', intensityColor: 'rgb(176, 6, 6)', trainer: 'Jessica Di Maggio' },
-      { id: 2, name: 'Pilates', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)', trainer: 'Alex Rivera' },
+      { id: 1, name: 'BodyCombat', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'", color: 'rgb(176, 6, 6)', intensityColor: 'rgb(176, 6, 6)', trainer: 'Jessica Di Maggio', estado: 'Inscrito' },
+      { id: 2, name: 'Pilates', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)', trainer: 'Alex Rivera', estado: 'En cola' },
+      { id: 3, name: 'Pesas', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)', trainer: 'Alex Rivera', estado: 'Libre' },
     ],
   };
 
@@ -122,62 +126,23 @@ const WeeklySchedule = () => {
 
       {selectedDay && activitiesByDate[selectedDay] ? (
         <div className="activities-list">
-          {activitiesByDate[selectedDay].map((activity) => (
-            <div key={activity.id} className="activity">
-              <div className="activity-details">
-                <div className="view-class-button">
-                  <p className="activity-details-name" style={{ color: activity.color }}>{activity.name}</p>
-                  <p className="activity-details-name-by">By</p>
-                  <p className="activity-details-name-trainer">{activity.trainer}</p>
-                </div>
-                <div className="activity-atributes-card">
-                  <div className="activity-aforo">
-                    <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
-                    {activity.aforoMax}/{activity.aforoActual}
-                  </div>
-                  <div className="activity-intensity" style={{ color: activity.intensityColor }}>
-                    <FontAwesomeIcon icon={faBolt} style={{ marginRight: '0.3rem' }} />
-                    {activity.intensidad}
-                  </div>
-                </div>
-              </div>
-              <div className="right-activity">
-                <div className="activity-time">{activity.time}</div>
-                <div className="activity-duration">
-                  <FontAwesomeIcon icon={faClock} style={{ marginRight: '0.3rem' }} />
-                  {activity.duracion}
-                </div>
-                <div className="activity-buttons">
-                  {reservedActivities.includes(activity.id) ? (
-                    <button className="reserve-button reserved">
-                      <FontAwesomeIcon icon={faCheckCircle} />
-                      <span className="boton-reservar">Reservado</span>
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => userRole === 1 ? navigate(`/planificacion/${activity.id}`) : reserveActivity(activity.id)}
-                      className="reserve-button"
-                      disabled={loadingActivityId === activity.id}
-                    >
-                      {loadingActivityId === activity.id ? (
-                        <div className="loading-circle"></div>
-                      ) : userRole === 1 ? (
-                        <>
-                          <FontAwesomeIcon icon={faEdit} />
-                          <span className="boton-reservar">Editar</span>
-                        </>
-                      ) : (
-                        <>
-                          <FontAwesomeIcon icon={faClipboardList} />
-                          <span className="boton-reservar">Reservar</span>
-                        </>
-                      )}
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
+          {activitiesByDate[selectedDay].map((activity) =>
+            userRole === 1 ? (
+              <ActivityTrainer
+                key={activity.id}
+                activity={activity}
+                navigate={navigate}
+              />
+            ) : (
+              <ActivityClient
+                key={activity.id}
+                activity={activity}
+                reservedActivities={reservedActivities}
+                reserveActivity={reserveActivity}
+                loadingActivityId={loadingActivityId}
+              />
+            )
+          )}
         </div>
       ) : (
         <div className="no-activity">

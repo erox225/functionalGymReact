@@ -245,6 +245,7 @@
   font-size: 1em;
   margin-bottom: 10px;
   text-transform: uppercase;
+  min-width: 89.3px;
 }
 
 .boton-reservar{
@@ -419,6 +420,10 @@ button {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.reservations-modal-texto{
+  color: black;
 }
 
 
