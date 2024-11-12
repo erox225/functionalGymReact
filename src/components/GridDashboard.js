@@ -24,12 +24,73 @@ const GridDashboard = () => {
   const [selectedClass, setSelectedClass] = useState(null);
 
   const classesToday = [
-    { name: 'Yoga', time: '10:00', aforoMax: 30, aforoActual: 25, intensidad: 'Media', duracion: "60´", tipo: 'Mente - Cuerpo', colorClass: 'tipo-mente', imagen: 'Balance', descripcion: 'Clase de relajación y estiramiento.' },
-    { name: 'Spinning', time: '12:00', aforoMax: 25, aforoActual: 20, intensidad: 'Alta', duracion: "45´", tipo: 'Cardio', colorClass: 'tipo-cardio', imagen: 'TrainNow', descripcion: 'Sesión intensa de spinning.' },
-    { name: 'Zumba', time: '15:00', aforoMax: 40, aforoActual: 35, intensidad: 'Alta', duracion: "50´", tipo: 'Cardio', colorClass: 'tipo-cardio', imagen: 'BodyPom', descripcion: 'Ejercicio aeróbico con ritmos latinos.' },
-    { name: 'Pilates', time: '17:00', aforoMax: 20, aforoActual: 18, intensidad: 'Baja', duracion: "55´", tipo: 'Mente - Cuerpo', colorClass: 'tipo-mente', imagen: 'Cross', descripcion: 'Pilates para fortalecer el core.' },
-    { name: 'Boxeo', time: '19:00', aforoMax: 15, aforoActual: 12, intensidad: 'Alta', duracion: "60´", tipo: 'Fuerza', colorClass: 'tipo-fuerza', imagen: 'BodyCom', descripcion: 'Entrenamiento de boxeo y fuerza.' }
+    {
+      name: 'Yoga',
+      time: '10:00',
+      aforoMax: 30,
+      aforoActual: 25,
+      intensidad: 'Media',
+      duracion: "60´",
+      tipo: 'Mente - Cuerpo',
+      colorClass: 'tipo-mente',
+      imagen: 'Balance',
+      descripcion: 'Clase de relajación y estiramiento.',
+      estado: 'Inscrito'
+    },
+    {
+      name: 'Spinning',
+      time: '12:00',
+      aforoMax: 25,
+      aforoActual: 20,
+      intensidad: 'Alta',
+      duracion: "45´",
+      tipo: 'Cardio',
+      colorClass: 'tipo-cardio',
+      imagen: 'TrainNow',
+      descripcion: 'Sesión intensa de spinning.',
+      estado: 'Inscrito'
+    },
+    {
+      name: 'Zumba',
+      time: '15:00',
+      aforoMax: 40,
+      aforoActual: 40,
+      intensidad: 'Alta',
+      duracion: "50´",
+      tipo: 'Cardio',
+      colorClass: 'tipo-cardio',
+      imagen: 'BodyPom',
+      descripcion: 'Ejercicio aeróbico con ritmos latinos.',
+      estado: 'En cola'
+    },
+    {
+      name: 'Pilates',
+      time: '17:00',
+      aforoMax: 20,
+      aforoActual: 18,
+      intensidad: 'Baja',
+      duracion: "55´",
+      tipo: 'Mente - Cuerpo',
+      colorClass: 'tipo-mente',
+      imagen: 'Cross',
+      descripcion: 'Pilates para fortalecer el core.',
+      estado: 'Inscrito'
+    },
+    {
+      name: 'Boxeo',
+      time: '19:00',
+      aforoMax: 15,
+      aforoActual: 5,
+      intensidad: 'Alta',
+      duracion: "60´",
+      tipo: 'Fuerza',
+      colorClass: 'tipo-fuerza',
+      imagen: 'BodyCom',
+      descripcion: 'Entrenamiento de boxeo y fuerza.',
+      estado: 'Libre'
+    }
   ];
+  
 
   const reservations = [
     { date: '2024-10-22', name: 'Pilates', inicio: '9:30 AM' },

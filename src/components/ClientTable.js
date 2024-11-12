@@ -73,6 +73,7 @@ const ClientTable = ({ clients }) => {
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
+            <th>Teléfono</th>
             <th>Suscripción</th>
             <th>Estado</th>
             <th>Acciones</th>
@@ -87,28 +88,34 @@ const ClientTable = ({ clients }) => {
                 <td>{client.nombre}</td>
                 <td>{client.apellido}</td>
                 <td>{client.email}</td>
+                <td>{formatPhoneNumber(client.telefono)}</td>
                 <td style={{ color: subscriptionColors[client.suscripcion] || "#000" }}>
+                  <strong>
                   {client.suscripcion}
+                  </strong>
                 </td>
                 <td style={{ color: stateColors[client.estado.toLowerCase()] || "#000" }}>
+                  <strong>
                   {client.estado}
+                  </strong>
                 </td>
                 <td>
                   <div className="action-buttons">
-                    <Link to={`/view/${client.id}`} className="view-button">
-                      <FontAwesomeIcon icon={faEye} />
-                    </Link>
-                    <Link to={`/edit/${client.id}`} className="edit-button">
-                      <FontAwesomeIcon icon={faEdit} />
-                    </Link>
-                    <button className="delete-button" onClick={() => console.log(`Eliminar cliente ${client.id}`)}>
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                    {isInactive && (
-                      <button className="reactivate-button" onClick={() => console.log(`Reactivar cliente ${client.id}`)}>
-                        <FontAwesomeIcon icon={faRedo} /> Reactivar
-                      </button>
-                    )}
+                  <Link to={`/cliente/${client.id}`} className="edit-button">
+                <FontAwesomeIcon icon={faEdit} />
+                <span className="view-button-text"> Editar </span>
+              </Link>
+              {!isInactive && (
+                <Link className="send-user-button">
+                  <FontAwesomeIcon icon={faPaperPlane} />
+                  <span className="edit-button-text"> Credenciales </span> 
+                </Link>
+              )}
+              {isInactive && (
+                <Link className="reactivate-button" onClick={() => console.log(`Reactivar cliente ${client.id}`)}>
+                  <FontAwesomeIcon icon={faRedo} /> Reactivar
+                </Link>
+              )}
                   </div>
                 </td>
               </tr>
@@ -187,7 +194,7 @@ const ClientTable = ({ clients }) => {
               {!isInactive && (
                 <Link className="send-user-button">
                   <FontAwesomeIcon icon={faPaperPlane} />
-                  <span className="edit-button-text"> Enviar Usuario </span> 
+                  <span className="edit-button-text"> Credenciales </span> 
                 </Link>
               )}
               {isInactive && (

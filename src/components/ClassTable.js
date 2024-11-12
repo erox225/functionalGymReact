@@ -83,12 +83,10 @@ const ClassTable = ({ classes }) => {
               <td>{clase.ultimaModificacion}</td>
               <td>
                 <div className="action-buttons">
-                  <Link to={`/view/${clase.id}`} className="view-button">
-                    <FontAwesomeIcon icon={faEye} />
-                  </Link>
-                  <Link to={`/edit/${clase.id}`} className="edit-button">
-                    <FontAwesomeIcon icon={faEdit} />
-                  </Link>
+                <Link to={`/clase/${clase.id}`} className="edit-button">
+              <FontAwesomeIcon icon={faEdit} />
+              <span className="edit-button-text"> Editar </span> 
+            </Link>
                 </div>
               </td>
             </tr>

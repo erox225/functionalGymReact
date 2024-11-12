@@ -153,3 +153,8 @@ button {
   text-align: center; /* Centrado */
   font-size: 0.95rem; /* Tamaño de fuente */
 }
+
+.persona-form-textarea{
+  max-width: 100%;
+  min-width: 100%;
+}

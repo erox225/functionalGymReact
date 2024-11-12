@@ -24,3 +24,9 @@
   text-transform: uppercase;
   font-size: .8em;
 }
+
+
+.modal-close-icon {
+  color: #f44336;
+  margin-right: .5em;
+}

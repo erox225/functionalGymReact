@@ -1,14 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUsers, faBirthdayCake, faEnvelope, faCalendarAlt, faPhone, faIdBadge } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faUsers, faBirthdayCake, faEnvelope, faCalendarAlt, faPhone, faIdBadge, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import './css/ClienteForm.css';
 
 // Función simulada para obtener los datos de un cliente por ID
 const fetchClienteById = async (id) => {
   const allClientes = [
-    { id: '1', nombre: 'Juan', apellidos: 'Pérez', email: 'juan@example.com', telefono: '123456789', idSuscripcion: '1', estado: 'activo', fechaNacimiento: '1990-01-01', fechaInicio: '2023-01-01', fechaFin: '2023-12-31' },
-    { id: '2', nombre: 'Ana', apellidos: 'Gómez', email: 'ana@example.com', telefono: '987654321', idSuscripcion: '2', estado: 'baja', fechaNacimiento: '1992-05-15', fechaInicio: '2023-02-01', fechaFin: null },
+    {
+      id: '1',
+      nombre: 'Juan',
+      apellidos: 'Pérez',
+      email: 'juan@example.com',
+      telefono: '123456789',
+      idSuscripcion: '1',
+      estado: 'activo',
+      fechaNacimiento: '1990-01-01',
+      fechaInicio: '2023-01-01',
+      fechaFin: '2023-12-31',
+      descripcion: 'Cliente habitual en clases de spinning y yoga.'
+    },
+    {
+      id: '2',
+      nombre: 'Ana',
+      apellidos: 'Gómez',
+      email: 'ana@example.com',
+      telefono: '987654321',
+      idSuscripcion: '2',
+      estado: 'baja',
+      fechaNacimiento: '1992-05-15',
+      fechaInicio: '2023-02-01',
+      fechaFin: null,
+      descripcion: 'Participa en clases de pilates y zumba.'
+    },
   ];
   return allClientes.find(cliente => cliente.id === id);
 };
@@ -46,6 +70,7 @@ const ClienteForm = ({ onSubmit }) => {
     fechaNacimiento: '',
     fechaInicio: '',
     fechaFin: '',
+    descripcion: '', // Nuevo campo para descripción
   });
   const [errors, setErrors] = useState({});
   const [estados, setEstados] = useState([]);
@@ -100,6 +125,10 @@ const ClienteForm = ({ onSubmit }) => {
       if (fechaFin <= fechaInicio) {
         formErrors.fechaFin = 'La fecha de fin debe ser al menos un día después de la fecha de inicio';
       }
+    }
+
+    if (formData.descripcion && formData.descripcion.length > 200) {
+      formErrors.descripcion = 'La descripción no puede exceder los 200 caracteres';
     }
 
     setErrors(formErrors);
@@ -252,6 +281,22 @@ const ClienteForm = ({ onSubmit }) => {
           className="persona-form-input"
         />
         {errors.telefono && <p className="error-text">{errors.telefono}</p>}
+      </label>
+
+      <label className="persona-form-label">
+        <span className="icon-text">
+          <FontAwesomeIcon icon={faInfoCircle} /> Descripción:
+        </span>
+        <textarea
+          name="descripcion"
+          value={formData.descripcion || ''}
+          onChange={handleInputChange}
+          maxLength={200}
+          rows={4}
+          className="persona-form-textarea"
+          placeholder="Descripción del cliente (máximo 200 caracteres)"
+        />
+        {errors.descripcion && <p className="error-text">{errors.descripcion}</p>}
       </label>
 
       <button type="submit" className="persona-form-button">

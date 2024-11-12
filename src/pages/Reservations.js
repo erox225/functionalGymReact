@@ -26,10 +26,10 @@ const Reservations = () => {
 
   // Simulación de datos de reservas
   const reservations = [
-    { id: 101, idReserva: 'R001',duracion:'60', clase: 'Gimnasio', cliente: 'S23DJ', horarioInicio: '10:00', horarioFin: '11:00', diaEjecucion: '2024-11-20', estado: 'INSCRITO' },
-    { id: 102, idReserva: 'R002',duracion:'60', clase: 'Yoga', cliente: 'S23DJ', horarioInicio: '09:00', horarioFin: '09:45', diaEjecucion: '2024-11-21', estado: 'REALIZADO' },
-    { id: 103, idReserva: 'R003',duracion:'60', clase: 'Pilates', cliente: 'S23DJ', horarioInicio: '11:00', horarioFin: '11:50', diaEjecucion: '2024-11-22', estado: 'CANCELADO' },
-    { id: 104, idReserva: 'R004',duracion:'60', clase: 'Zumba', cliente: 'S23DJ', horarioInicio: '12:00', horarioFin: '12:30', diaEjecucion: '2024-11-22', estado: 'EN COLA', queuePosition: 3 }
+    { id: 101, idReserva: 'R001',duracion:'60', clase: 'Gimnasio', cliente: 'S23DJ' , trainer : 'Miguel Labrador', horarioInicio: '10:00', horarioFin: '11:00', diaEjecucion: '2024-11-20', estado: 'INSCRITO' },
+    { id: 102, idReserva: 'R002',duracion:'60', clase: 'Yoga', cliente: 'S23DJ' , trainer : 'Jessica Di Maggio', horarioInicio: '09:00', horarioFin: '09:45', diaEjecucion: '2024-11-21', estado: 'REALIZADO' },
+    { id: 103, idReserva: 'R003',duracion:'60', clase: 'Pilates', cliente: 'S23DJ' , trainer : 'Miguel Labrador', horarioInicio: '11:00', horarioFin: '11:50', diaEjecucion: '2024-11-22', estado: 'CANCELADO' },
+    { id: 104, idReserva: 'R004',duracion:'60', clase: 'Zumba', cliente: 'S23DJ' , trainer : 'Miguel Labrador', horarioInicio: '12:00', horarioFin: '12:30', diaEjecucion: '2024-11-22', estado: 'EN COLA', queuePosition: 3 }
   ];
   
 

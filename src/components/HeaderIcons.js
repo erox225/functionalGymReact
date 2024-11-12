@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faCirclePlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons'; // Icono adicional
+import { faArrowLeft, faCirclePlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../authContext/AuthContext';
 import './css/HeaderIcons.css';
@@ -8,7 +8,7 @@ import './css/HeaderIcons.css';
 const HeaderIcons = ({ icon, title, onAddClick }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userRole } = useAuth(); // Obtenemos el rol del usuario desde el contexto
+  const { userRole } = useAuth();
 
   // Array de rutas para redirección en el botón "Agregar"
   const addRedirectRoutes = [
@@ -16,6 +16,16 @@ const HeaderIcons = ({ icon, title, onAddClick }) => {
     { url: '/class', redirectTo: '/clase' },
     { url: '/clients', redirectTo: '/cliente' },
     { url: '/reservations', redirectTo: '/reserva' },
+  ];
+
+  // Rutas específicas que requieren volver a la página anterior en lugar del dashboard
+  const routesWithBack = [
+    /^\/planificacion$/, 
+    /^\/clase$/, 
+    /^\/cliente$/,
+    /^\/planificacion\/\d+$/, 
+    /^\/clase\/\d+$/, 
+    /^\/cliente\/\d+$/
   ];
 
   // Función para manejar la redirección del botón "Agregar"
@@ -30,15 +40,14 @@ const HeaderIcons = ({ icon, title, onAddClick }) => {
 
   // Función para el botón de volver
   const handleBackClick = () => {
-    const isRedirectRoute = addRedirectRoutes.some(route => route.redirectTo === location.pathname);
-    if (isRedirectRoute) {
-      navigate(-1);
+    // Verifica si la ruta actual coincide con alguna de las rutas que requieren volver en lugar del dashboard
+    const isRouteWithBack = routesWithBack.some(route => route.test(location.pathname));
+    if (isRouteWithBack) {
+      navigate(-1); // Navega a la página anterior
     } else {
-      navigate('/dashboard');
+      navigate('/dashboard'); // Navega al dashboard si no coincide
     }
   };
-
-  // Condicional para el estilo de justify-content
 
   return (
     <div className="header-icons">
@@ -46,13 +55,13 @@ const HeaderIcons = ({ icon, title, onAddClick }) => {
         <FontAwesomeIcon icon={faArrowLeft} className='header-icon-back-icon'/>
       </button>
       
-      <h1 className={`class-header-header-icons`}>
+      <h1 className="class-header-header-icons">
         <FontAwesomeIcon icon={icon} className="header-icon" />
         {title}
       </h1>
       
       {/* Mostrar botón según el role */}
-      {userRole === 1  ? (
+      {userRole === 1 ? (
         <button onClick={handleAddClick} className="header-icon-add">
           <FontAwesomeIcon icon={faCirclePlus} className="header-icon-add-icon"/>
           <span className="header-agregar">Agregar</span>

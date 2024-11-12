@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './css/ReservationTable.css'; 
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faEye, faSearch, faClock, faUser, faCalendarAlt, faQrcode, faXmark, faLocationDot, faCheckCircle, faTimesCircle, faHourglassHalf, faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faDumbbell, faEdit, faEye, faSearch, faClock, faUser, faCalendarAlt, faQrcode, faXmark, faLocationDot, faCheckCircle, faTimesCircle, faHourglassHalf, faRedo } from '@fortawesome/free-solid-svg-icons';
 import ReservationModal from './ReservationModal';
 import QrModal from './QrModal';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
+import { useAuth } from '../authContext/AuthContext';
 
 const formatDate = (dateString) => dateString;
 
 const ReservationTable = ({ reservations: initialReservations }) => {
+  const { userRole } = useAuth(); // Obtener userRole desde el contexto de autenticación
   const [reservations, setReservations] = useState(initialReservations);
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setModalOpen] = useState(false);
@@ -115,42 +117,8 @@ const ReservationTable = ({ reservations: initialReservations }) => {
                 <FontAwesomeIcon icon={faRedo} /> <span className='reload-button-text'>Actualizar</span> 
         </button>
       </div>
-      <table className="reservation-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>IdReserva</th>
-            <th>Clase</th>
-            <th>Cliente</th>
-            <th>Horario Inicio</th>
-            <th>Horario Fin</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredReservations.map((reserva, index) => (
-            <tr key={index}>
-              <td>{reserva.id}</td>
-              <td>{reserva.idReserva}</td>
-              <td>{reserva.clase}</td>
-              <td>{reserva.cliente}</td>
-              <td>{reserva.horarioInicio}</td>
-              <td>{reserva.horarioFin}</td>
-              <td>
-                <div className="action-buttons">
-                  <Link to={`/view-reservation/${reserva.id}`} className="view-button">
-                    <FontAwesomeIcon icon={faEye} />
-                  </Link>
-                  <Link to={`/edit-reservation/${reserva.id}`} className="edit-button">
-                    <FontAwesomeIcon icon={faEdit} />
-                  </Link>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
+   
+<div className='reservations-list-cards'>
       {filteredReservations.map((reserva, index) => (
         <div key={index} className={getCardClass(reserva.estado)}>
           {['INSCRITO', 'EN COLA'].includes(reserva.estado) && !isQrModalOpen && (
@@ -163,9 +131,19 @@ const ReservationTable = ({ reservations: initialReservations }) => {
             <h4 className="class-id">ID : {reserva.idReserva}</h4>
             <h4 className="class-name">{reserva.clase}</h4>
             <div className="reservation-details">
+
+            {userRole === 1 && (
               <span>
-                <FontAwesomeIcon icon={faUser} style={{ marginRight: '0.5em' }} />
-                <strong>ID:</strong> {reserva.id}
+              <FontAwesomeIcon icon={faUser} style={{ marginRight: '0.5em' }} />
+              <strong>Cliente:</strong> {reserva.cliente}
+            </span>
+      )}
+
+              <span>
+                <FontAwesomeIcon icon={faDumbbell} style={{ marginRight: '0.5em' }} />
+               <strong>
+               {reserva.trainer}
+                </strong>
               </span>
               <span>
                 <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '0.5em' }} />
@@ -220,7 +198,7 @@ const ReservationTable = ({ reservations: initialReservations }) => {
           </div>
         </div>
       ))}
-
+</div>
       {isQrModalOpen && (
         <QrModal qrData={qrData} onClose={closeQrModal} />
       )}

@@ -1,15 +1,26 @@
-// ActivityTrainer.js
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faBolt, faClock, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faBolt, faClock, faEdit, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import ConfirmCancelModal from './ConfirmCancelModal';
 
 const ActivityTrainer = ({ activity, navigate }) => {
+  const [isCancelModalOpen, setCancelModalOpen] = useState(false);
+
+  const openCancelModal = () => setCancelModalOpen(true);
+  const closeCancelModal = () => setCancelModalOpen(false);
+
+  const handleCancelConfirmation = () => {
+    // Lógica para cancelar la clase
+    closeCancelModal();
+    alert(`La clase ${activity.name} ha sido cancelada.`);
+  };
+
   return (
     <div className="activity">
       <div className="activity-details">
         <div className="view-class-button">
           <p className="activity-details-name" style={{ color: activity.color }}>{activity.name}</p>
-          <p className="activity-details-name-by">dos</p>
+          <p className="activity-details-name-by">By</p>
           <p className="activity-details-name-trainer">{activity.trainer}</p>
         </div>
         <div className="activity-atributes-card">
@@ -34,8 +45,19 @@ const ActivityTrainer = ({ activity, navigate }) => {
             <FontAwesomeIcon icon={faEdit} />
             <span className="boton-reservar">Editar</span>
           </button>
+          <button onClick={openCancelModal} className="cancel-button-activity-trainer">
+            <FontAwesomeIcon icon={faTimesCircle} />
+            <span className="boton-reservar">Cancelar</span>
+          </button>
         </div>
       </div>
+
+      {/* Modal de confirmación de cancelación */}
+      <ConfirmCancelModal
+        isOpen={isCancelModalOpen}
+        onClose={closeCancelModal}
+        onConfirm={handleCancelConfirmation}
+      />
     </div>
   );
 };
