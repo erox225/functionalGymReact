@@ -65,6 +65,11 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
     text-decoration: none;
     font-size: 1em;
+    max-width: 130px;
+}
+
+.reactivate-button{
+    max-width: 130px;
 }
 
 .view-button:hover {

@@ -3,14 +3,16 @@ import './css/ClientTable.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faEye, faTrash, faSearch, faEnvelope, faUser, faIdCard, faCheckCircle, faTimesCircle, faPaperPlane, faPhone, faCalendarDay, faRedo } from '@fortawesome/free-solid-svg-icons';
+import CredentialModal from './CredentialModal';
+import ReactivateModal from './ReactivateModal';
 
 const subscriptionColors = {
-  "Plan premium": "#007bff",       
-  "Plan matutino": "#6c757d",      
+  "Plan premium": "#007bff",
+  "Plan matutino": "#6c757d",
   "Plan 12 sesiones a la semana": "#28a745",
-  "Plan estudiantil": "#ff6f61",   
-  "Plan corporativo": "#ffc107",   
-  "Plan Familiar": "#8e44ad"       
+  "Plan estudiantil": "#ff6f61",
+  "Plan corporativo": "#ffc107",
+  "Plan Familiar": "#8e44ad"
 };
 
 const stateColors = {
@@ -20,30 +22,30 @@ const stateColors = {
 };
 
 // Formato para el número de teléfono
-const formatPhoneNumber = (phone) => {
-  if (!phone) return '';
-  return phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1-$2-$3');
-};
+const formatPhoneNumber = (phone) => phone ? phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1-$2-$3') : '';
 
 // Formato de fecha con dd/mm/yyyy o "Indefinido" para fechas nulas
-const formatDate = (dateString) => {
-  if (!dateString) return 'Indefinido';
-  const [year, month, day] = dateString.split('-');
-  return `${day}/${month}/${year}`;
-};
+const formatDate = (dateString) => dateString ? dateString.split('-').reverse().join('/') : 'Indefinido';
 
 // Función que verifica si la fecha está en el pasado
-const isDateInPast = (date) => {
-  const today = new Date();
-  const dateObj = new Date(date);
-  return dateObj < today;
-};
+const isDateInPast = (date) => new Date(date) < new Date();
 
 const ClientTable = ({ clients }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [showCredentialModal, setShowCredentialModal] = useState(false);
+  const [showReactivateModal, setShowReactivateModal] = useState(false);
+  const [selectedClientId, setSelectedClientId] = useState(null);
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value.toLowerCase());
+  const handleSearchChange = (e) => setSearchTerm(e.target.value.toLowerCase());
+
+  const handleOpenCredentialModal = (clientId) => {
+    setSelectedClientId(clientId);
+    setShowCredentialModal(true);
+  };
+
+  const handleOpenReactivateModal = (clientId) => {
+    setSelectedClientId(clientId);
+    setShowReactivateModal(true);
   };
 
   const filteredClients = clients.filter((client) =>
@@ -90,32 +92,28 @@ const ClientTable = ({ clients }) => {
                 <td>{client.email}</td>
                 <td>{formatPhoneNumber(client.telefono)}</td>
                 <td style={{ color: subscriptionColors[client.suscripcion] || "#000" }}>
-                  <strong>
-                  {client.suscripcion}
-                  </strong>
+                  <strong>{client.suscripcion}</strong>
                 </td>
                 <td style={{ color: stateColors[client.estado.toLowerCase()] || "#000" }}>
-                  <strong>
-                  {client.estado}
-                  </strong>
+                  <strong>{client.estado}</strong>
                 </td>
                 <td>
                   <div className="action-buttons">
-                  <Link to={`/cliente/${client.id}`} className="edit-button">
-                <FontAwesomeIcon icon={faEdit} />
-                <span className="view-button-text"> Editar </span>
-              </Link>
-              {!isInactive && (
-                <Link className="send-user-button">
-                  <FontAwesomeIcon icon={faPaperPlane} />
-                  <span className="edit-button-text"> Credenciales </span> 
-                </Link>
-              )}
-              {isInactive && (
-                <Link className="reactivate-button" onClick={() => console.log(`Reactivar cliente ${client.id}`)}>
-                  <FontAwesomeIcon icon={faRedo} /> Reactivar
-                </Link>
-              )}
+                    <Link to={`/cliente/${client.id}`} className="edit-button">
+                      <FontAwesomeIcon icon={faEdit} />
+                      <span className="view-button-text"> Editar </span>
+                    </Link>
+                    {!isInactive && (
+                      <button className="send-user-button" onClick={() => handleOpenCredentialModal(client.id)}>
+                        <FontAwesomeIcon icon={faPaperPlane} />
+                        <span className="edit-button-text"> Credenciales </span>
+                      </button>
+                    )}
+                    {isInactive && (
+                      <button className="reactivate-button" onClick={() => handleOpenReactivateModal(client.id)}>
+                        <FontAwesomeIcon icon={faRedo} /> Reactivar
+                      </button>
+                    )}
                   </div>
                 </td>
               </tr>
@@ -132,13 +130,7 @@ const ClientTable = ({ clients }) => {
               <img
                 src={client.imagenUrl || ''}
                 alt={`${client.nombre} ${client.apellido}`}
-                className={`client-image ${
-                  client.estado.toLowerCase() === 'activo'
-                    ? 'border-green'
-                    : client.estado.toLowerCase() === 'baja'
-                    ? 'border-red'
-                    : 'border-orange'
-                }`}
+                className={`client-image ${client.estado.toLowerCase() === 'activo' ? 'border-green' : 'border-red'}`}
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.style.display = 'none';
@@ -192,20 +184,46 @@ const ClientTable = ({ clients }) => {
                 <span className="view-button-text"> Editar </span>
               </Link>
               {!isInactive && (
-                <Link className="send-user-button">
+                <button className="send-user-button" onClick={() => handleOpenCredentialModal(client.id)}>
                   <FontAwesomeIcon icon={faPaperPlane} />
-                  <span className="edit-button-text"> Credenciales </span> 
-                </Link>
+                  <span className="edit-button-text"> Credenciales </span>
+                </button>
               )}
               {isInactive && (
-                <Link className="reactivate-button" onClick={() => console.log(`Reactivar cliente ${client.id}`)}>
+                <button className="reactivate-button" onClick={() => handleOpenReactivateModal(client.id)}>
                   <FontAwesomeIcon icon={faRedo} /> Reactivar
-                </Link>
+                </button>
               )}
             </div>
           </div>
         );
       })}
+
+      {showCredentialModal && (
+        <CredentialModal
+          isOpen={showCredentialModal}
+          onClose={() => setShowCredentialModal(false)}
+          onConfirm={() => {
+            console.log(`Enviando credenciales al cliente con ID: ${selectedClientId}`);
+            setShowCredentialModal(false);
+          }}
+        />
+      )}
+
+      {showReactivateModal && (
+        <ReactivateModal
+          isOpen={showReactivateModal}
+          onClose={() => setShowReactivateModal(false)}
+          onConfirm={(startDate, endDate) => {
+            if (!startDate) {
+              alert('La fecha de inicio es obligatoria');
+              return;
+            }
+            console.log(`Reactivando cliente con ID: ${selectedClientId}, fecha de inicio: ${startDate}, fecha de fin: ${endDate}`);
+            setShowReactivateModal(false);
+          }}
+        />
+      )}
     </div>
   );
 };

@@ -1,0 +1,39 @@
+.modal-content-reactivate-modal{
+    background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+
+}
+.modal-content-reactivate-modal-title{
+    color: white;
+    background-color: black;
+    font-size: 1.3em;
+    padding: .2em;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+.modal-content-reactivate-modal-label{
+    padding: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  padding-bottom: 0px;
+  padding-top: .6em;
+}
+.modal-content-reactivate-modal-box-button{
+display: flex;
+justify-content: space-evenly;
+  margin-bottom: .5em;
+
+}
+
+.modal-confirm-button-reactivate{
+ width: 45%;
+ background-color: green;
+}
+
+.modal-close-button-reactivate{
+    width: 45%;
+    background-color: orange;
+}
