@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faDumbbell, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faDumbbell, faCheck } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionTwo.css';
 
 const SectionTwo = ({ subscriptions }) => {
@@ -8,6 +8,8 @@ const SectionTwo = ({ subscriptions }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerPage, setCardsPerPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const updateCardsPerPage = () => {
     const width = window.innerWidth;
@@ -52,12 +54,52 @@ const SectionTwo = ({ subscriptions }) => {
     }
   }, [currentIndex, cardsPerPage, numberOfPages]);
 
+  const handleTouchStart = (e) => {
+    setStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const moveX = e.touches[0].clientX;
+    const diffX = startX - moveX;
+    if (diffX > 50) {
+      setIsDragging(false);
+      scrollToPage((currentIndex + 1) % numberOfPages);
+    } else if (diffX < -50) {
+      setIsDragging(false);
+      scrollToPage((currentIndex - 1 + numberOfPages) % numberOfPages);
+    }
+  };
+
+  const parseFeature = (text) => {
+    // Divide el texto en partes usando etiquetas <strong> como delimitadores
+    const parts = text.split(/(<strong>|<\/strong>)/g);
+  
+    return parts.map((part, index) => {
+      if (part === "<strong>" || part === "</strong>") {
+        return null; // Ignora las etiquetas de apertura y cierre
+      }
+      return parts[index - 1] === "<strong>"
+        ? <strong key={index}>{part}</strong> // Aplica negrita al texto entre etiquetas
+        : part; // Muestra el texto normal
+    });
+  };
+  
+
+  const handleTouchEnd = () => setIsDragging(false);
+
   return (
     <section id="section2" className="SectionTwo-why-choose-us">
       <h2 className="SectionTwo-title">PLANES DE SUSCRIPCIÓN</h2>
 
-      <div className="SectionTwo-card-container" ref={cardContainerRef}>
-        {/* Recorremos las suscripciones recibidas como parámetro */}
+      <div
+        className="SectionTwo-card-container"
+        ref={cardContainerRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {subscriptions.map((subscription) => (
           <div key={subscription.id} className={`SectionTwo-card ${subscription.class}`}>
             <div className="SectionTwo-card-icon">
@@ -67,14 +109,14 @@ const SectionTwo = ({ subscriptions }) => {
               <h3 className="SectionTwo-card-title">{subscription.title}</h3>
               <p className="SectionTwo-card-text">{subscription.price}</p>
               <ul className="SectionTwo-card-features">
-                {subscription.features.map((feature, index) => (
-                  <li key={index}>
-                    <FontAwesomeIcon icon={faCheck} /> {feature}
-                  </li>
-                ))}
-              </ul>
+              {subscription.features.map((feature, index) => (
+                <li key={index}>
+                  {parseFeature(feature)}
+                </li>
+              ))}
+            </ul>
               <div className="SectionTwo-card-date">{subscription.date}</div>
-              <a href="#" className="SectionTwo-card-button">Learn More</a>
+              <a href="#" className="SectionTwo-card-button">Saber más</a>
             </div>
           </div>
         ))}

@@ -4,9 +4,9 @@
       "title": "Plan Premium",
       "price": "50€ + Matrícula 30€",
       "features": [
-        "Acceso a todas las clases (podrás reservar una clase y al finalizar tendrás acceso a otra reserva del mismo día)",
-        "Plan de alimentación básico que se actualizará cada 3 meses",
-        "+Más taller de postura"
+        "<strong>Acceso a todas las clases</strong> (podrás reservar una clase y al finalizar tendrás acceso a otra reserva del mismo día)",
+        "<strong>Plan de alimentación básico</strong> que se actualizará cada 3 meses",
+        "<strong>+</strong> Más taller de postura"
       ],
       "class": "SectionTwo-card-premium"
     },
@@ -15,24 +15,24 @@
       "title": "Plan Matutino",
       "price": "40€ + Matrícula 30€",
       "features": [
-        "Acceso a todas las clases en la mañana (podrás reservar una clase y al finalizar tendrás acceso a otra reserva matutina del mismo día)",
-        "Plan de alimentación básico que se actualizará cada 3 meses",
-        "Más taller de postura"
+        "<strong>Acceso a todas las clases en la mañana</strong> (podrás reservar una clase y al finalizar tendrás acceso a otra reserva matutina del mismo día)",
+        "<strong>Plan de alimentación básico</strong> que se actualizará cada 3 meses",
+        "<strong>+</strong> Más taller de postura"
       ],
       "class": "SectionTwo-card-matutino"
     },
     {
       "id": 3,
-      "title": "Plan 3 Sesiones a la Semana",
+      "title": "Plan 3 Sesiones",
       "price": "34.90€ + Matrícula 30€",
-      "features": ["Acceso a cualquier hora 3 sesiones a la semana"],
+      "features": ["<strong>Acceso a cualquier hora</strong> 3 sesiones a la semana"],
       "class": "SectionTwo-card-3sesiones"
     },
     {
         "id": 4,
-        "title": "Plan 3 Sesiones a la Semana",
+        "title": "Plan 3 Sesiones",
         "price": "34.90€ + Matrícula 30€",
-        "features": ["Acceso a cualquier hora 3 sesiones a la semana"],
+        "features": ["<strong>Acceso a cualquier hora</strong> 3 sesiones a la semana"],
         "class": "SectionTwo-card-3sesiones"
       }
   ]
