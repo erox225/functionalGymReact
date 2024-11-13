@@ -1,9 +1,8 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faDownload } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionFour.css'; 
-import ClassModal from './ClassModal'; // Importa el componente de la modal
-
+import ClassModal from './ClassModal';
 
 function getCurrentDateFormatted() {
   const today = new Date();
@@ -13,7 +12,7 @@ function getCurrentDateFormatted() {
   return `${year}-${month}-${day}`;
 }
 
-const SectionFour = ({activitiesByDate}) => {
+const SectionFour = ({ activitiesByDate }) => {
   const [selectedDate, setSelectedDate] = useState(getCurrentDateFormatted());
   const [selectedClass, setSelectedClass] = useState(null);
 
@@ -92,6 +91,13 @@ const SectionFour = ({activitiesByDate}) => {
         ) : (
           <p className='sectionFour-sin-actividades'>No hay actividades programadas para hoy.</p>
         )}
+      </div>
+
+      {/* Botón de descarga de imagen del calendario */}
+      <div className="sectionFour-download">
+        <a href="/calendar-image.png" download="Calendario.png" className="sectionFour-download-button">
+          <FontAwesomeIcon icon={faDownload} className='icon-calendar-download'/> Descargar Calendario
+        </a>
       </div>
 
       {selectedClass && <ClassModal classInfo={selectedClass} onClose={closeModal} />}

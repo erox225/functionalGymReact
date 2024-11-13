@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell, faCheck } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionTwo.css';
 
-const SectionTwo = ({ subscriptions }) => {
+const SectionTwo = ({ subscriptions, onMoreInfo }) => {
   const cardContainerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerPage, setCardsPerPage] = useState(1);
@@ -49,7 +49,7 @@ const SectionTwo = ({ subscriptions }) => {
       const interval = setInterval(() => {
         const nextIndex = (currentIndex + 1) % numberOfPages;
         scrollToPage(nextIndex);
-      }, 5000);
+      }, 7000);
       return () => clearInterval(interval);
     }
   }, [currentIndex, cardsPerPage, numberOfPages]);
@@ -73,19 +73,13 @@ const SectionTwo = ({ subscriptions }) => {
   };
 
   const parseFeature = (text) => {
-    // Divide el texto en partes usando etiquetas <strong> como delimitadores
-    const parts = text.split(/(<strong>|<\/strong>)/g);
-  
+    const parts = text.split(/(<strong>|<\/strong>|<br\s*\/?>)/g);
     return parts.map((part, index) => {
-      if (part === "<strong>" || part === "</strong>") {
-        return null; // Ignora las etiquetas de apertura y cierre
-      }
-      return parts[index - 1] === "<strong>"
-        ? <strong key={index}>{part}</strong> // Aplica negrita al texto entre etiquetas
-        : part; // Muestra el texto normal
+      if (part === "<strong>" || part === "</strong>") return null;
+      if (part === "<br/>" || part === "<br />") return <br key={index} />;
+      return parts[index - 1] === "<strong>" ? <strong key={index}>{part}</strong> : part;
     });
   };
-  
 
   const handleTouchEnd = () => setIsDragging(false);
 
@@ -109,14 +103,16 @@ const SectionTwo = ({ subscriptions }) => {
               <h3 className="SectionTwo-card-title">{subscription.title}</h3>
               <p className="SectionTwo-card-text">{subscription.price}</p>
               <ul className="SectionTwo-card-features">
-              {subscription.features.map((feature, index) => (
-                <li key={index}>
-                  {parseFeature(feature)}
-                </li>
-              ))}
-            </ul>
+                {subscription.features.map((feature, index) => (
+                  <li key={index}>
+                    {parseFeature(feature)}
+                  </li>
+                ))}
+              </ul>
               <div className="SectionTwo-card-date">{subscription.date}</div>
-              <a href="#" className="SectionTwo-card-button">Saber más</a>
+              <a href="#" className="SectionTwo-card-button" onClick={() => onMoreInfo(subscription.id)}> {/* Llama a onMoreInfo */}
+                Saber más
+              </a>
             </div>
           </div>
         ))}

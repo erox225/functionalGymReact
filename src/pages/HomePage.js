@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Section from '../components/Section';
 import SectionTwo from '../components/SectionTwo';
 import SectionThree from '../components/SectionThree';
@@ -7,24 +7,52 @@ import SectionFive from '../components/SectionFive';
 import SectionFooter from '../components/SectionFooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { fetchSubscriptions, fetchActivities } from '../bussinesLogic/api';  // Importa las funciones de fetch
+import { fetchSubscriptions, fetchActivities } from '../bussinesLogic/api';
 
 const HomePage = () => {
-  const [subscriptions, setSubscriptions] = useState([]);  // Inicializa con un array vacío
-  const [activitiesByDate, setActivitiesByDate] = useState({});  // Inicializa con un objeto vacío
+  const [subscriptions, setSubscriptions] = useState([]);
+  const [activitiesByDate, setActivitiesByDate] = useState({});
+  const sectionFiveRef = useRef(null);
+  const [selectedSubscription, setSelectedSubscription] = useState(null); // Estado para la suscripción seleccionada
 
   useEffect(() => {
-    // Función para obtener los datos de la API o mock
     const fetchData = async () => {
-      const subs = await fetchSubscriptions();  // Llama a la función para obtener las suscripciones
-      setSubscriptions(subs || []);  // Asegura que no sea undefined y asigna un array vacío si es necesario
-
-      const activities = await fetchActivities();  // Llama a la función para obtener las actividades
-      setActivitiesByDate(activities || {});  // Asegura que no sea undefined y asigna un objeto vacío si es necesario
+      const subs = await fetchSubscriptions();
+      setSubscriptions(subs || []);
+      const activities = await fetchActivities();
+      setActivitiesByDate(activities || {});
     };
 
-    fetchData();  // Ejecuta la función al cargar el componente
+    fetchData();
   }, []);
+
+  const handleScrollToSectionFive = (subscriptionId = null) => {
+    setSelectedSubscription(subscriptionId); // Establece la suscripción seleccionada
+    const targetPosition = sectionFiveRef.current?.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    const duration = 1500;
+
+    const smoothScroll = (currentTime) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+
+      if (timeElapsed < duration) requestAnimationFrame(smoothScroll);
+    };
+
+    const easeInOutQuad = (t, b, c, d) => {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    };
+
+    requestAnimationFrame(smoothScroll);
+  };
 
   return (
     <>
@@ -39,7 +67,7 @@ const HomePage = () => {
                 <span className='h1-section1-vida'>vida</span>
               </h1>
               <h2 className='h2-section1'>MAS RÁPIDA, MAS FUERTE, TU MEJOR VERSIÓN</h2>
-              <button className="subscribe-button">
+              <button className="subscribe-button" onClick={() => handleScrollToSectionFive()}>
                 <FontAwesomeIcon icon={faUserPlus} /> INSCRÍBETE
               </button>
             </div>
@@ -47,7 +75,7 @@ const HomePage = () => {
         }
         rightContent={
           <>
-            <button className="subscribe-button-mini">
+            <button className="subscribe-button-mini" onClick={() => handleScrollToSectionFive()}>
               <span className="button-icon">
                 <FontAwesomeIcon icon={faUserPlus} />
               </span>
@@ -58,23 +86,10 @@ const HomePage = () => {
         backgroundColor="#6200ea"
       />
 
-      {/* Segunda sección: Subscriptions */}
-      {subscriptions.length > 0 ? (
-        <SectionTwo subscriptions={subscriptions} />
-      ) : (
-        <p>Cargando suscripciones...</p>  // Mensaje de carga si aún no hay datos
-      )}
-
-      {/* Tercera sección: Vacía en este caso */}
+      <SectionTwo subscriptions={subscriptions} onMoreInfo={handleScrollToSectionFive} /> {/* Pasa la función onMoreInfo */}
       <SectionThree />
-
-      {/* Cuarta sección: Activities */}
       <SectionFour activitiesByDate={activitiesByDate} />
-
-      {/* Quinta sección: Subscriptions */}
-      <SectionFive subscriptions={subscriptions} />
-      
-      {/* Footer de la página */}
+      <SectionFive subscriptions={subscriptions} scrollRef={sectionFiveRef} selectedSubscription={selectedSubscription} />
       <SectionFooter />
     </>
   );

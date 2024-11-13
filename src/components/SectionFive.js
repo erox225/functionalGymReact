@@ -2,67 +2,58 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionFive.css';
-import { sendSubscriptionForm } from '../bussinesLogic/api'; // Importa la función para enviar el formulario
+import { sendSubscriptionForm } from '../bussinesLogic/api';
 
-const SectionFive = ({ subscriptions }) => {
-  // Inicializa el estado con el primer ID de suscripción, si existe
-  const [selectedSubscription, setSelectedSubscription] = useState(null);
-
-  // Crear variables del formulario
+const SectionFive = ({ subscriptions, scrollRef, selectedSubscription }) => {
+  // Encuentra la suscripción "Premium" o usa la primera suscripción como predeterminada si "Premium" no existe.
+  const defaultSubscriptionId = subscriptions.find(sub => sub.title.toLowerCase().includes('premium'))?.id || 
+                               (subscriptions.length > 0 ? subscriptions[0].id : null);
+  
+  const [selectedSubscriptionId, setSelectedSubscriptionId] = useState(selectedSubscription || defaultSubscriptionId);
   const [formData, setFormData] = useState({
     nombre: '',
     apellidos: '',
     email: ''
   });
-
   const [fieldErrors, setFieldErrors] = useState({
     nombre: false,
     apellidos: false,
     email: false
   });
-
   const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState(''); // Nuevo estado para el mensaje de éxito
+  const [successMessage, setSuccessMessage] = useState('');
   const carouselRef = useRef(null);
 
-  // Al cargar la página, asegurarse de que la primera suscripción esté seleccionada
   useEffect(() => {
-    if (subscriptions.length > 0 && !selectedSubscription) {
-      setSelectedSubscription(subscriptions[0].id);
+    // Si `selectedSubscription` se pasa como prop, se establece como seleccionado.
+    if (selectedSubscription) {
+      setSelectedSubscriptionId(selectedSubscription);
     }
-  }, [subscriptions, selectedSubscription]);
+  }, [selectedSubscription]);
 
-  // Función para manejar la selección de una tarjeta de suscripción
+  useEffect(() => {
+    // Centrar el elemento seleccionado en el carrusel cuando cambie `selectedSubscriptionId`.
+    const selectedCard = carouselRef.current?.querySelector(`.SectionFive-card.selected`);
+    if (selectedCard) {
+      selectedCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, [selectedSubscriptionId]);
+
   const handleCardClick = (id) => {
-    setSelectedSubscription(id);
+    setSelectedSubscriptionId(id);
   };
 
-  // Manejar el cambio de los campos del formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-
-    // Limpiar el error del campo cuando el usuario comience a escribir
+    setFormData({ ...formData, [name]: value });
     if (fieldErrors[name]) {
-      setFieldErrors({
-        ...fieldErrors,
-        [name]: false
-      });
+      setFieldErrors({ ...fieldErrors, [name]: false });
     }
   };
 
-  // Validar los campos del formulario
   const validateForm = () => {
     const { nombre, apellidos, email } = formData;
-    const newFieldErrors = {
-      nombre: false,
-      apellidos: false,
-      email: false
-    };
-
+    const newFieldErrors = { nombre: false, apellidos: false, email: false };
     let formIsValid = true;
 
     if (!nombre) {
@@ -83,61 +74,41 @@ const SectionFive = ({ subscriptions }) => {
     return formIsValid;
   };
 
-  // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Limpiar mensajes anteriores
     setError('');
     setSuccessMessage('');
 
-    // Validar el formulario
-    const isFormValid = validateForm();
-    if (!isFormValid) {
+    if (!validateForm()) {
       setError('Por favor, completa todos los campos correctamente.');
       return;
     }
 
-    // Si no hay errores, proceder al envío
-    const dataToSend = {
-      ...formData,
-      suscripcion: selectedSubscription
-    };
-
+    const dataToSend = { ...formData, suscripcion: selectedSubscriptionId };
     try {
-      const response = await sendSubscriptionForm(dataToSend); // Llama a la función para enviar los datos
+      const response = await sendSubscriptionForm(dataToSend);
       if (response.success) {
         setSuccessMessage('Formulario enviado correctamente');
-        setFormData({
-          nombre: '',
-          apellidos: '',
-          email: ''
-        });
+        setFormData({ nombre: '', apellidos: '', email: '' });
         setTimeout(() => setSuccessMessage(''), 5000);
       } else {
         setError('Error al enviar el formulario');
-        setTimeout(() => setError(''), 5000); // Ocultar el error después de 5 segundos
+        setTimeout(() => setError(''), 5000);
       }
     } catch (error) {
       console.error('Error enviando el formulario:', error);
       setError('Ocurrió un error al enviar el formulario');
-      setTimeout(() => setError(''), 5000); // Ocultar el error después de 5 segundos
+      setTimeout(() => setError(''), 5000);
     }
   };
 
   return (
-    <section className="SectionFive">
-      <h2 className="SectionFive-title">¡Inscribete!</h2>
+    <section className="SectionFive" ref={scrollRef}>
+      <h2 className="SectionFive-title">¡Inscríbete!</h2>
 
-      {/* Formulario */}
       <form className="SectionFive-form" onSubmit={handleSubmit}>
+        <p className={`section-five-error-message ${error ? 'visible' : ''}`}>{error}</p>
 
-      {/* Mostrar mensaje de error */}
-      <p className={`section-five-error-message ${error ? 'visible' : ''}`}>
-        {error}
-      </p>
-
-        {/* Nombre */}
         <div className="SectionFive-form-group">
           <label htmlFor="nombre">Nombre</label>
           <FontAwesomeIcon icon={faUser} className="icon" />
@@ -152,7 +123,6 @@ const SectionFive = ({ subscriptions }) => {
           />
         </div>
 
-        {/* Apellidos */}
         <div className="SectionFive-form-group">
           <label htmlFor="apellidos">Apellidos</label>
           <FontAwesomeIcon icon={faUser} className="icon" />
@@ -167,7 +137,6 @@ const SectionFive = ({ subscriptions }) => {
           />
         </div>
 
-        {/* Carrusel de suscripciones */}
         <div className="SectionFive-form-group">
           <label htmlFor="suscripcion">Suscripción</label>
           <div className="SectionFive-subscription-carousel" ref={carouselRef}>
@@ -176,20 +145,19 @@ const SectionFive = ({ subscriptions }) => {
                 subscriptions.map((sub) => (
                   <div
                     key={sub.id}
-                    className={`SectionFive-card ${selectedSubscription === sub.id ? 'selected' : ''}`}
+                    className={`SectionFive-card ${selectedSubscriptionId === sub.id ? 'selected' : ''}`}
                     onClick={() => handleCardClick(sub.id)}
                   >
-                    <h3>{sub.title}</h3> {/* Solo muestra el nombre de la suscripción */}
+                    <h3>{sub.title}</h3>
                   </div>
                 ))
               ) : (
-                <p>No hay suscripciones disponibles.</p> /* Mostrar un mensaje si no hay suscripciones */
+                <p>No hay suscripciones disponibles.</p>
               )}
             </div>
           </div>
         </div>
 
-        {/* Email */}
         <div className="SectionFive-form-group">
           <label htmlFor="email">Email</label>
           <FontAwesomeIcon icon={faEnvelope} className="icon" />
@@ -204,18 +172,9 @@ const SectionFive = ({ subscriptions }) => {
           />
         </div>
 
-        {/* Campo oculto para enviar la suscripción seleccionada */}
-        <input type="hidden" name="suscripcion" value={selectedSubscription || ''} />
+        <p className={`section-five-success-message ${successMessage ? 'visible' : ''}`}>{successMessage}</p>
 
-      {/* Mostrar mensaje de éxito */}
-      <p className={`section-five-success-message ${successMessage ? 'visible' : ''}`}>
-        {successMessage}
-      </p>
-
-        {/* Botón de enviar */}
-        <button type="submit" className="SectionFive-submit-button">
-          Enviar
-        </button>
+        <button type="submit" className="SectionFive-submit-button">Enviar</button>
       </form>
     </section>
   );

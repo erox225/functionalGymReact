@@ -74,6 +74,12 @@
   background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); /* Degradado Familiar */
 }
 
+/* Carta 12 Sesiones */
+.SectionTwo-card-12sesiones {
+  background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%); /* Degradado 12 Sesiones */
+}
+
+
 /* Imagen de fondo común */
 .SectionTwo-card::before {
   content: "";
@@ -85,7 +91,7 @@
   background-image: url('../../../public/images/section_one.jpg'); /* Imagen de fondo común */
   background-size: cover;
   background-position: center;
-  opacity: 0.3; 
+  opacity: 0.1; 
   z-index: 0;
   border-radius: 20px;
 }
@@ -106,7 +112,8 @@
 .SectionTwo-card-content {
   position: relative;
   z-index: 1;
-  padding: 20px;
+  box-sizing: border-box;
+  padding: 0px 10px;
 }
 
 /* Título de la carta */
