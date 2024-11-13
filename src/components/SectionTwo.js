@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDumbbell, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faDumbbell, faCheck, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionTwo.css';
 
 const SectionTwo = ({ subscriptions, onMoreInfo }) => {
@@ -13,19 +13,13 @@ const SectionTwo = ({ subscriptions, onMoreInfo }) => {
 
   const updateCardsPerPage = () => {
     const width = window.innerWidth;
-    if (width >= 768) {
-      setCardsPerPage(3);
-    } else {
-      setCardsPerPage(1);
-    }
+    setCardsPerPage(width >= 768 ? 3 : 1);
   };
 
   useEffect(() => {
     updateCardsPerPage();
     window.addEventListener('resize', updateCardsPerPage);
-    return () => {
-      window.removeEventListener('resize', updateCardsPerPage);
-    };
+    return () => window.removeEventListener('resize', updateCardsPerPage);
   }, []);
 
   useEffect(() => {
@@ -33,7 +27,7 @@ const SectionTwo = ({ subscriptions, onMoreInfo }) => {
       const totalCards = cardContainerRef.current.children.length;
       setNumberOfPages(Math.ceil(totalCards / cardsPerPage));
     }
-  }, [cardsPerPage]);
+  }, [cardsPerPage, subscriptions]);
 
   const scrollToPage = (index) => {
     const cardWidth = cardContainerRef.current.children[0].offsetWidth;
@@ -45,14 +39,14 @@ const SectionTwo = ({ subscriptions, onMoreInfo }) => {
   };
 
   useEffect(() => {
-    if (numberOfPages > 0) {
-      const interval = setInterval(() => {
-        const nextIndex = (currentIndex + 1) % numberOfPages;
-        scrollToPage(nextIndex);
-      }, 7000);
-      return () => clearInterval(interval);
-    }
-  }, [currentIndex, cardsPerPage, numberOfPages]);
+    const autoScroll = () => {
+      const nextIndex = (currentIndex + 1) % numberOfPages;
+      scrollToPage(nextIndex);
+    };
+
+    const interval = setInterval(autoScroll, 7000);
+    return () => clearInterval(interval);
+  }, [numberOfPages]); // Eliminar currentIndex de las dependencias
 
   const handleTouchStart = (e) => {
     setStartX(e.touches[0].clientX);
@@ -61,8 +55,7 @@ const SectionTwo = ({ subscriptions, onMoreInfo }) => {
 
   const handleTouchMove = (e) => {
     if (!isDragging) return;
-    const moveX = e.touches[0].clientX;
-    const diffX = startX - moveX;
+    const diffX = startX - e.touches[0].clientX;
     if (diffX > 50) {
       setIsDragging(false);
       scrollToPage((currentIndex + 1) % numberOfPages);
@@ -110,7 +103,8 @@ const SectionTwo = ({ subscriptions, onMoreInfo }) => {
                 ))}
               </ul>
               <div className="SectionTwo-card-date">{subscription.date}</div>
-              <a href="#" className="SectionTwo-card-button" onClick={() => onMoreInfo(subscription.id)}> {/* Llama a onMoreInfo */}
+              <a href="#" className="SectionTwo-card-button" onClick={() => onMoreInfo(subscription.id)}>
+                <FontAwesomeIcon icon={faInfoCircle} /> {/* Icono agregado */}
                 Saber más
               </a>
             </div>
