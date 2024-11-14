@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDumbbell, faCheck, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDumbbell, faCheck, faInfoCircle, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import './css/SectionTwo.css';
 
 const SectionTwo = ({ subscriptions, onMoreInfo }) => {
@@ -39,14 +39,18 @@ const SectionTwo = ({ subscriptions, onMoreInfo }) => {
   };
 
   useEffect(() => {
-    const autoScroll = () => {
-      const nextIndex = (currentIndex + 1) % numberOfPages;
-      scrollToPage(nextIndex);
-    };
+    // Solo iniciar auto-desplazamiento en pantallas grandes
+    const width = window.innerWidth;
+    if (width >= 768) {
+      const autoScroll = () => {
+        const nextIndex = (currentIndex + 1) % numberOfPages;
+        scrollToPage(nextIndex);
+      };
 
-    const interval = setInterval(autoScroll, 7000);
-    return () => clearInterval(interval);
-  }, [numberOfPages]); // Eliminar currentIndex de las dependencias
+      const interval = setInterval(autoScroll, 7000);
+      return () => clearInterval(interval);
+    }
+  }, [numberOfPages, currentIndex]);
 
   const handleTouchStart = (e) => {
     setStartX(e.touches[0].clientX);
@@ -93,21 +97,26 @@ const SectionTwo = ({ subscriptions, onMoreInfo }) => {
               <FontAwesomeIcon icon={faDumbbell} />
             </div>
             <div className="SectionTwo-card-content">
-              <h3 className="SectionTwo-card-title">{subscription.title}</h3>
-              <p className="SectionTwo-card-text">{subscription.price}</p>
-              <ul className="SectionTwo-card-features">
-                {subscription.features.map((feature, index) => (
-                  <li key={index}>
-                    {parseFeature(feature)}
-                  </li>
-                ))}
-              </ul>
-              <div className="SectionTwo-card-date">{subscription.date}</div>
-              <a href="#" className="SectionTwo-card-button" onClick={() => onMoreInfo(subscription.id)}>
-                <FontAwesomeIcon icon={faInfoCircle} /> {/* Icono agregado */}
-                Saber más
-              </a>
-            </div>
+  <div>
+    <h3 className="SectionTwo-card-title">{subscription.title}</h3>
+    <p className="SectionTwo-card-text">{subscription.price}</p>
+  </div>
+  
+  <div>
+    <ul className="SectionTwo-card-features">
+      {subscription.features.map((feature, index) => (
+        <li key={index}>
+          {parseFeature(feature)}
+        </li>
+      ))}
+    </ul>
+    <div className="SectionTwo-card-date">{subscription.date}</div>
+  </div>
+
+  <a href="#" className="SectionTwo-card-button" onClick={() => onMoreInfo(subscription.id)}>
+    Saber más <FontAwesomeIcon icon={faArrowDown} />
+  </a>
+</div>
           </div>
         ))}
       </div>

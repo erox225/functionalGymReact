@@ -25,7 +25,6 @@ const SectionFive = ({ subscriptions, scrollRef, selectedSubscription }) => {
   const carouselRef = useRef(null);
 
   useEffect(() => {
-    // Si `selectedSubscription` se pasa como prop, se establece como seleccionado.
     if (selectedSubscription) {
       setSelectedSubscriptionId(selectedSubscription);
     }

@@ -15,7 +15,7 @@
         "name": "TrainNow",
         "time": "11:00",
         "aforoMax": 10,
-        "aforoActual": 5,
+        "aforoActual": 10,
         "intensidad": "Media",
         "duracion": "45'",
         "tipo": "Mente - Cuerpo",
