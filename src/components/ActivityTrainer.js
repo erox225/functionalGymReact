@@ -24,7 +24,10 @@ const ActivityTrainer = ({ activity, navigate }) => {
           <p className="activity-details-name-trainer">{activity.trainer}</p>
         </div>
         <div className="activity-atributes-card">
-          <div className="activity-aforo">
+          <div
+            className="activity-aforo"
+            style={{ color: activity.aforoActual >= activity.aforoMax ? '#ff6464' : '#000000' }} // Rojo si el aforo está completo, negro en caso contrario
+          >
             <FontAwesomeIcon icon={faUsers} style={{ marginRight: '0.3rem' }} />
             {activity.aforoMax}/{activity.aforoActual}
           </div>

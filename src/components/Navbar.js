@@ -22,7 +22,7 @@ const allowedPaths3 = ['/login'];
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { userRole } = useAuth(); // Obtener el rol del usuario desde AuthContext
+  const { userRole } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -31,10 +31,8 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="app-name">
-        <h1>
-          <Link to="/" className="nav-link">FunctionalGym</Link>
-          <p className='suscription-type'>Premium</p>
-        </h1>
+        <div className="nav-logo"></div> {/* Cambiado el enlace a un div para el logo */}
+        <h5 className='name-trainnow'>Train<span className='name-now'>Now</span></h5>
       </div>
 
       {allowedPaths.includes(location.pathname) && (
@@ -46,7 +44,6 @@ const Navbar = () => {
             </Link>
           </li>
 
-          {/* Condicionales basados en el rol del usuario */}
           {userRole === 1 && (
             <li>
               <Link to="/class" className="nav-link">

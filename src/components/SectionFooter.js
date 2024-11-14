@@ -9,10 +9,9 @@ const SectionFooter = () => {
       <div className="footer-content">
         {/* Logo e información */}
         <div className="footer-logo-info">
-          <img src="/path_to_logo/train_now_logo.png" alt="Train Now Logo" className="footer-logo" />
+          <div className="footer-logo"></div> {/* Cambiado a un div para el logo */}
           <p className="footer-description">
-            Welcome to [Your Gym Name], where fitness meets passion, and every drop of sweat tells a story of dedication. 
-            Our gym isn't just a place to work out; it's a community, a lifestyle, and a commitment to your well-being.
+            Bienvenido a Train Now, donde el fitness y la pasión se unen. No somos solo un gimnasio; somos una comunidad comprometida con tu bienestar. ¡Entrena con nosotros y alcanza tu mejor versión!
           </p>
         </div>
 

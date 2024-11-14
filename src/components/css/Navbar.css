@@ -211,3 +211,29 @@
 margin-top: .3em;
 }
 
+.nav-logo {
+  width: 50px;
+  height: 50px;
+  background-image: url('/public/images/logo.png'); /* Cambia la ruta según corresponda */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.name-trainnow{
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.app-name{
+  display: flex;
+  align-items: center;
+}
+
+.name-now{
+  color: yellow;
+}
+

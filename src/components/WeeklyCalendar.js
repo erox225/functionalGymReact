@@ -92,7 +92,7 @@ const WeeklySchedule = () => {
 
   const activitiesByDate = {
     "2024-10-25": [
-      { id: 1, name: 'BodyCombat', time: '09:00', aforoMax: 30, aforoActual: 15, intensidad: 'Alta', duracion: "60'", color: 'rgb(176, 6, 6)', intensityColor: 'rgb(176, 6, 6)', trainer: 'Jessica Di Maggio', estado: 'Inscrito' },
+      { id: 1, name: 'BodyCombat', time: '09:00', aforoMax: 30, aforoActual: 31, intensidad: 'Alta', duracion: "60'", color: 'rgb(176, 6, 6)', intensityColor: 'rgb(176, 6, 6)', trainer: 'Jessica Di Maggio', estado: 'Inscrito' },
       { id: 2, name: 'Pilates', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)', trainer: 'Alex Rivera', estado: 'En cola' },
       { id: 3, name: 'Pesas', time: '11:00', aforoMax: 10, aforoActual: 5, intensidad: 'Media', duracion: "45'", color: 'rgb(4, 157, 176)', intensityColor: 'rgb(247, 193, 28)', trainer: 'Alex Rivera', estado: 'Libre' },
     ],
