@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/functionalGymReact/static/css/main.d77a4f1d.css",
-    "main.js": "/functionalGymReact/static/js/main.66cbffd6.js",
+    "main.css": "/functionalGymReact/static/css/main.2c9c29ee.css",
+    "main.js": "/functionalGymReact/static/js/main.bb1f7a02.js",
     "static/media/trainer_two-sin-fondo.png": "/functionalGymReact/static/media/trainer_two-sin-fondo.2cc3c5491dc22751a478.png",
     "static/media/Balance.jpg": "/functionalGymReact/static/media/Balance.fef563dd67beed3ff89f.jpg",
     "static/media/BodyPom.jpg": "/functionalGymReact/static/media/BodyPom.9694fb9caeb1d9a2bd4e.jpg",
@@ -16,11 +16,11 @@
     "static/media/trainer_one.jpg": "/functionalGymReact/static/media/trainer_one.f613228bb049c37f83ba.jpg",
     "static/media/logo.png": "/functionalGymReact/static/media/logo.3b71e389a735d5ded4f5.png",
     "index.html": "/functionalGymReact/index.html",
-    "main.d77a4f1d.css.map": "/functionalGymReact/static/css/main.d77a4f1d.css.map",
-    "main.66cbffd6.js.map": "/functionalGymReact/static/js/main.66cbffd6.js.map"
+    "main.2c9c29ee.css.map": "/functionalGymReact/static/css/main.2c9c29ee.css.map",
+    "main.bb1f7a02.js.map": "/functionalGymReact/static/js/main.bb1f7a02.js.map"
   },
   "entrypoints": [
-    "static/css/main.d77a4f1d.css",
-    "static/js/main.66cbffd6.js"
+    "static/css/main.2c9c29ee.css",
+    "static/js/main.bb1f7a02.js"
   ]
 }
